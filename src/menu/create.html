@@ -1,0 +1,31 @@
+<template>
+  <dialog id="Create" open>
+
+    <div class="center">
+      <span class="CreationText">Choose your Nerd</span>
+    </div>
+
+    <div class="center">
+      <input type="text" placeholder="Name" class="inputName">
+    </div>
+    
+    <div class="center">
+      <img class="profileImg" src="../static/assets/characters/Nerd.png" gender="male"
+          click.trigger="clickGender($event)"/>
+      <img class="profileImg" src="./static/assets/characters/femalenerd.png" gender="female"
+          click.trigger="clickGender($event)"/>
+    </div>
+
+    <div class="center">
+      <ul>
+        <li class="classes" type="Marine" click.trigger="clickClass($event)">Marine</li>
+        <li class="classes" type="Psi Ops" click.trigger="clickClass($event)">Psi Ops</li>
+      </ul>
+    </div>
+    
+    <div class="center">        
+      <button click.trigger="play()">Play</button>
+    </div>
+
+  </dialog>
+</template>

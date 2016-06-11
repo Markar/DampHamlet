@@ -1,0 +1,27 @@
+$background-color: #303030;
+$font-stack: Orbitron, sans-serif;
+
+#Explosives {
+  font: $font-stack;
+}
+
+#Explosives div span {
+  padding-left: 6em;
+  font-size: xx-large;
+}
+
+#Explosives .left {
+  width: 15em;
+  float: left;
+  font-size: large;
+}
+
+#Explosives .right {
+  width: 15em;
+  float: left;
+  font-size: large;
+}
+
+.closeExplosives {
+  float:right;
+}

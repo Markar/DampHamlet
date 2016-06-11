@@ -1,0 +1,49 @@
+<template>
+  <dialog id="Profile">
+    <div>
+      <span class="ProfileText">${phasergame.playerone.playername}</span>
+      <img src="../static/assets/UI/XIcon.png" class="closeProfile" click.trigger="closeMenu()">
+    </div>
+
+    <div class="left">
+      <div>
+        <div>
+          <label>Health: </label>
+          <span>${phasergame.playerone.attributes.health.current}</span>
+          <span> / </span>
+          <span>${phasergame.playerone.attributes.health.max}</span>
+        </div>
+        <div>
+          <label>Speed: </label>
+          <span>${phasergame.playerone.attributes.speed}</span>
+        </div>
+        
+        <div>Level: <span>${phasergame.playerone.attributes.level}</span></div>
+        
+        <div>
+          <label>XP: </label>
+          <span>${phasergame.playerone.attributes.xp}</span>
+          <span> / </span>
+          <span>${phasergame.playerone.levels.nextlevel}</span>
+        </div>
+        
+        <div>Credits: <span>${phasergame.playerone.attributes.credits}</span></div>
+        
+        <div>Grenades: 
+          <span>${phasergame.playerone.items.grenades.quantity}</span>
+        </div>
+        
+        <div>Weapon: 
+          <span>${phasergame.playerone.weapon.name}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="right">
+      <span class="imgProfile"></span>
+    </div>
+  </dialog>
+
+</template>

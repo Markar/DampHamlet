@@ -1,0 +1,32 @@
+<template>
+  <dialog id="Weapons">
+    <div>
+      <span class="centerHeader">Weapons</span>
+      <img src="../static/assets/UI/XIcon.png" class="closeWeapons" click.trigger="closeMenu()">
+    </div>
+
+    <div class="left">
+      <div>
+        <div>
+          <span>Weapon: </span>
+          <span>${phasergame.playerone.weapon.name}</span>
+        </div>
+        
+        <div>
+          <span>Ammo: </span>
+          <span>${phasergame.playerone.weapon.clip}</span>
+          <span> / </span> 
+          <span>${phasergame.playerone.weapon.ammo}</span>
+        </div>
+        
+        <div> 
+          <span>Fired: </span>
+          <span>${phasergame.playerone.weapon.totalAttacks}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+    </div>
+  </dialog>
+</template>

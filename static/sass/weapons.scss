@@ -1,0 +1,22 @@
+$background-color: #303030;
+$font-stack: Orbitron, sans-serif;
+
+#Weapons {
+  font-family: $font-stack;
+}
+
+#Weapons .left {
+  width: 15em;
+  float: left;
+  font-size: large;
+}
+
+#Weapons .right {
+  width: 15em;
+  float: left;
+  font-size: large;
+}
+
+.closeWeapons {
+  float:right;
+}

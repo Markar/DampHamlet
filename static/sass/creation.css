@@ -1,0 +1,63 @@
+.creationwindow {
+  height: 600px;
+  width: 800px;
+  margin: auto;
+  border-style: ridge; }
+
+#Create {
+  font-family: Orbitron, sans-serif;
+  height: 600px;
+  width: 800px;
+  margin: auto; }
+
+#Create input {
+  height: 2em;
+  width: 5em; }
+
+.CreationHeader {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-content: center; }
+
+.CreationText {
+  font-size: xx-large;
+  color: aliceblue;
+  text-align: center;
+  flex-grow: 1; }
+
+#Create .center {
+  text-align: center;
+  flex-grow: 1;
+  margin-bottom: 2em; }
+
+#Create .left {
+  width: 18em;
+  height: 30em;
+  float: left; }
+
+#Create .right {
+  width: 18em;
+  height: 30em;
+  float: left; }
+
+#Create .createAvatar {
+  justify-content: center; }
+
+.closeCreation {
+  float: right; }
+
+.profileImg {
+  height: 4em;
+  width: 4em;
+  border: 0.25em aliceblue ridge;
+  padding: 0.25em;
+  flex-direction: row;
+  justify-content: center; }
+
+.classes {
+  color: aliceblue;
+  display: inline;
+  border: 0.25em aliceblue ridge;
+  padding: 0.25em;
+  background-color: #4E65B8; }

@@ -1,0 +1,27 @@
+#Instructions {
+  font-family: Orbitron, sans-serif; }
+
+#Instructions div span {
+  padding-left: 6em;
+  font-size: xx-large; }
+
+#Instructions .left {
+  width: 22em;
+  height: 15em;
+  float: left; }
+
+#Instructions .right {
+  width: 22em;
+  height: 15em;
+  float: left; }
+
+#Instructions .bottom {
+  width: 45em;
+  height: 10em;
+  float: left;
+  margin-top: 5em; }
+  #Instructions .bottom div {
+    margin-bottom: 0.75em; }
+
+.closeInstructions {
+  float: right; }

@@ -1,0 +1,106 @@
+.hidden {
+  display: none; }
+
+body {
+  background-color: #282828; }
+
+.mainWindow {
+  height: 100%;
+  color: lightgreen; }
+
+.gamePanel {
+  height: 600px;
+  width: 800px;
+  float: left;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto; }
+
+dialog {
+  background-color: #282828;
+  color: gray;
+  border-style: ridge;
+  opacity: 0.95;
+  width: 800px;
+  height: 600px; }
+
+.top-nav {
+  float: left;
+  height: 2em;
+  color: gray; }
+
+.top-spacer {
+  width: 100%;
+  height: 2em; }
+
+.Name {
+  float: left;
+  font-family: Orbitron, sans-serif;
+  font-size: x-large;
+  height: 1.2em;
+  width: 100%; }
+
+.UIIcons {
+  float: right;
+  position: fixed;
+  right: 0; }
+
+.sidebar-left {
+  font-family: Orbitron, sans-serif;
+  float: left;
+  width: 12em;
+  height: 40em; }
+
+.fa {
+  width: 2em; }
+
+.sidebar-padding {
+  padding-left: 2em; }
+
+.sidebar-left .consumables {
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+.bottom-nav {
+  float: left;
+  height: 5em;
+  width: 100%;
+  color: gray; }
+
+.bottom-nav .Talents {
+  width: 400px;
+  float: left; }
+
+.inputName {
+  width: 75px; }
+
+.ulPlayerList {
+  list-style-type: none; }
+
+.instructionIcons {
+  background: #303030; }
+
+.centerpoint {
+  top: 50%;
+  left: 50%;
+  position: absolute; }
+
+img {
+  height: 2em;
+  width: 2em;
+  image-rendering: optimizeSpeed;
+  /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;
+  /* Firefox                        */
+  image-rendering: -o-crisp-edges;
+  /* Opera                          */
+  image-rendering: -webkit-optimize-contrast;
+  /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;
+  /* Chrome */
+  image-rendering: optimize-contrast;
+  /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;
+  /* IE8+                           */ }

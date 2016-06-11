@@ -1,0 +1,33 @@
+.changelog {
+  color: black;
+  width: 50em;
+  justify-content: center;
+  align-items: center;
+  display: flex; }
+
+.changelog ul {
+  list-style-type: none; }
+
+.changelog ol {
+  list-style-type: square; }
+
+.changelogLink {
+  width: 67em;
+  align-items: center;
+  display: flex;
+  justify-content: center; }
+
+.changelogLink a:link {
+  color: black;
+  text-decoration: none; }
+
+.changelogLink a:visited {
+  color: black;
+  text-decoration: none; }
+
+footer {
+  height: 200px; }
+
+a {
+  color: black;
+  text-decoration: none; }

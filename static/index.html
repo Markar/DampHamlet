@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <title>Nerd in space</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="game-body">
+<div id="content"></div>
+<script src="scripts/phaser.js"></script>
+<script src="scripts/game.js"></script>
+<script src="jquery.js"></script>
+<script src="lodash.js"></script>
+
+<!--game-->
+<div class="mainWindow centered">
+
+    <div class="sidebar-left">
+        <div class="sidebar-padding">
+            <span class="Name">Name</span>
+        </div>
+
+        <div class="sidebar-padding">
+            <i class="fa fa-heart"></i>
+            <span class="health">0</span>
+            <span> / </span>
+            <span class="maxHealth">0</span>
+        </div>
+
+        <div class="sidebar-padding">
+            <i class="fa fa-bolt"></i>
+            <span class="stamina">0</span>
+            <span> / </span>
+            <span class="staminaMax">0</span>
+        </div>
+
+        <div class="sidebar-padding">
+            <i class="fa fa-eye"></i>
+            <span class="energy">0</span>
+            <span> /</span>
+            <span class="energyMax">0</span>
+        </div>
+
+        <div class="sidebar-padding">
+            <i class="fa fa-crosshairs"></i>
+            <span class="clip">0</span>
+            <span> / </span>
+            <span class="ammo">0</span>
+        </div>
+
+        <div class="consumables">
+            <div class="sidebar-padding">
+                <i class="fa fa-bomb"></i>
+                <span class="grenades">0</span>
+            </div>
+            <div class="sidebar-padding">
+                <i class="fa fa-medkit"></i>
+                <span class="medkits">0</span>
+            </div>
+        </div>
+
+        <div class="sidebar-padding">
+            <i class="fa fa-paw"></i>
+            <span class="enemyHealth">--</span>
+            <span> / </span>
+            <span class="enemyCount"></span>
+        </div>
+    </div>
+
+    <div class="top-nav">
+        <div class="top-nav-items">
+        <span class="UIIcons">
+          <img src="./assets/UI/ProfileIcon.png" class="profileIcon">
+          <img src="./assets/UI/AttributesIcon.png" class="attributesIcon">
+          <img src="./assets/UI/GunIcon.png" class="weaponsIcon">
+          <img src="./assets/UI/GrenadeIcon.png" class="grenadeIcon">
+          <img src="./assets/UI/InfoIcon.png" class="instructionsIcon">
+            <!--<img src="./assets/UI/ShieldIcon.png" class="shopIcon">-->
+            <!--<img src="./assets/UI/CheckIcon.png" class="instructionsIcon">-->
+            <!--<img src="./assets/UI/XIcon.png" class="instructionsIcon">-->
+        </span>
+        </div>
+    </div>
+    <div class="top-spacer"></div>
+
+
+    <div class="gamePanel hidden">
+        <div id='gameWindow'></div>
+    </div>
+
+    <div class="creationwindow">
+        <div id="Creation">
+            <div class="CreationHeader">
+                <span class="CreationText">Choose your Nerd</span>
+            </div>
+            <div class="CreateAvatar">
+                <img class="profileImg" src="./assets/characters/Nerd.png" gender="male"/>
+                <img class="profileImg" src="./assets/characters/femalenerd.png" gender="female"/>
+            </div>
+
+            <div class="left">
+                <div>
+                    <input type="text" placeholder="Name" class="inputName">
+                    <input type="button" class="playbutton" value="Play">
+
+                </div>
+            </div>
+
+            <div class="right">
+                <ul>
+                    <li class="classes">Marine</li>
+                    <li class="classes">Psi Ops</li>
+                    <!--<li class="classes">Splicer</li>-->
+                    <!--<li class="classes">Cyborg</li>-->
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <ul class="console"></ul>
+
+        <div class="changelogLink">
+            <a href="changelog.html">Patch Notes</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+
+<footer>
+
+ 
+
+    <script>
+        var openDialog = instructionsDialog;
+        var gender = '';
+        var playerClass = 'Marine';
+
+
+
+
+
+
+
+
+    </script>
+
+</footer>
+
+</html>

@@ -1,0 +1,34 @@
+$background-color: #303030;
+$font-stack: Orbitron, sans-serif;
+
+#Instructions {
+  font-family: $font-stack;
+}
+
+#Instructions div span {
+ padding-left: 6em;
+ font-size: xx-large;
+}
+
+ #Instructions .left {
+  width: 22em;
+  height: 15em;
+  float: left;
+}
+
+ #Instructions .right {
+  width: 22em;
+  height: 15em;
+  float: left;
+}
+ #Instructions .bottom {
+  div { margin-bottom: 0.75em;}
+  width: 45em;
+  height: 10em;
+  float: left;
+  margin-top: 5em;
+ }
+
+.closeInstructions {
+ float:right;
+}

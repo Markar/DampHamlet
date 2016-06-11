@@ -1,0 +1,15 @@
+#Weapons {
+  font-family: Orbitron, sans-serif; }
+
+#Weapons .left {
+  width: 15em;
+  float: left;
+  font-size: large; }
+
+#Weapons .right {
+  width: 15em;
+  float: left;
+  font-size: large; }
+
+.closeWeapons {
+  float: right; }

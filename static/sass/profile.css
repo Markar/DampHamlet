@@ -1,0 +1,22 @@
+#Profile {
+  font-family: Orbitron, sans-serif; }
+
+.ProfileText {
+  font-size: xx-large; }
+
+#Profile .left {
+  width: 13em;
+  float: left;
+  font-size: large; }
+
+#Profile .right {
+  width: 18em;
+  float: left;
+  font-size: large; }
+
+.closeProfile {
+  float: right; }
+
+.profileImg {
+  height: 4em;
+  width: 4em; }

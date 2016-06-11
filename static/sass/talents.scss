@@ -1,0 +1,43 @@
+$background-color: #303030;
+$font-stack: Orbitron, sans-serif;
+
+#Talents {
+  font-family: $font-stack;
+}
+
+.TalentText {
+  padding-left: 4em;
+  font-size: xx-large;
+}
+
+#Talents .left {
+  width: 15em;
+  float: left;
+  font-size: large;
+  margin-top:1em;
+}
+
+#Talents .right {
+  width: 15em;
+  float: left;
+  font-size: large;
+  margin-top:1em;
+}
+
+.closeTalents {
+  float:right;
+}
+
+#Talents .left img {
+  height: 1em;
+  width: 1em;
+
+  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges; /* Firefox                        */
+  image-rendering: -o-crisp-edges; /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated; /* Chrome */
+  image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
+}
+

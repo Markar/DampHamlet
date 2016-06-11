@@ -1,0 +1,57 @@
+<template>
+  <dialog id="Talents">
+    <!--Talents and skills-->
+    <div>
+      <div>
+        <span>Available: </span>
+        <span class="TalentPoints">${phasergame.playerone.skills.points.available}</span>
+        <span class="TalentText">Talents</span>
+        <img src="../static/assets/UI/XIcon.png" class='closeTalents' click.trigger="closeMenu()">
+      </div>
+
+      <div class="left">
+        <table>
+          <thead>
+            <th width="50%"></th>
+            <th width="20%"></th>
+            <th width="20%"></th>
+            <th width="10%"></th>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Pistols</td>
+            <td>${phasergame.playerone.skills.pistols.current}</td>
+            <td>${phasergame.playerone.skills.pistols.max}</td>
+            <td><i class="fa fa-plus-square skillPistols" click.trigger="raisePistolSkill()"></i></td>
+          </tr>
+          <tr>
+            <td>Assault</td>
+            <td>${phasergame.playerone.skills.assault.current}</td>
+            <td>${phasergame.playerone.skills.assault.max}</td>
+            <td><i class="fa fa-plus-square skillAssault" click.trigger="raiseAssaultSkill()"></i></td>
+          </tr>
+          <tr>
+            <td>Explosives</td>
+            <td>${phasergame.playerone.skills.explosives.current}</td>
+            <td>${phasergame.playerone.skills.explosives.max}</td>
+            <td><i class="fa fa-plus-square skillExplosives" click.trigger="raiseExplosivesSkill()"></i></td>
+          </tr>
+          <tr>
+            <td>Health</td>
+            <td>${phasergame.playerone.skills.health.current}</td>
+            <td>${phasergame.playerone.skills.health.max}</td>
+            <td><i class="fa fa-plus-square skillHealth" click.trigger="raiseHealthSkill()"></i></td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>${phasergame.playerone.skills.speed.current}</td>
+            <td>${phasergame.playerone.skills.speed.max}</td>
+            <td><i class="fa fa-plus-square skillSpeed" click.trigger="raiseSpeedSkill()"></i></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>  
+  </dialog>
+</template>

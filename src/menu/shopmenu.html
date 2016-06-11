@@ -1,0 +1,110 @@
+<template>
+  <dialog id="Shop">
+    <div>
+      <span>Credits: 
+        <span value.bind="credits">${phasergame.playerone.attributes.credits}</span>
+      </span>
+      <span class="text">Shop</span>
+      <img src="../static/assets/UI/XIcon.png" class="closeShop" click.delegate="closeMenu()">
+      
+    </div>
+
+    <!--tabs-->
+    <div class="tabs">
+      <input type="radio" name="tabs" id="tab1" checked>
+      <label for="tab1">
+        <i class="fa"></i><span>Items</span>
+      </label>
+
+      <input type="radio" name="tabs" id="tab2">
+      <label for="tab2">
+        <i class="fa"></i><span>Weapons</span>
+      </label>
+
+      <input type="radio" name="tabs" id="tab3">
+      <label for="tab3">
+        <i class="fa"></i><span>Armor</span>
+      </label>
+      <!--tab content-->
+      <div id="tab-content1" class="tab-content">
+        <h2>Items</h2>
+
+        <p>
+          <div>
+            <i class="fa fa-plus-square buybullets" click.delegate="buyBullets()"></i>
+            <span>9mm rounds for ${items.LowCaliburRounds.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buyHiCalRounds" click.delegate="buySlugs()"></i>
+            <span>5.56mm rounds for ${items.HighCaliburoRounds.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buyshells" click.delegate="buyShells()"></i>
+            <span>box of shells for ${items.Shells.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buygrenades" click.delegate="buyGrenades()"></i>
+            <span>grenade for ${items.Grenade.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buyrockets" click.delegate="buyRockets()"></i>
+            <span>box of rockets for ${items.Rockets.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buymedkit" click.delegate="buyMedkit()"></i>
+            <span>medkit for ${items.Medkit.cost} credits.</span>
+          </div>
+        </p>
+      </div>
+
+      <div id="tab-content2" class="tab-content">
+        <h2>Weapons</h2>
+
+        <p>
+          <div>
+            <i class="fa fa-plus-square buyrocketlauncher" click.delegate="buyRocketLauncher()"></i>
+            <span>rocket launcher for ${items.RocketLauncher.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buylaserpistol" click.delegate="buyLaserPistol()"></i>
+            <span>laser pistol for ${items.LaserPistol.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buyassaultrifle" click.delegate="buyAssaultRifle()"></i>
+            <span>assault rifle for ${items.AssaultRifle.cost} credits.</span>
+          </div>
+          <div>
+            <i class="fa fa-plus-square buyshotgun" click.delegate="buyShotgun()"></i>
+            <span>shotgun for ${items.Shotgun.cost} credits.</span>
+          </div>
+        </p>
+      </div>
+
+      <div id="tab-content3" class="tab-content">
+        <h2>Armor</h2>
+
+        <p>
+
+        <div>
+          <i class="fa fa-plus-square buyarmor1"></i>
+          <span>shitty kevlar</span>
+          <span>for 500 credits.</span>
+        </div>
+
+        <div>
+          <i class="fa fa-plus-square buyarmor2"></i>
+          <span>kevlar</span>
+          <span>for 1000 credits.</span>
+        </div>
+
+        <div>
+          <i class="fa fa-plus-square buyarmor3"></i>
+          <span>energy shield</span>
+          <span>for 5000 credits.</span>
+        </div>
+        </p>
+      </div>
+
+    </div>
+  </dialog>
+</template>
