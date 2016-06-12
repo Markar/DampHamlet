@@ -19,7 +19,7 @@
     "url": "http://github.com/aurelia/skeleton-navigation"
   },
   "scripts": {
-    "preinstall": "npm install &&jspm install -y",
+    "preinstall": "jspm install -y",
     "test": "gulp test",
     "e2e": "gulp serve webdriver-standalone e2e"
   },
@@ -30,6 +30,7 @@
     "phaser": "^2.4.4",
     "socket.io": "^1.3.6",
     "underscore": "^1.8.3",
+    "jspm": "0.16.15",
     "gulp": "^3.8.10",
     "gulp-babel": "^6.1.2",
     "gulp-bump": "^0.3.1",
