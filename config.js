@@ -413,8 +413,6 @@ System.config({
       "nav-bar.html!github:systemjs/plugin-text@0.0.3.js",
       "old/loader.js",
       "phaser-game.js",
-      "server/main.js",
-      "server/mongo.js",
       "sharedstate.js",
       "states/CreatePlayer.js",
       "states/GameState.js",
