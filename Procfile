@@ -1,1 +1,1 @@
-web: gulp serve-expoort
+web: gulp serve-export
