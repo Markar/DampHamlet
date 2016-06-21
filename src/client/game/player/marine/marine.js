@@ -72,7 +72,7 @@ export class Marine extends Player {
         regen: 10
       },
 
-      speed: 110,
+      speed: 230,
       armor: 0,
       xp: 0,
       level: 0,

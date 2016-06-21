@@ -7,6 +7,7 @@ import Base from './states/base';
 import Level1 from './states/Level1';
 import Level2 from './states/Level2';
 import Level3 from './states/Level3';
+import Town from './states/town';
 
 import {Marine} from './client/game/player/marine/marine';
 import {PsiOps} from './client/game/player/psiops/psiops';
@@ -18,8 +19,11 @@ import {SharedState} from './sharedstate';
 @inject(SharedState)
 export class DampHamlet  {
 
-  constructor(sharedstate) {
+  constructor(sharedstate, travel) {
     this.sharedstate = sharedstate;
+    // this.travel = travel;
+
+    this.travel = 'test';  
 
     console.log('game constructor: ' + this.id);
 
@@ -47,6 +51,11 @@ export class DampHamlet  {
    this.sharedstate.health += 1; 
   }
 
+setTravel() { 
+  debugger;
+}
+
+
   canDeactivate() {    
       return confirm('This will terminate your current game. Are you sure you want to leave?');
   }
@@ -59,6 +68,8 @@ export class DampHamlet  {
     this.explosivesDialog = document.getElementById('Explosives');
     this.shopDialog = document.getElementById('Shop');
     this.createDialog = document.getElementById('Create');
+    this.missionDialog = document.getElementById('Mission');
+    this.travelDialog = document.getElementById('Travel');
     this.openDialog = this.createDialog;
 
     this.clickHandler();
@@ -190,6 +201,22 @@ export class DampHamlet  {
     this.openDialog = this.shopDialog;
   }
 
+  openMission(player) { 
+    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
+      this.openDialog.close();
+    }
+    this.missionDialog.show();
+    this.openDialog = this.missionDialog;
+  }
+
+  openTravel(player) { 
+    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
+      this.openDialog.close();
+    }
+    this.travelDialog.show();
+    this.openDialog = this.travelDialog;
+  }
+
   clickGender(el) {
     this.gender = el.target.getAttribute('gender');
     $(el.target).siblings().css('border', "0.25em aliceblue ridge");
@@ -219,13 +246,13 @@ export class DampHamlet  {
   play() {
     console.log('play');
     this.phasergame = new Phaser.Game(800, 600, Phaser.AUTO, 'gameWindow', null);
-    //$('.creationwindow').hide();
     
     let assetpath = '../static/assets/';
     this.phasergame.assetpath = '../static/assets/';
     this.phasergame.itempath = assetpath + 'items/';
     this.phasergame.characterpath = assetpath + 'characters/';
     this.phasergame.enemypath = assetpath + 'enemies/';
+    this.phasergame.shippath = assetpath + 'ships/';
     this.phasergame.bosspath = assetpath + 'Sliced/Bosses/';
     this.phasergame.fxpath = assetpath + 'Sliced/fx_32x32/';
 
@@ -240,6 +267,7 @@ export class DampHamlet  {
     this.phasergame.state.add('Level1', Level1, false);
     this.phasergame.state.add('Level2', Level2, false);
     this.phasergame.state.add('Level3', Level3, false);
+    this.phasergame.state.add('Town', Town, false);
     this.phasergame.state.start('GameState');
     
     this.phasergame.target = { 

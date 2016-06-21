@@ -28,6 +28,7 @@ export class Creator {
       this.game.eyes.push(eye);
     }
     this.game.enemies.push(this.game.eyes);
+    return this.game.eyes;
   }
   createSlimes(count) {
     let game = this.game;
@@ -38,6 +39,7 @@ export class Creator {
       game.slimes.push(slime);
     }
     game.enemies.push(game.slimes);
+    return game.slimes;
   }
   createGreenAliens(count) {
 

@@ -57,21 +57,35 @@ export class Laser extends Weapon {
           this.sfxFire2.play();
       }
 
-      var weapon = this.weapons.getFirstDead();
-      weapon.reset(player.body.x, player.body.y);
+      let weapon = this.weapons.getFirstDead();
+      let x = 0;
+      let y = 0;
+      // weapon.reset(player.body.x, player.body.y);
 
       switch (player.direction){
         case 0:
+          x = player.body.x + (player.weapon.sprite.x * 4);
+          y = player.body.y + (player.weapon.sprite.y * 4);
+          weapon.reset(x, y);
           weapon.body.moveLeft(weapon.speed);
           return;
         case 1:
+          x = player.body.x + (player.weapon.sprite.x * 4);
+          y = player.body.y + (player.weapon.sprite.y * 4);
+          weapon.reset(x, y);
           weapon.body.moveRight(weapon.speed);
           return;
         case 2:
+          x = player.body.x + (player.weapon.sprite.x * 4);
+          y = player.body.y + (player.weapon.sprite.y * 4);
           weapon.body.rotation = 90;
+          weapon.reset(x, y);
           weapon.body.moveUp(weapon.speed);
           return;
         case 3:
+          x = player.body.x + (player.weapon.sprite.x * 4);
+          y = player.body.y + (player.weapon.sprite.y * 4);
+          weapon.reset(x, y);
           weapon.body.moveDown(weapon.speed);
           return;
       }

@@ -1,0 +1,27 @@
+<template>
+  <dialog id="Travel">
+
+    <h3>Set your destination and begin preparations.</h3>
+
+    <div class="center">
+      <h4>Destinations</h4>
+    </div>
+
+    <div class="center">
+      
+      <ul class="travelDestinations">
+        <li repeat.for="destination of destinations">
+            <span data-key="${destination.key}" value.bind="destinations" click.trigger="setDestination($event)">${destination.name}</span> 
+        </li>
+      </ul>
+      
+
+      <div>Travel to ${destination.name}</div>
+      <button click.delegate="goToMission()">Engage</button>
+    </div>
+    
+    <div class="center">        
+    </div>
+
+  </dialog>
+</template>

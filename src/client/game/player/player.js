@@ -13,6 +13,7 @@ import {Inventory} from './inventory';
 
 import {Shop} from './shop';
 import {PlayerInputs} from './inputs';
+import {Destinations} from './destinations';
 
 export class Player extends Phaser.Sprite {
 
@@ -94,7 +95,7 @@ export class Player extends Phaser.Sprite {
       this.walk[0][i].volume = 0.25;
     }
 
-    
+    this.destinations = new Destinations(); 
 
     this.pressStack = [];
     //this.playerinputs = new PlayerInputs(this.game, this);
@@ -444,13 +445,45 @@ export class Player extends Phaser.Sprite {
     });
   }
 
+  checkForNPCs() { 
+    if(this.missionNPC) { 
+      this.writeconsole("Are you ready for a challenge?");
+      return this.missionNPC; 
+    }
+    if(this.shipNPC) { 
+      this.writeconsole("Where do you want to go?");
+      return this.shipNPC;
+    }
+  }
+
+  goToMission(key) { 
+    let playerObj = this.getPlayerObject();
+    this.game.state.start(key, true, false, playerObj);
+  }
+  
+
   interact() {
+    let npc = this.checkForNPCs(); 
+    
+    if(npc) {
+      if(npc == this.missionNPC) { 
+        this.damphamlet.openMission();
+      }
+      if(npc == this.shipNPC) { 
+        this.damphamlet.openTravel();
+      }
+        
+      return; 
+    } 
+
     let tileArray = this.getCurrentTiles();
 
     //collision tile
     let cTile = tileArray[2];
+    console.log('ctile ' + cTile.index);
 
     //interaction tile
+
     let iTile = tileArray[3];
     let point = tileArray[4];
 
@@ -462,10 +495,11 @@ export class Player extends Phaser.Sprite {
         this.damphamlet.openShop();
       }
       if (iTile.index == 684) {
-        this.writeconsole("Teleporting to the space station.");
+        this.writeconsole("Teleporter to Damp Hamlet.");
         this.stagelevel = 1;
         let playerObj = this.getPlayerObject();
-        this.game.state.start('Level' + this.stagelevel, true, false, playerObj);
+        this.game.state.start('Town', true, false, playerObj);
+        // this.game.state.start('Level' + this.stagelevel, true, false, playerObj);
       }
       if (iTile.index == 298 || iTile.index == 299) {
         //down
@@ -504,12 +538,12 @@ export class Player extends Phaser.Sprite {
           });
         }
 
-        if (tileArray[0] == 14) {
-          this.writeconsole("Teleporter to the space station.");
-        }
-        if (tileArray[0] == 18) {
-          this.writeconsole("Cellular reconstruction.");
-        }
+        // if (tileArray[0] == 14) {
+        //   this.writeconsole("Teleporter to the space station.");
+        // }
+        // if (tileArray[0] == 18) {
+        //   this.writeconsole("Cellular reconstruction.");
+        // }
       }
 
       if (iTile.index == 659) {

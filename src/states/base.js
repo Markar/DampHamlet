@@ -4,6 +4,7 @@ import {Creator} from './creator';
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
 import {MusicHandler} from './MusicHandler';
+import {Ship1} from '../client/game/ships/ship1';
 
 import _ from 'lodash';
 
@@ -34,13 +35,18 @@ class Base extends Phaser.State {
 
   }
 
+ 
+
   create() {
     let game = this.game;
+    this.enemies = [];
 
     this.map = game.add.tilemap('base');
     let map = this.map;
 
     map.addTilesetImage('tiles');
+    map.addTilesetImage('space');
+    map.addTilesetImage('lofi_horror_env');
 
     let layer = map.createLayer('Tile Layer 1');
     layer.smoothed = false;
@@ -58,7 +64,7 @@ class Base extends Phaser.State {
     //  This call returns an array of body objects which you can perform addition actions on if
     //  required. There is also a parameter to control optimising the map build.
     //map.setCollisionByExclusion([274, 295, 296, 297, 298]);
-    map.setCollisionByExclusion([333]);
+    map.setCollisionByExclusion([1587,302,333]);
     var tiles = game.physics.p2.convertTilemap(map, layer, true, false);
 
     for(var i = 0; i < tiles.length; i++) {
@@ -79,18 +85,28 @@ class Base extends Phaser.State {
 
     game.players.push(player);
 
-    let creator = new Creator(game, this.map);
-    creator.createSlimes(3);
-    
-    // lvl2soundtrack.play();
-    
-    // let lvl1soundtrack = game.add.audio('hangar1');
-    // lvl1soundtrack.loop = true;
-    // lvl1soundtrack.volume = 0.15;
-    // this.lvl1soundtrack = lvl1soundtrack;
-    // this.lvl1soundtrack.play();
+    let ship = new Ship1('ship', game, 300, 400, 'left');
 
+     
+    // let creator = new Creator(game, this.map);
+    // let slimes = creator.createSlimes(3);
+    // for(let i = 0; i < slimes.length; i++) { 
+    //   this.enemies.push(slimes[i]);
+    // }
+
+    
+    // this.game.time.events.loop(Phaser.Timer.SECOND * 2, this.checkWinCondition, this);
     this.game.MusicHandler.playTrack('hangar1');
   }
+
+  //  checkWinCondition() {
+  //   for(let i = 0; i < this.enemies.length; i++) { 
+  //     if(this.enemies[i].alive) { 
+  //       return;
+  //     }
+  //   }
+  //   console.log('Finished mission');
+  // }
+
 }
 export default Base;

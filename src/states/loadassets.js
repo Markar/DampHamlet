@@ -10,6 +10,7 @@ export class LoadAssets {
     this.loadSpritesheets();
     this.loadImages();
     this.loadAudio();
+    this.loadShips();
     console.log('finish loading assets');
   }
 
@@ -51,10 +52,14 @@ export class LoadAssets {
     let assetpath = this.game.assetpath;
     //add map images
     game.load.tilemap('base', assetpath + 'base.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('town', assetpath + 'town.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('town2', assetpath + 'town2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level1', assetpath + 'level1.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level2', assetpath + 'level2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level3', assetpath + 'level3.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles', assetpath + 'tiles.png');
+    game.load.image('space', assetpath + 'space.png');
+    game.load.image('lofi_horror_env', assetpath + 'lofi_environment.png');
 
     //game.load.spritesheet('explosion', assetpath + 'explode.png', 8, 8, 13);
   }
@@ -64,7 +69,7 @@ export class LoadAssets {
     //let enemypath = '/assets/enemies/';
     //let bosspath = '/assets/Sliced/Bosses/';
     let enemypath = this.game.enemypath;
-    let bosspath = this.game.bosspath;
+
     game.load.spritesheet('green_alien', enemypath + 'png8_03.png', 8, 8);
     game.load.spritesheet('red_alien', enemypath + 'png8_05.gif', 8, 8);
     game.load.spritesheet('octopus', enemypath + 'png8_06.png', 8, 8);
@@ -90,8 +95,33 @@ export class LoadAssets {
     game.load.spritesheet('grayrobot', enemypath + 'png8_26.gif', 8, 8);
     game.load.spritesheet('yellowrobot', enemypath + 'png8_27.gif', 8, 8);
     game.load.spritesheet('blackblob', enemypath + 'png8_29.gif', 8, 8);
+
+    let bosspath = this.game.bosspath;
     game.load.spritesheet('blackhole', bosspath + 'BlackHole.png', 32, 32);
 
+
+    let characterpath = this.game.characterpath;
+    game.load.spritesheet('mission', characterpath + 'Layer-7_16.png', 8, 8);
+
+
+  }
+
+  loadShips() { 
+    let game = this.game; 
+    let shippath = this.game.shippath;
+    game.load.spritesheet('ship1', shippath + 'ship1.png', 8, 8);
+    game.load.spritesheet('ship2', shippath + 'ship2.png', 8, 8);
+    game.load.spritesheet('ship3', shippath + 'ship3.png', 8, 8);
+    game.load.spritesheet('ship4', shippath + 'ship4.png', 8, 8);
+    game.load.spritesheet('ship5', shippath + 'ship5.png', 8, 8);
+    game.load.spritesheet('ship6', shippath + 'ship6.png', 8, 8);
+    game.load.spritesheet('eship1', shippath + 'eship1.png', 8, 8);
+    game.load.spritesheet('eship2', shippath + 'eship2.png', 8, 8);
+    game.load.spritesheet('eship3', shippath + 'eship3.png', 8, 8);
+    game.load.spritesheet('eship4', shippath + 'eship4.png', 8, 8);
+    game.load.spritesheet('eship5', shippath + 'eship5.png', 8, 8);
+    game.load.spritesheet('eship6', shippath + 'eship6.png', 8, 8);
+    game.load.spritesheet('eship-large', shippath + 'eship-large.png', 8, 8);
   }
 
   loadImages() {

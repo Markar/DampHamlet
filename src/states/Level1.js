@@ -104,11 +104,32 @@ class Level1 extends Phaser.State {
 
     this.game.MusicHandler.playTrack('hangar2'); 
 
+    this.enemies = [];
+    let enemies = this.enemies; 
     let creator = new Creator(game, this.map);
-    creator.createEyes(2);
-    creator.createSlimes(3);
+    let eyes = creator.createEyes(2);
+    let slimes = creator.createSlimes(3);
 
+    for(let i = 0; i < eyes.length; i++) { 
+      enemies.push(eyes[i]);
+    }
+    for(let i = 0; i < slimes.length; i++) { 
+      enemies.push(slimes[i]);
+    }
+
+    this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.checkWinCondition, this);
     this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
   }
+
+  checkWinCondition() {
+    for(let i = 0; i < this.enemies.length; i++) { 
+      if(this.enemies[i].alive) { 
+        return;
+      }
+    }
+    console.log('Finished mission');
+  }
+
+
 }
 export default Level1;
