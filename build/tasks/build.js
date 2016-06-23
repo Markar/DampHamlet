@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var runSequence = require('run-sequence');
 var changed = require('gulp-changed');
 var plumber = require('gulp-plumber');
@@ -39,6 +40,26 @@ gulp.task('build-css', function() {
     .pipe(browserSync.stream());
 });
 
+// gulp.task('build-sass', function() {
+//   return gulp.src(paths.scss)
+//     .pipe(changed(paths.output, {extension: '.scss'}))
+//     .pipe(sass().on('error', sass.logError))
+//     .pipe(gulp.dest(paths.output))
+//     .pipe(browserSync.stream());
+// });
+
+gulp.task('build-sass', function() {
+  return gulp.src(paths.scss)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('static/sass/'));
+  // gulp.src(paths.scss)
+  //   .pipe(changed(paths.output, {extension: '.scss'}))
+  //   .pipe(sass().on('error', sass.logError))
+  //   .pipe(gulp.dest(paths.output))
+  //   .pipe(browserSync.stream());
+});
+
+
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
 // and build-html tasks in parallel
@@ -46,7 +67,7 @@ gulp.task('build-css', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css'],
+    ['build-system', 'build-html', 'build-css', 'build-sass'],
     callback
   );
 });

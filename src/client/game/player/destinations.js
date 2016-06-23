@@ -3,22 +3,22 @@
 export class Destinations { 
 
     constructor() {
-        let base = new Destination('Base', 'Home', 'true');
-        let town = new Destination('Town', 'Town', 'true');
-        let level1 = new Destination('Level1', 'Mission 1', 'false');
-        let level2 = new Destination('Level2', 'Clear Space Station (Hard)', 'false');
-        let level3 = new Destination('Level3', 'Assassinate Bork', 'false');
+        this.base = new Destination(0, 'Base', 'Home', 'true');
+        this.town = new Destination(1, 'Town', 'Town', 'true');
+        this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false');
+        this.level2 = new Destination(3, 'Level2', 'Clear Space Station', 'false');
+        this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false');
 
         this.allDestinations = []; 
-        this.allDestinations.push(base);
-        this.allDestinations.push(town);
-        this.allDestinations.push(level1);
-        this.allDestinations.push(level2);
-        this.allDestinations.push(level3);
+        this.allDestinations.push(this.base);
+        this.allDestinations.push(this.town);
+        this.allDestinations.push(this.level1);
+        this.allDestinations.push(this.level2);
+        this.allDestinations.push(this.level3);
         
         this.destinations = [];
-        this.destinations.push(base);
-        this.destinations.push(town);
+        this.destinations.push(this.base);
+        this.destinations.push(this.town);
 
     }
 
@@ -69,7 +69,8 @@ export class Destinations {
 
 export class Destination { 
 
-    constructor(key, name, available) { 
+    constructor(id, key, name, available) { 
+        this.id = id; 
         this.key = key; 
         this.name = name;
         this.available = available;

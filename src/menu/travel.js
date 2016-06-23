@@ -1,18 +1,21 @@
+import {Destinations} from '../client/game/player/destinations'
+
 export class Travel {
   constructor() {
     window['travel'] = this;
-    let base = new Destination(0, 'Base', 'Home', 'true');
-    let town = new Destination(1, 'Town', 'Town', 'true');
-    this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false');
-    this.level2 = new Destination(3, 'Level2', 'Save the Corinthian', 'false');
-    this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false');
+    let dest = new Destinations();
+    // let base = new Destination(0, 'Base', 'Home', 'true');
+    // let town = new Destination(1, 'Town', 'Town', 'true');
+    // this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false');
+    // this.level2 = new Destination(3, 'Level2', 'Save the Corinthian', 'false');
+    // this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false');
 
     this.destinations = [];
-    this.destinations.push(base);
-    this.destinations.push(town);
+    this.destinations.push(dest.base);
+    this.destinations.push(dest.town);
     // this.destinations.push(this.level1);
 
-    this.destination = base;
+    this.destination = dest.base;
   }
 
   setDestination(el) {
@@ -37,15 +40,4 @@ export class Travel {
       player.goToMission(this.destination.key);
       damphamlet.closeMenu();
   }
-}
-
-
-class Destination { 
-
-    constructor(id, key, name, available) { 
-        this.id = id; 
-        this.key = key; 
-        this.name = name;
-        this.available = available;
-    }
 }
