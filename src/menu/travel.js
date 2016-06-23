@@ -1,15 +1,16 @@
 export class Travel {
   constructor() {
     window['travel'] = this;
-    let base = new Destination('Base', 'Home', 'true');
-    let town = new Destination('Town', 'Town', 'true');
-    this.level1 = new Destination('Level1', 'Clear Space Station (Easy)', 'false');
-    this.level2 = new Destination('Level2', 'Clear Space Station (Hard)', 'false');
-    this.level3 = new Destination('Level3', 'Assassinate Bork', 'false');
+    let base = new Destination(0, 'Base', 'Home', 'true');
+    let town = new Destination(1, 'Town', 'Town', 'true');
+    this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false');
+    this.level2 = new Destination(3, 'Level2', 'Save the Corinthian', 'false');
+    this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false');
 
     this.destinations = [];
     this.destinations.push(base);
     this.destinations.push(town);
+    // this.destinations.push(this.level1);
 
     this.destination = base;
   }
@@ -41,7 +42,8 @@ export class Travel {
 
 class Destination { 
 
-    constructor(key, name, available) { 
+    constructor(id, key, name, available) { 
+        this.id = id; 
         this.key = key; 
         this.name = name;
         this.available = available;

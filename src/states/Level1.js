@@ -101,6 +101,10 @@ class Level1 extends Phaser.State {
 
     let player = this.damphamlet.loadPlayer(creationInfo);
     game.players.push(player);
+    this.mission = player.missionlog.get(0);
+
+    
+    
 
     this.game.MusicHandler.playTrack('hangar2'); 
 
@@ -117,6 +121,8 @@ class Level1 extends Phaser.State {
       enemies.push(slimes[i]);
     }
 
+    this.player = player;
+    
     this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.checkWinCondition, this);
     this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
   }
@@ -127,7 +133,12 @@ class Level1 extends Phaser.State {
         return;
       }
     }
-    console.log('Finished mission');
+
+    if(this.mission.complete === false) { 
+      this.mission.complete = true;
+      this.player.writeconsole(`${this.mission.name} complete.`);
+    }
+      
   }
 
 

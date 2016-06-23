@@ -6,7 +6,16 @@
     </div>
 
     <div class="center">
-        <div>
+
+        <div class="missions">
+            <div repeat.for="mission of missions">
+                <i class="fa fa-plus-square" click.trigger="acceptMission($event)" data-value="${mission.key}"></i>
+                <span>${mission.name}</span>
+                <div>${mission.description} 
+            </div>
+        </div>
+
+        <!--<div>
             <i class="fa fa-plus-square" click.trigger="acceptMission($event)" value="Level1"></i>
             <span>Reclaim Space Station</span>
             <div>There is an infestation of slimes on small station nearby, eliminate every last one.</div>
@@ -26,7 +35,7 @@
             <i class="fa fa-plus-square" click.trigger="acceptMission($event)" value="Level3"></i>
             <span>Assassinate Bork</span>
             <div>Bork has enslaved the Corinthians for too long.</div>
-        </div>
+        </div>-->
 
         </br>
 

@@ -15,6 +15,8 @@ import {Shop} from './shop';
 import {PlayerInputs} from './inputs';
 import {Destinations} from './destinations';
 
+import {MissionLog} from './mission-log';
+
 export class Player extends Phaser.Sprite {
 
   constructor(game, creationInfo, playerObj) {
@@ -26,6 +28,7 @@ export class Player extends Phaser.Sprite {
     let defaultName = '';
     let gender = game.gender;
     this.inventory = new Inventory();
+    this.missionlog = new MissionLog(); 
 
     if(gender == "female") {
       let loc = game.characterpath + '/femalenerd.png';
@@ -461,12 +464,25 @@ export class Player extends Phaser.Sprite {
     this.game.state.start(key, true, false, playerObj);
   }
   
+  collectReward() { 
+    let missions = this.missionlog.missions; 
+
+    if(missions.length > 0) { 
+      for( let i = 0; i < missions.length; i++ ) { 
+        if(missions[i].complete === true) { 
+          missions[i].collect(this); 
+        }
+      }
+    }
+  }
 
   interact() {
     let npc = this.checkForNPCs(); 
     
     if(npc) {
-      if(npc == this.missionNPC) { 
+      if(npc == this.missionNPC) {
+        this.collectReward();
+        this.missionlog.getDisplayList(); 
         this.damphamlet.openMission();
       }
       if(npc == this.shipNPC) { 

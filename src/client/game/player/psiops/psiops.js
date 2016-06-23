@@ -71,7 +71,7 @@ export class PsiOps extends Player {
       energy: {
         current: 100,
         max: 100,
-        regen: 10
+        regen: 1
       },
 
       speed: 125,
