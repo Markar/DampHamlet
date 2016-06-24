@@ -461,6 +461,7 @@ export class Player extends Phaser.Sprite {
 
   goToMission(key) { 
     let playerObj = this.getPlayerObject();
+    this.game.MusicHandler.stopMusic();
     this.game.state.start(key, true, false, playerObj);
   }
   
@@ -562,9 +563,6 @@ export class Player extends Phaser.Sprite {
         // }
       }
 
-      if (iTile.index == 659) {
-        this.writeconsole("add cellular reconstruction here");
-      }
     }
 
   }

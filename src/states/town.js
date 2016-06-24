@@ -39,7 +39,7 @@ class Town extends Phaser.State {
     console.log('create town');
     let game = this.game;
 
-    this.map = game.add.tilemap('town2');
+    this.map = game.add.tilemap('town');
     let map = this.map;
 
     map.addTilesetImage('tiles');
