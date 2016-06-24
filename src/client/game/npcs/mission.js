@@ -28,11 +28,9 @@ export class Mission extends Mob {
         this.distanceToTarget = this.game.physics.arcade.distanceBetween(this, this.game.players[i]);
 
         if(this.distanceToTarget < 50) {
-            console.log('player in range');
             this.game.players[i].missionNPC = true; 
         }
         else { 
-            console.log('player out of range');
             this.game.players[i].missionNPC = false; 
         }
       }

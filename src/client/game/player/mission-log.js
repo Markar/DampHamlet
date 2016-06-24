@@ -43,7 +43,7 @@ export class MissionLog {
 
         for (let i = 0; i < this.missions.length; i++) {
             let current = this.missions[i];
-            if (!current.complete || current.repeatable) {
+            if ( !current.complete || current.repeatable) {
                 if(!current.active) { 
                     ui.addMission(current);
                 }
@@ -78,7 +78,7 @@ class Mission {
         if (!this.rewardCollected) {
             player.addCredits(this.rewardCredits);
             player.levels.addXP(this.rewardXP);
-            player.writeconsole(`Collected $${this.rewardCredits} as a reward for finishing ${this.name}.`);
+            player.writeconsole(`Collected ${this.rewardCredits} credits as a reward for finishing ${this.name}.`);
             this.rewardCollected = true;
             this.setActive(false);
         }
@@ -96,7 +96,7 @@ class Mission {
         this.id = 2;
         this.key = 'Level1';
         this.name = 'Reclaim Space Station';
-        this.description = 'There is an infestation of slimes on small station nearby, eliminate every last one.';
+        this.description = 'There is an infestation of slimes on a small station nearby, eliminate every last one.';
         this.complete = true;
         this.rewardCollected = false;
         this.active = false;
