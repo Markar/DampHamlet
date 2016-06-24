@@ -72,11 +72,11 @@ export class Marine extends Player {
         regen: 10
       },
 
-      speed: 230,
+      speed: 130,
       armor: 0,
       xp: 0,
       level: 0,
-      credits: 200,
+      credits: 0,
       weaponsFired: 0,
       nextAttack: 0,
       attackRate: 1
@@ -84,10 +84,10 @@ export class Marine extends Player {
     
 
     this.hasPistol = 1;
-    this.hasLaserPistol = 1;
-    this.hasRocketLauncher = 1;
-    this.hasAssaultRifle = 1;
-    this.hasShotgun = 1;
+    this.hasLaserPistol = 0;
+    this.hasRocketLauncher = 0;
+    this.hasAssaultRifle = 0;
+    this.hasShotgun = 0;
 
     //set this before adding weapons, since it uses hasX for adding them
     //this.debug();

@@ -90,10 +90,10 @@ class GameState extends Phaser.State {
 
     let player = damphamlet.createNewPlayer(creationInfo);
     let playerObj = player.getPlayerObject();
-    // this.state.start('Base', true, false, playerObj);
+    this.state.start('Base', true, false, playerObj);
     
     //debugging
-    this.game.state.start('Town', true, false, playerObj);
+    // this.game.state.start('Town', true, false, playerObj);
   }
 }
 
