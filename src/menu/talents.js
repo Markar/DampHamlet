@@ -2,7 +2,25 @@ export class Talents {
   constructor() {
 
   }
-  
+
+  //Attribtues  
+  raiseHealthSkill() { 
+    let player = damphamlet.phasergame.playerone;
+    player.levels.raiseHealthSkill();
+  }
+
+  raiseStaminaSkill() { 
+    let player = damphamlet.phasergame.playerone;
+    player.levels.raiseStaminaSkill();
+  }
+
+  raiseConcentrationSkill() { 
+    let player = damphamlet.phasergame.playerone;
+    player.levels.raiseConcentrationSkill();
+  }
+
+
+  //Skills
   raisePistolSkill() { 
     let player = damphamlet.phasergame.playerone;
     player.levels.raisePistolSkill();
@@ -13,18 +31,10 @@ export class Talents {
     player.levels.raiseAssaultSkill();
   }
   
-  raiseHealthSkill() { 
-    let player = damphamlet.phasergame.playerone;
-    player.levels.raiseHealthSkill();
-  }
-  
   raiseExplosivesSkill() { 
     let player = damphamlet.phasergame.playerone;
     player.levels.raiseExplosivesSkill();
   }
   
-  raiseSpeedSkill() { 
-    let player = damphamlet.phasergame.playerone;
-    player.levels.raiseSpeedSkill();
-  }
+  
 }

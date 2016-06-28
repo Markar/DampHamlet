@@ -6,16 +6,19 @@ import {Rockets} from '../weapons/rockets';
 import {AssaultRifle} from '../weapons/assaultrifle';
 import {Shotgun} from '../weapons/shotgun';
 import {BulletAmmo} from '../items/ammo';
-import {Grenade} from '../weapons/abilities/grenade';
+import {Grenade} from './powers/grenade';
 import {Items} from './items';
 import {Skills} from './skills';
 import {Inventory} from './inventory';
+import {Levels} from './levels';
 
 import {Shop} from './shop';
 import {PlayerInputs} from './inputs';
 import {Destinations} from './destinations';
-
+import {Ship1} from '../ships/ship1';
 import {MissionLog} from './mission-log';
+
+import {Attributes} from './attributes';
 
 export class Player extends Phaser.Sprite {
 
@@ -26,23 +29,22 @@ export class Player extends Phaser.Sprite {
 
     let profileImg = '';
     let defaultName = '';
-    let gender = game.gender;
-    this.inventory = new Inventory();
-    this.missionlog = new MissionLog(); 
+    let gender = game.gender; 
 
     if(gender == "female") {
-      let loc = game.characterpath + '/femalenerd.png';
+      let loc = game.characterpath + 'femalenerd.png';
       //profileImg = '<img class="profileImg" src="./assets/characters/femalenerd.png" />';
       profileImg = `<img class="profileImg" src="${loc}" />`;
       defaultName = 'Laura';
     }
     else {
-      let loc = game.characterpath + '/femalenerd.png';
+      let loc = game.characterpath + 'Nerd.png';
       profileImg = `<img class="profileImg" src="${loc}" />`;
       //profileImg = '<img class="profileImg" src="./assets/characters/Nerd.png" />';
       defaultName = 'Mark';
     }
 
+    this.consoleElement = $('.console');
     $(".imgProfile").html("");
     $(".imgProfile").append(profileImg);
     game.add.existing(this);
@@ -102,17 +104,29 @@ export class Player extends Phaser.Sprite {
 
     this.pressStack = [];
     //this.playerinputs = new PlayerInputs(this.game, this);
-    this.skills = new Skills();
+
+    if (playerObj) {
+      console.log('load player object');
+      this.loadPlayerObject(playerObj);
+      this.levels = new Levels(this);
+    }
+    else{
+      console.log('initialize new player');
+      this.initNewPlayer();
+    }
+
+
     //player loop
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3, this.playerLoop, this);
+    this.game.time.events.loop(Phaser.Timer.SECOND * 6, this.playerLoop, this);
   }
 
   playerLoop() {
+    this.checkWinCondition();
     this.regenerate();
   }
   regenerate() {
-    let atr = this.attributes;
-    this.addStamina(10);
+    this.attributes.regenStamina();
+    this.attributes.regenEnergy();
   }
 
   writeconsole(message) {
@@ -129,6 +143,33 @@ export class Player extends Phaser.Sprite {
       let htmlMsg = "<li>" + this.console[i] + "</li>";
       this.consoleElement.append(htmlMsg);
     }
+  }
+
+  useFirstTalent() {
+    if(this.skills.stimulants != '') { 
+      this.skills.stimulants.use(this);
+    }
+    console.log("use first talent");
+  }
+  useSecondTalent() {
+    if(this.skills.heal != '') { 
+      this.skills.heal.focusHealing(this);
+    }
+    console.log("use second talent");
+  }
+  useThirdTalent() {
+    if(this.skills.psiorb != '') { 
+      this.skills.psiorb.focusPsiorb(this);
+    }
+
+    console.log("use third talent");
+  }
+  useFourthTalent() { 
+    if(this.skills.teleport != '') { 
+      this.skills.teleport.focusTeleportation(this, this.game);
+    }
+
+    console.log("use fourth talent");
   }
 
   addPistol() {
@@ -156,21 +197,34 @@ export class Player extends Phaser.Sprite {
     this.hasShotgun = 1;
   }
 
+  equipKevlar() {
+    let kevlar = this.items.Kevlar;
+    this.inventory.equipBody = kevlar;  
+    this.attributes.armor = kevlar.quality; 
+  }
+
+  equipClothes() {
+    let clothes = this.items.Clothes;
+    this.inventory.equipBody = clothes;  
+    this.attributes.armor = clothes.quality; 
+  }
+
   debug() {
     this.attributes.health.current = 100;
     this.attributes.health.max = 100;
-    this.attributes.credits = 1000;
+    this.attributes.credits = 10000;
     this.attributes.speed = 300;
-    this.skills.points.available = 10;
+    this.skills.points.available = 50;
 
-    this.items.medkits.quantity = 2;
-    this.items.grenades.quantity = 5;
+    this.attributes.hasPistol = 1;
+    this.attributes.hasLaserPistol = 1;
+    this.attributes.hasRocketLauncher = 1;
+    this.attributes.hasAssaultRifle = 1;
+    this.attributes.hasShotgun = 1;
 
-    this.hasPistol = 1;
-    this.hasLaserPistol = 1;
-    this.hasRocketLauncher = 1;
-    this.hasAssaultRifle = 1;
-    this.hasShotgun = 1;
+    this.inventory.items.grenades.quantity = this.inventory.items.grenades.carryMax;
+    this.inventory.items.medkits.quantity = this.inventory.items.medkits.carryMax;
+    // this.addKevlar();
   }
 
   getPlayerObject() {
@@ -180,6 +234,7 @@ export class Player extends Phaser.Sprite {
     player.consoleLimit = this.consoleLimit;
 
     player.attributes = this.attributes;
+    player.missionlog = this.missionlog;
     player.classInfo = this.classInfo;
     player.items = this.items;
     console.log('skills in getplayerobj ', this.skills);
@@ -194,11 +249,11 @@ export class Player extends Phaser.Sprite {
     player.pressStack = this.pressStack;
     player.inventory = this.inventory;
 
-    player.hasPistol = this.hasPistol;
-    player.hasLaserPistol = this.hasLaserPistol;
-    player.hasRocketLauncher = this.hasRocketLauncher;
-    player.hasAssaultRifle = this.hasAssaultRifle;
-    player.hasShotgun = this.hasShotgun;
+    player.hasPistol = this.attributes.hasPistol;
+    player.hasLaserPistol = this.attributes.hasLaserPistol;
+    player.hasRocketLauncher = this.attributes.hasRocketLauncher;
+    player.hasAssaultRifle = this.attributes.hasAssaultRifle;
+    player.hasShotgun = this.attributes.hasShotgun;
 
     if (player.hasPistol) {
       player.pistolObj = this.pistol.getObj();
@@ -229,6 +284,58 @@ export class Player extends Phaser.Sprite {
     }
   }
 
+initNewPlayer() {
+    this.playertype = this.creationInfo.sprite;
+    this.stagelevel = 0;
+    this.console = [];
+    this.consoleLimit = 5;
+    this.pressStack = [];
+    this.canmove = 1;
+    this.canfire = 1;
+    this.alive = 1;
+    this.nextHit = 0;
+    this.direction = 1;
+
+    
+
+    this.classInfo = {
+      name: 'None'
+    };
+
+    this.skills = new Skills(this, this.game);
+    this.items = new Items(); 
+    this.attributes = new Attributes(this);
+    this.missionlog = new MissionLog();
+    this.inventory = new Inventory(); 
+    
+    //set this before adding weapons, since it uses hasX for adding them
+    this.debug();
+
+    //default to the pistol
+    if (this.attributes.hasPistol) {
+      this.addPistol();
+      this.weapon = this.pistol;
+    }
+    if (this.attributes.hasLaserPistol) {
+      this.addLaserPistol();
+    }
+    if (this.attributes.hasRocketLauncher) {
+      this.addRocketLauncher();
+    }
+    if (this.attributes.hasAssaultRifle) {
+      this.addAssaultRifle();
+    }
+    if (this.attributes.hasShotgun) {
+      this.addShotgun();
+    }
+
+    this.equipClothes(); 
+    this.resetSprite(this.game);
+
+    //set this on each level
+    this.playerinputs = new PlayerInputs(this.game, this);
+  }
+
   //load anything generic to all classes here
   loadPlayerObject(playerObj) {
     this.consoleElement = $('.console');
@@ -245,6 +352,7 @@ export class Player extends Phaser.Sprite {
 
     //objects
     this.attributes = playerObj.attributes;
+    this.missionlog = playerObj.missionlog;
     this.inventory = playerObj.inventory;
     this.skills = playerObj.skills;
     this.classInfo = playerObj.classInfo;
@@ -253,35 +361,30 @@ export class Player extends Phaser.Sprite {
     this.items = playerObj.items;
 
     //weapons
-    this.hasPistol = playerObj.hasPistol;
-    this.hasLaserPistol = playerObj.hasLaserPistol;
-    this.hasRocketLauncher = playerObj.hasRocketLauncher;
-    this.hasAssaultRifle = playerObj.hasAssaultRifle;
-    this.hasShotgun = playerObj.hasShotgun;
 
-    if (this.hasPistol) {
+    if (this.attributes.hasPistol) {
       this.pistolObj = playerObj.pistolObj;
       this.pistol = new Pistol(this.game, this);
       this.pistol.loadObj(this.pistolObj);
       this.weapon = this.pistol;
       this.weapon.sprite.visible = true;
     }
-    if (this.hasLaserPistol) {
+    if (this.attributes.hasLaserPistol) {
       this.laserObj = playerObj.laserObj;
       this.laser = new Laser(this.game, this);
       this.laser.loadObj(this.laserObj);
     }
-    if (this.hasRocketLauncher) {
+    if (this.attributes.hasRocketLauncher) {
       this.rocketsObj = playerObj.rocketsObj;
       this.rockets = new Rockets(this.game, this);
       this.rockets.loadObj(this.rocketsObj);
     }
-    if (this.hasAssaultRifle) {
+    if (this.attributes.hasAssaultRifle) {
       this.assaultrifleObj = playerObj.assaultrifleObj;
       this.assaultrifle = new AssaultRifle(this.game, this);
       this.assaultrifle.loadObj(this.assaultrifleObj);
     }
-    if (this.hasShotgun) {
+    if (this.attributes.hasShotgun) {
       this.shotgunObj = playerObj.shotgunObj;
       this.shotgun = new Shotgun(this.game, this);
       this.shotgun.loadObj(this.shotgunObj);
@@ -293,6 +396,11 @@ export class Player extends Phaser.Sprite {
       this.grenade = new Grenade(this.game, this);
     }
 
+    if(this.skills.psiorb != '') {  
+      // this.skills.enablePsiOrb(this, this.game);
+      this.skills.psiorb.init(this, this.game); 
+    }
+
     this.shop = new Shop(this);
     this.playerinputs = new PlayerInputs(this.game, this);
     this.resetSprite(this.game);
@@ -301,11 +409,6 @@ export class Player extends Phaser.Sprite {
 
   enableGrenades() {
     this.grenade = new Grenade(this.game, this);
-  }
-
-
-  changeSpeed(amount) {
-    this.attributes.speed += amount;
   }
 
   changeMaxHp(amount) {
@@ -388,6 +491,20 @@ export class Player extends Phaser.Sprite {
     }
   }
 
+  throwGrenade() {
+    if(this.inventory.items.grenades.quantity < 1) { 
+      this.writeconsole("I have no more grenades.");
+      return;
+    }
+
+    if(typeof(this.grenade) == "undefined") { 
+      this.writeconsole("I need more training to use explosives.");
+      return;
+    }
+
+    this.grenade.throwGrenade(this);
+  }
+
   addMedkits(amount) {
     let kit = this.inventory.items.medkits;
     if(kit.quantity < kit.carryMax || amount < 0) {
@@ -399,23 +516,12 @@ export class Player extends Phaser.Sprite {
     this.rockets.ammo += amount;
   }
 
-  addHealth(amount) {
-    this.attributes.health.current += amount;
-
-    if (this.attributes.health.current > this.attributes.health.max)
-      this.attributes.health.current = this.attributes.health.max;
-
-    if (this.attributes.health.current <= 0) {
-      this.die();
-    }
-  }
-
   setSkillPoints(amount) {
 
     if(amount < 0) {
       //if amount is negative, spending points so check if they have enough
       if(this.skills.points.available < -amount) {
-        this.writeconsole("not enough talent points.");
+        this.writeconsole("I don't have enough talent points.");
         return false;
       }
     }
@@ -425,14 +531,12 @@ export class Player extends Phaser.Sprite {
     return true;
   }
 
-  addArmor(amount) {
-    this.armor = amount;
-  }
-
   useMedkit() {
-    if (this.items.medkits.quantity > 0 && this.attributes.hp < this.attributes.maxhp) {
+    let medkits = this.inventory.items.medkits; 
+
+    if (medkits.quantity > 0 && this.attributes.hp < this.attributes.maxhp) {
       this.addMedkits(-1);
-      this.addHealth(this.items.medkits.restore);
+      this.attributes.addHealth(medkits.restore);
       this.writeconsole('Ahh, feels good.');
     }
   }
@@ -573,57 +677,7 @@ export class Player extends Phaser.Sprite {
     this.weapon.reload(this);
   }
 
-  //accepts positive or negative integers, returns success
-  addStamina(amount) {
-    let current = this.attributes.stamina.current;
-    let max = this.attributes.stamina.max;
-    //check if consuming stamina
-    if(amount < 0) {
-      //check if we have enough stamina
-      if(current + amount < 0) {
-        this.writeconsole('not enough stamina');
-        return false;
-      }
-    }
-    //check if healing stamina
-    if(amount > 0) {
-      //check if healing stamina
-      if(current + amount > max) {
-        this.attributes.stamina.current = max;
-        return true;
-      }
-    }
-
-    //if we get here, heal the stamina by the amount passed in
-    this.attributes.stamina.current += amount;
-    return true;
-  }
-
-  addEnergy(amount) {
-    let current = this.attributes.energy.current;
-    let max = this.attributes.energy.max;
-
-    //check if consuming
-    if(amount < 0) {
-      //check if we have enough stamina
-      if(current + amount < 0) {
-        this.writeconsole('not enough energy');
-        return false;
-      }
-    }
-    //check if healing stamina
-    if(amount > 0) {
-      //check if healing stamina
-      if(current + amount > max) {
-        this.attributes.energy.current = max;
-        return true;
-      }
-    }
-
-    //if we get here, heal the stamina by the amount passed in
-    this.attributes.energy.current += amount;
-    return true;
-  }
+  
 
   sprint() {
     let atr = this.attributes;
@@ -631,15 +685,16 @@ export class Player extends Phaser.Sprite {
 
     if( this.skills.sprint.active == 0 && atr.stamina.current > cost) {
 
-      if(this.addStamina(cost)) {
+      if(this.attributes.addStamina(cost)) {
+        let sprintSpeed = this.attributes.stamina.max; 
         //consume one stamina, +75 speed for 3s
-        atr.speed += 75;
+        atr.speed += sprintSpeed;
         this.skills.sprint.active = 1;
         console.log('sprint active');
 
         this.game.time.events.add(3000, function() {
           console.log('reduce sprint speed');
-          this.attributes.speed -= 75;
+          this.attributes.speed -= sprintSpeed;
           this.skills.sprint.active = 0;
         }, this);
       }
@@ -717,6 +772,34 @@ export class Player extends Phaser.Sprite {
     this.dropCorpse();
   }
 
+  checkWinCondition() {
+
+    if(this.currentMission != '' && typeof(this.currentMission) != 'undefined') {  
+
+      for(let i = 0; i < this.currentMission.enemies.length; i++) { 
+        if(this.currentMission.enemies[i].alive) {
+        // console.log('i: ', this.enemies[i].alive); 
+        return;
+        }
+        // console.log('i: ', this.enemies[i].alive);
+      }
+
+      let mission = this.missionlog.getByKey(this.currentMission.key);
+
+      if(!mission.complete) { 
+        this.missionlog.setByKey('Level1');
+        this.writeconsole(`${mission.name} complete.`);
+        this.writeconsole('Prepare for extraction.');
+
+        this.game.time.events.add(1500, () => {
+          let ship = new Ship1('ship', this.game, this.body.x , this.body.y, 'down');
+        });
+        
+      }
+
+    }
+	}
+
   pickupHealth(amount) {
     this.attributes.health.current += amount;
 
@@ -748,6 +831,12 @@ export class Player extends Phaser.Sprite {
   hit(body1, body2) {
     if (this.alive == 1 && this.game.time.now > this.nextHit) {
 
+      //If we have any psi orbs active, remove one and negate the hit
+      if(this.skills.psiorb.orbsActive > 0 && this.skills.psiorb.checkPsiBlock(this)) {
+        this.nextHit = this.game.time.now + 50;
+        return;
+      }
+
       if (body2 != null) {
         this.takeDamage(body2.sprite.damage);
       }
@@ -776,7 +865,7 @@ export class Player extends Phaser.Sprite {
     }
 
     //apply the damage to this player
-    this.addHealth(-dmg);
+    this.attributes.addHealth(-dmg);
     this.nextHit = this.game.time.now + 50;
   }
 
@@ -785,6 +874,10 @@ export class Player extends Phaser.Sprite {
 
     if (this.isFireDown) {
       this.attack();
+    }
+
+    if(this.skills.psiorb != '') { 
+      this.skills.psiorb.rotate(0.02);
     }
   }
 

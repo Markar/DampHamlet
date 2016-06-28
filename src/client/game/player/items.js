@@ -5,6 +5,7 @@ export class Items {
     this.addAmmoTypes();
     this.addConsumables();
     this.addWeapons();
+    this.addArmor();
   }
   
   addAmmoTypes() { 
@@ -39,7 +40,7 @@ export class Items {
       name: 'medkit', 
       durability: 100, 
       quality: 1, 
-      cost: 10
+      cost: 50
     } 
     
     this.Grenade = { 
@@ -63,7 +64,7 @@ export class Items {
       name: 'Laser Pistol', 
       durability: 100, 
       quality: 1, 
-      cost: 100, 
+      cost: 1000, 
       type: 'laserpistol'
     }
     
@@ -71,7 +72,7 @@ export class Items {
       name: 'Assault Rifle', 
       durability: 100, 
       quality: 1,
-      cost: 100, 
+      cost: 500, 
       type: 'assaultrifle'
     }
     
@@ -79,7 +80,7 @@ export class Items {
       name: 'Shotgun', 
       durability: 50, 
       quality: 1, 
-      cost: 100, 
+      cost: 300, 
       type: 'shotgun'
     }
     
@@ -87,8 +88,26 @@ export class Items {
       name: 'Rocket Launcher', 
       durability: 100, 
       quality: 1, 
-      cost: 150, 
+      cost: 1500, 
       type: 'rocketlauncher'
+    }
+  }
+
+  addArmor() { 
+    this.Clothes = { 
+      name: 'Clothes', 
+      durability: 100, 
+      quality: 0, 
+      cost: 0, 
+      type: 'body'
+    }
+
+    this.Kevlar = { 
+      name: 'Kevlar', 
+      durability: 100, 
+      quality: 1, 
+      cost: 500, 
+      type: 'body'
     }
   }
 }

@@ -85,15 +85,16 @@ class GameState extends Phaser.State {
       x : 296,
       y : 320,
       sprite : sprite,
-      class : damphamlet.playerClass
     };
 
     let player = damphamlet.createNewPlayer(creationInfo);
     let playerObj = player.getPlayerObject();
+    this.game.MusicHandler = new MusicHandler(this.game); 
     this.state.start('Base', true, false, playerObj);
     
     //debugging
     // this.game.state.start('Town', true, false, playerObj);
+    // this.game.state.start('Level1', true, false, playerObj);
   }
 }
 

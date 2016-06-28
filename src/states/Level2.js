@@ -1,5 +1,6 @@
 import {Player} from '../client/game/player/player';
 import {Creator} from './creator';
+// import {Ship1} from '../client/game/ships/ship1';
 
 class Level2 extends Phaser.State {
 
@@ -64,7 +65,7 @@ class Level2 extends Phaser.State {
 				
 		this.map = game.add.tilemap('level2');
 		this.map.addTilesetImage('tiles');				
-	
+
 		let layer = this.map.createLayer('Tile Layer 1');
 		layer.smoothed = false; 
 		layer.setScale(game.scalemultiple);
@@ -74,11 +75,11 @@ class Level2 extends Phaser.State {
 		layer2.smoothed = false; 
 		layer2.setScale(game.scalemultiple);
 		layer2.resizeWorld();		
-	
+
 		//  Set the tiles for collision.
 		//  Do this BEFORE generating the p2 bodies below.		
 		this.map.setCollisionByExclusion([272, 298, 299, 354, 276, 301]);
-	
+
 		//  Convert the tilemap layer into bodies. Only tiles that collide (see above) are created.
 		//  This call returns an array of body objects which you can perform addition actions on if
 		//  required. There is also a parameter to control optimising the map build.
@@ -94,18 +95,89 @@ class Level2 extends Phaser.State {
 			y : 50,
 			sprite: game.playerObj.playertype
 		};
+
 		let player = damphamlet.loadPlayer(creationInfo);
 		game.players.push(player);
+		this.player = player; 
 		
 		this.game.MusicHandler.playTrack('underwater-active'); 
 
-    let creator = new Creator(game, this.map);
-		creator.createGreenAliens(10);
-    creator.createRedAliens(10);
+		this.enemies = [];
+		let creator = new Creator(game, this.map);
+		let green = ''; 
+		let red = ''; 
 
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
 		
+		green = creator.createGreenAlien(275, 600);
+		this.enemies.push(green);
+	// 	green = creator.createGreenAlien(430, 630);
+	// 	this.enemies.push(green);
+	// 	green = creator.createGreenAlien(365, 750);
+	// 	this.enemies.push(green);
+	// 	green = creator.createGreenAlien(530, 855);
+	// 	this.enemies.push(green);
+		
+
+	// 	//Northeast corner
+	// 	green = creator.createGreenAlien(1300, 300);
+	// this.enemies.push(green);
+	// 	green = creator.createGreenAlien(1400, 230);
+	// 	this.enemies.push(green);
+	// 	green = creator.createGreenAlien(1300, 100);
+	// 	this.enemies.push(green);
+
+
+	// 	//Southwest room 
+
+	// 	red = creator.createRedAlien(465, 1125);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(465, 1485);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(90, 1500);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(80, 1140);
+	// 	this.enemies.push(red);
+
+
+	// 	//Southeast room
+
+	// 	red = creator.createRedAlien(1525, 1300);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(1525, 1400);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(1525, 1500);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(1250, 1485);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(1300, 1300);
+	// 	this.enemies.push(red);
+	// 	red = creator.createRedAlien(1300, 1400);
+	// 	this.enemies.push(red);
+		
+	// 	green = creator.createGreenAlien(1350, 1500);
+	// 	this.enemies.push(green);
+	// 	green = creator.createGreenAlien(1300, 1500);
+	// 	this.enemies.push(green);
+	// 	green = creator.createGreenAlien(1400, 1500);
+	// 	this.enemies.push(green);
+
+
+
+		
+		
+
+
+
+	// creator.createGreenAliens(10);
+	// creator.createRedAliens(10);
+
+	this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
+	// this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.checkWinCondition, this);
+
+	this.player.currentMission = this;	
 	}
+
+	
 
 
 }

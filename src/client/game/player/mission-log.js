@@ -18,6 +18,7 @@ export class MissionLog {
         this.missions = missions;
 
         this.missionUI = window['mission'];
+        console.log('create new missionlog');
     }
 
     get(id) {
@@ -31,6 +32,17 @@ export class MissionLog {
         return cur;
       }
     }
+  }
+
+  setByKey(key, mission) { 
+
+    for (let i = 0; i < this.missions.length; i++) {
+      let cur = this.missions[i];
+      if (cur.key === key) {
+        cur.complete = true ; 
+      }
+    }
+
   }
 
     getDisplayList() {
@@ -97,7 +109,7 @@ class Mission {
         this.key = 'Level1';
         this.name = 'Reclaim Space Station';
         this.description = 'There is an infestation of slimes on a small station nearby, eliminate every last one.';
-        this.complete = true;
+        this.complete = false;
         this.rewardCollected = false;
         this.active = false;
         this.repeatable = true;

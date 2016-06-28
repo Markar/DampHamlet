@@ -13,28 +13,42 @@
           <span> / </span>
           <span>${phasergame.playerone.attributes.health.max}</span>
         </div>
+
         <div>
-          <label>Speed: </label>
-          <span>${phasergame.playerone.attributes.speed}</span>
+          <label>Stamina: </label>
+          <span>${phasergame.playerone.attributes.stamina.current}</span>
+          <span> / </span>
+          <span>${phasergame.playerone.attributes.stamina.max}</span>
+        </div>
+
+        <div>
+          <label>Energy: </label>
+          <span>${phasergame.playerone.attributes.energy.current}</span>
+          <span> / </span>
+          <span>${phasergame.playerone.attributes.energy.max}</span>
         </div>
         
+        <br/>
+
         <div>Level: <span>${phasergame.playerone.attributes.level}</span></div>
-        
+
         <div>
           <label>XP: </label>
           <span>${phasergame.playerone.attributes.xp}</span>
           <span> / </span>
           <span>${phasergame.playerone.levels.nextlevel}</span>
         </div>
-        
+
         <div>Credits: <span>${phasergame.playerone.attributes.credits}</span></div>
         
-        <div>Grenades: 
-          <span>${phasergame.playerone.items.grenades.quantity}</span>
-        </div>
+        <br/>
         
         <div>Weapon: 
           <span>${phasergame.playerone.weapon.name}</span>
+        </div>
+
+        <div>Armor: 
+          <span>${phasergame.playerone.inventory.equipBody.name}</span>
         </div>
 
       </div>

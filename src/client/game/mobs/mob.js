@@ -59,7 +59,7 @@ export class Mob extends Phaser.Sprite {
         if (this.distanceToTarget > deAggro && this.hateList.length < 1) {
           this.target = null;
           this.direction += 1;
-          console.log('first mob at ' + this.distanceToTarget);
+          // console.log('first mob at ' + this.distanceToTarget);
           if (this.direction > 3) {
             this.direction = 0;
           }
@@ -84,7 +84,7 @@ export class Mob extends Phaser.Sprite {
       this.direction = 3;
     }
     else { 
-      console.log('NO ANGLE getDirToTarget', angle); 
+      // console.log('NO ANGLE getDirToTarget', angle); 
       this.direction = Math.floor(Math.random() * 4);
     }
   }
@@ -206,7 +206,7 @@ export class Mob extends Phaser.Sprite {
   }
   hitWallOrAlly() {
     this.direction = Math.floor(Math.random() * 4);
-    console.log('direction', this.direction);
+    // console.log('direction', this.direction);
   }
 
   getSprite() {
@@ -247,7 +247,7 @@ export class Mob extends Phaser.Sprite {
 
 
     if (player === undefined) {
-      console.log('player undefined on that projectiles');
+      // console.log('player undefined on that projectiles');
     }
     else {
       console.log('add xp from mob');

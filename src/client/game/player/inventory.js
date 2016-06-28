@@ -1,10 +1,13 @@
 
 export class Inventory { 
     
-    constructor() { 
+    constructor() {
+
+        this.equipment = []; 
+
         this.items = {
             medkits: {
-                quantity: 0,
+                quantity: 1,
                 restore: 15,
                 carryMax: 2
             },

@@ -159,6 +159,21 @@ export class ShopMenu {
     else {
       player.writeconsole("invalid purchase");
     }
+  }
+
+  buyKevlar() { 
+    let player = damphamlet.phasergame.playerone; 
+    let item = this.items.Kevlar;
+
+    if(player.attributes.credits >= item.cost) {
+      player.addCredits(-item.cost);
+      player.equipKevlar();
+      player.writeconsole("purchased Kevlar");
+      return true;
+    }
+    else {
+      player.writeconsole("invalid purchase");
+    } 
   }  
   
 }

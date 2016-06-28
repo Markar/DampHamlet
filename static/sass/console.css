@@ -5,7 +5,7 @@
 .console {
   list-style-type: none;
   height: 15em;
-  background-color: #282828;
-  color: lightgreen;
+  background-color: black;
+  color: green;
   border: 0.25em aliceblue ridge;
   margin-top: 7em; }

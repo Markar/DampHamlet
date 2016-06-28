@@ -15,7 +15,7 @@ export class Travel {
     this.destinations.push(dest.town);
     // this.destinations.push(this.level1);
 
-    this.destination = dest.base;
+    this.destination = dest.town;
   }
 
   setDestination(el) {

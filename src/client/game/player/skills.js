@@ -1,6 +1,20 @@
+//powers
+import {Stimulants} from './powers/stimulants';
+import {Heal} from './powers/heal';
+import {Teleport} from './powers/teleport';
+import {PsiOrb} from './powers/psiorb';
+
 export class Skills {
 
-  constructor() {
+  constructor(player, game) {
+
+    this.player = player; 
+    this.game = game; 
+
+    this.stimulants = ''; 
+    this.heal = ''; 
+    this.teleport = ''; 
+    this.psiorb = ''; 
 
     this.pistols = [];
     this.pistols.push()
@@ -26,26 +40,41 @@ export class Skills {
       max: 5
     }
     
-    this.health = { 
-      current: 0, 
-      max: 5
-    }
-    
     this.explosives = { 
       current: 0, 
       max: 1
     }
     
-    this.speed = { 
+
+    this.health = { 
+      current: 0, 
+      max: 5
+    }
+
+    this.stamina = { 
       current: 0, 
       max: 5
     }
 
     this.concentration = { 
       current: 0, 
-      max: 5
+      max: 10
     }
+
    
+  }
+
+  enableStimulants() { 
+    this.stimulants = new Stimulants(this.player, this.game); 
+  }
+  enableHeal() { 
+    this.heal = new Heal(this.player, this.game); 
+  }
+  enableTeleport() { 
+    this.teleport = new Teleport(); 
+  }
+  enablePsiOrb(player, game) { 
+    this.psiorb = new PsiOrb(player, game); 
   }
 
 }

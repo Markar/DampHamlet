@@ -5,16 +5,50 @@
       <div>
         <span>Available: </span>
         <span class="TalentPoints">${phasergame.playerone.skills.points.available}</span>
-        <span class="TalentText">Talents</span>
+        <span class="TalentText">Character</span>
         <img src="../static/assets/UI/XIcon.png" class='closeTalents' click.trigger="closeMenu()">
       </div>
 
       <div class="left">
+
+
+        <h3>Attributes</h3>
         <table>
           <thead>
-            <th width="50%"></th>
-            <th width="20%"></th>
-            <th width="20%"></th>
+            <th width="70%"></th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Health</td>
+            <td>${phasergame.playerone.skills.health.current}</td>
+            <td>${phasergame.playerone.skills.health.max}</td>
+            <td><i class="fa fa-plus-square skillHealth" click.trigger="raiseHealthSkill()"></i></td>
+          </tr>
+          <tr>
+            <td>Stamina</td>
+            <td>${phasergame.playerone.skills.stamina.current}</td>
+            <td>${phasergame.playerone.skills.stamina.max}</td>
+            <td><i class="fa fa-plus-square skillSpeed" click.trigger="raiseStaminaSkill()"></i></td>
+          </tr>
+          <tr>
+            <td>Concentration</td>
+            <td>${phasergame.playerone.skills.concentration.current}</td>
+            <td>${phasergame.playerone.skills.concentration.max}</td>
+            <td><i class="fa fa-plus-square skillSpeed" click.trigger="raiseConcentrationSkill()"></i></td>
+          </tr>
+          </tbody>
+        </table> 
+
+
+        <h3>Skills</h3>
+        <table>
+          <thead>
+            <th width="70%"></th>
+            <th width="10%"></th>
+            <th width="10%"></th>
             <th width="10%"></th>
           </thead>
           <tbody>
@@ -35,18 +69,6 @@
             <td>${phasergame.playerone.skills.explosives.current}</td>
             <td>${phasergame.playerone.skills.explosives.max}</td>
             <td><i class="fa fa-plus-square skillExplosives" click.trigger="raiseExplosivesSkill()"></i></td>
-          </tr>
-          <tr>
-            <td>Health</td>
-            <td>${phasergame.playerone.skills.health.current}</td>
-            <td>${phasergame.playerone.skills.health.max}</td>
-            <td><i class="fa fa-plus-square skillHealth" click.trigger="raiseHealthSkill()"></i></td>
-          </tr>
-          <tr>
-            <td>Speed</td>
-            <td>${phasergame.playerone.skills.speed.current}</td>
-            <td>${phasergame.playerone.skills.speed.max}</td>
-            <td><i class="fa fa-plus-square skillSpeed" click.trigger="raiseSpeedSkill()"></i></td>
           </tr>
           </tbody>
         </table>

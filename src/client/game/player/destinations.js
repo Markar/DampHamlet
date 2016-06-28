@@ -6,7 +6,7 @@ export class Destinations {
         this.base = new Destination(0, 'Base', 'Home', 'true');
         this.town = new Destination(1, 'Town', 'Town', 'true');
         this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false');
-        this.level2 = new Destination(3, 'Level2', 'Clear Space Station', 'false');
+        this.level2 = new Destination(3, 'Level2', 'Save the Corinthian', 'false');
         this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false');
 
         this.allDestinations = []; 

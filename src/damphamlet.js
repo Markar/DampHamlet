@@ -9,9 +9,10 @@ import Level2 from './states/Level2';
 import Level3 from './states/Level3';
 import Town from './states/town';
 
-import {Marine} from './client/game/player/marine/marine';
-import {PsiOps} from './client/game/player/psiops/psiops';
-import {Splicer} from './client/game/player/splicer/splicer';
+import {Player} from './client/game/player/player';
+// import {Marine} from './client/game/player/marine/marine';
+// import {PsiOps} from './client/game/player/psiops/psiops';
+// import {Splicer} from './client/game/player/splicer/splicer';
 
 import {inject} from 'aurelia-framework';
 import {SharedState} from './sharedstate';
@@ -111,16 +112,17 @@ setTravel() {
     let player = '';
     let game = this.phasergame;
 
-    switch (creationInfo.class) {
-      case 'Marine':
-        player = new Marine(game, creationInfo);
-        break;
-      case 'Psi Ops':
-        player = new PsiOps(game, creationInfo);
-        break;
-      case 'Splicer':
-        player = new Splicer(game, creationInfo);
-    }
+    // switch (creationInfo.class) {
+    //   case 'Marine':
+    //     player = new Marine(game, creationInfo);
+    //     break;
+    //   case 'Psi Ops':
+    //     player = new PsiOps(game, creationInfo);
+    //     break;
+    //   case 'Splicer':
+    //     player = new Splicer(game, creationInfo);
+    // }
+    player = new Player(game, creationInfo);
     game.playerone = player;
     return player;
   }
@@ -128,16 +130,17 @@ setTravel() {
   loadPlayer(creationInfo) {
     let player = '';
     let game = this.phasergame;
-    switch (game.playerObj.classInfo.name) {
-      case 'Marine':
-        player = new Marine(game, creationInfo, game.playerObj);
-        break;
-      case 'Psi Ops':
-        player = new PsiOps(game, creationInfo, game.playerObj);
-        break;
-      case 'Splicer':
-        player = new Splicer(game, creationInfo, game.playerObj);
-    }
+    player = new Player(game, creationInfo, game.playerObj);
+    // switch (game.playerObj.classInfo.name) {
+    //   case 'Marine':
+    //     player = new Marine(game, creationInfo, game.playerObj);
+    //     break;
+    //   case 'Psi Ops':
+    //     player = new PsiOps(game, creationInfo, game.playerObj);
+    //     break;
+    //   case 'Splicer':
+    //     player = new Splicer(game, creationInfo, game.playerObj);
+    // }
     game.playerone = player; 
     return player;
   }

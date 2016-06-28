@@ -3,7 +3,6 @@ import {BlackHole} from '../client/game/bosses/blackhole';
 import {Creator} from './creator';
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
-import _ from 'lodash';
 
 class Level3 extends Phaser.State {
 
@@ -80,7 +79,7 @@ class Level3 extends Phaser.State {
     let bh = new BlackHole('blackhole', this.game, 600, 600);
 
     this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
-
+    player.currentMission = this;
   }
 }
 export default Level3;

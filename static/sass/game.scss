@@ -12,11 +12,11 @@ $height: 600px;
  }
 
 .game-body {
-  //background: $background-color;
+  //background: $background-color; 
 }
 .mainWindow {
-  height: 100%;
-  color: lightgreen;
+  height: 100%; 
+  //color: green;
   //background: $background-color;
 }
 .gamePanel {
@@ -44,10 +44,10 @@ $height: 600px;
 
 dialog {
   //position: fixed;
-  background-color: #282828 ;
-  color: gray;
+  background-color: black;
+  color: green;
   border-style: ridge;
-  opacity: 0.95;
+  opacity: 1;
   width: $width;
   height: $height;
   //top: 11%;
@@ -93,7 +93,7 @@ dialog {
   float: left;
   width: 12em;
   height: 40em;
-  // color: lightgreen;
+  color: gray;
   // background-color: black;
   //border: 1px solid;
 }

@@ -1,12 +1,8 @@
 import {Player} from '../client/game/player/player';
-
-import {BlackHole} from '../client/game/bosses/blackhole';
-
 import {Creator} from './creator';
-
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
-
+// import {Ship1} from '../client/game/ships/ship1';
 
 import _ from 'lodash';
 
@@ -76,23 +72,6 @@ class Level1 extends Phaser.State {
     game.physics.p2.setBoundsToWorld(true, true, true, true, true);
     game.physics.p2.restitution = 0.8;
 
-    //debugger;
-
-
-
-    //add other classes here in switch or something
-    //let player = '';
-    //switch(game.playerObj.classInfo.name) {
-    //  case 'Marine':
-    //    player = new Marine(game, creationInfo, game.playerObj);
-    //    break;
-    //  case 'PsiOps':
-    //    player = new PsiOps(game, creationInfo, game.playerObj);
-    //    break;
-    //}
-
-    //let player = new Player(game, creationInfo, game.playerObj);
-
     let creationInfo = {
       x : 50,
       y : 50,
@@ -101,45 +80,77 @@ class Level1 extends Phaser.State {
 
     let player = this.damphamlet.loadPlayer(creationInfo);
     game.players.push(player);
-    this.mission = player.missionlog.get(0);
+    this.player = player;
 
-    
-    
 
     this.game.MusicHandler.playTrack('hangar2'); 
 
     this.enemies = [];
-    let enemies = this.enemies; 
     let creator = new Creator(game, this.map);
-    let eyes = creator.createEyes(2);
-    let slimes = creator.createSlimes(3);
-
-    for(let i = 0; i < eyes.length; i++) { 
-      enemies.push(eyes[i]);
-    }
-    for(let i = 0; i < slimes.length; i++) { 
-      enemies.push(slimes[i]);
-    }
-
-    this.player = player;
     
-    this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.checkWinCondition, this);
+    let eye = creator.createEye(150, 150);
+    this.enemies.push(eye);
+    // eye = creator.createEye(200, 200);
+    // this.enemies.push(eye);
+    // eye = creator.createEye(250, 450);
+    // this.enemies.push(eye);
+    // eye = creator.createEye(300, 550);
+    // this.enemies.push(eye);
+    // eye = creator.createEye(350, 500);
+    // this.enemies.push(eye);
+
+    // let slime = creator.createSlime(500, 500); 
+    // this.enemies.push(slime);
+    // slime = creator.createSlime(600, 500); 
+    // this.enemies.push(slime);
+    // slime = creator.createSlime(500, 400); 
+    // this.enemies.push(slime);
+    // slime = creator.createSlime(100, 300); 
+    // this.enemies.push(slime);
+    // slime = creator.createSlime(100, 600); 
+    // this.enemies.push(slime);
+
+
+    // let eyes = creator.createEyes(2);
+    // let slimes = creator.createSlimes(3);
+
+    // for(let i = 0; i < eyes.length; i++) { 
+    //   this.enemies.push(eyes[i]);
+    // }
+    // for(let i = 0; i < slimes.length; i++) { 
+    //   this.enemies.push(slimes[i]);
+    // }
+
+    
+    // this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.checkWinCondition, this);
     this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
+
+    this.player.currentMission = this; 
   }
 
-  checkWinCondition() {
-    for(let i = 0; i < this.enemies.length; i++) { 
-      if(this.enemies[i].alive) { 
-        return;
-      }
-    }
+  // checkWinCondition() {
 
-    if(this.mission.complete === false) { 
-      this.mission.complete = true;
-      this.player.writeconsole(`${this.mission.name} complete.`);
-    }
+  //   for(let i = 0; i < this.enemies.length; i++) { 
+  //     if(this.enemies[i].alive) {
+  //       // console.log('i: ', this.enemies[i].alive); 
+  //       return;
+  //     }
+  //     // console.log('i: ', this.enemies[i].alive);
+  //   }
+    
+  //   let mission = this.player.missionlog.getByKey('Level1');
+  //   if(!mission.complete) { 
+  //     this.player.missionlog.setByKey('Level1');
+  //     this.player.writeconsole(`${mission.name} complete.`);
+  //     this.player.writeconsole('Prepare for extraction.');
+
+  //     this.game.time.events.add(1500, () => {
+  //       let ship = new Ship1('ship', this.game, this.player.body.x , this.player.body.y, 'down');
+  //     });
       
-  }
+  //   }
+    
+  // }
 
 
 }

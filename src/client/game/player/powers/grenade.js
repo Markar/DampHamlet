@@ -7,11 +7,11 @@ export class Grenade {
 
     this.addGrenade(game, player);
 
-    player.inputs.grenade.onDown.add(() => {
-      if(player.items.grenades.quantity > 0 && player.alive) {
-        this.throwGrenade(player);
-      }
-    });
+    // player.inputs.grenade.onDown.add(() => {
+    //   if(player.items.grenades.quantity > 0 && player.alive) {
+    //     this.throwGrenade(player);
+    //   }
+    // });
   }
 
   addGrenade(game, player) {
@@ -104,7 +104,7 @@ export class Grenade {
     explosion.body.mass = 10000;
     explosion.body.setRectangleFromSprite();
     explosion.player = player;
-    explosion.damage = 25;
+    explosion.damage = 125;
     explosion.body.setCollisionGroup(game.weaponCollisionGroup);
     explosion.body.collides([game.enemyCollisionGroup], this.explosionHit, explosion);
     this.sfxExplosion.play();

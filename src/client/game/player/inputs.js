@@ -16,7 +16,7 @@ export class PlayerInputs {
       reload: game.input.keyboard.addKey(Phaser.Keyboard.R),
       useMedkit: game.input.keyboard.addKey(Phaser.Keyboard.H),
       setSpeed: game.input.keyboard.addKey(Phaser.Keyboard.EQUALS),
-      recall: game.input.keyboard.addKey(Phaser.Keyboard.F12),
+      // recall: game.input.keyboard.addKey(Phaser.Keyboard.F12),
       sprint: game.input.keyboard.addKey(Phaser.Keyboard.SHIFT),
 
       loadCharacter: game.input.keyboard.addKey(Phaser.Keyboard.P),
@@ -58,15 +58,21 @@ export class PlayerInputs {
       }
     }, this);
 
-    inputs.recall.onDown.add(function() {
-      if(player.alive == 1) {
-        player.recall();
-      }
-    }, this);
+    // inputs.recall.onDown.add(function() {
+    //   if(player.alive == 1) {
+    //     player.recall();
+    //   }
+    // }, this);
 
     inputs.sprint.onDown.add(function() {
       if(player.alive == 1) {
         player.sprint();
+      }
+    }, this);
+
+    inputs.grenade.onDown.add(function() {
+      if(player.alive == 1) {
+        player.throwGrenade();
       }
     }, this);
 

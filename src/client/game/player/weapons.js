@@ -20,11 +20,11 @@ export class LaserPistol extends Weapon {
     if(player.credits >= this.cost && !player.hasLaserPistol) {
       player.addCredits(-this.cost);
       player.addLaserPistol();
-      player.writeconsole("laser pistol equipped on 2.")
+      player.writeconsole("Purchased a laser pistol.")
       return true;
     }
     else {
-      player.writeconsole("invalid purchase");
+      player.writeconsole("Invalid purchase");
     }
   }
 }
@@ -37,11 +37,11 @@ export class AssaultRifle extends Weapon {
     if(player.credits >= this.cost && !player.hasAssaultRifle) {
       player.addCredits(-this.cost);
       player.addAssaultRifle();
-      player.writeconsole("assault rifle equipped on 4.")
+      player.writeconsole("Purchased an assault rifle.")
       return true;
     }
     else {
-      player.writeconsole("invalid purchase");
+      player.writeconsole("Invalid purchase");
     }
   }
 }
@@ -54,11 +54,11 @@ export class Shotgun extends Weapon {
     if(player.credits >= this.cost && !player.hasShotgun) {
       player.addCredits(-this.cost);
       player.addShotgun();
-      player.writeconsole("shotgun equipped on 5.")
+      player.writeconsole("Purchased a shotgun.")
       return true;
     }
     else {
-      player.writeconsole("invalid purchase");
+      player.writeconsole("Invalid purchase");
     }
   }
 }
@@ -72,7 +72,7 @@ export class RocketLauncher extends Weapon {
     if(player.credits >= this.cost && !player.hasRocketLauncher) {
       player.addCredits(-this.cost);
       player.addRocketLauncher();
-      player.writeconsole("rocket launcher equipped on 3.")
+      player.writeconsole("Purchased a rocket launcher.")
       return true;
     }
     else {

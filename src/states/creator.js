@@ -16,6 +16,35 @@ export class Creator {
     this.damphamlet = window['damphamlet'];
   }
 
+createEye(x, y) {
+    let eye = new Eye('eye', this.game, x, y);
+    this.game.eyes.push(eye);
+    this.game.enemies.push(eye);
+    return eye; 
+  }
+createSlime(x, y) {
+    let slime = new Slime('slime', this.game, x, y);
+    this.game.slimes.push(slime);
+    this.game.enemies.push(slime);
+    return slime; 
+  }
+
+  createGreenAlien(x, y) {
+    let green = new GreenAlien('greenalien', this.game, x, y);
+    this.game.greenaliens.push(green);
+    this.game.enemies.push(green);
+    return green;  
+  }
+
+  createRedAlien(x, y) {
+    let red = new RedAlien('redalien', this.game, x, y);
+    this.game.redaliens.push(red);
+    this.game.enemies.push(red);
+    return red;
+  }
+
+
+
   getRandomPosition(map) {
     return [Math.random() * (map.width * this.game.scalemultiple * 8),
       Math.random() * (map.height * this.game.scalemultiple * 8)]
@@ -89,17 +118,30 @@ export class Creator {
     this.game.enemies.push(this.game.tealaliens);
   }
 
-  loopEnemies() {
+loopEnemies() {
     for (let enemyIndex = 0; enemyIndex < this.game.enemies.length; enemyIndex++) {
 
       console.log('tick');
-      for(let mobIndex = 0; mobIndex < this.game.enemies[enemyIndex].length; mobIndex++) {
-        let mob = this.game.enemies[enemyIndex][mobIndex];
+      for(let mobIndex = 0; mobIndex < this.game.enemies.length; mobIndex++) {
+        let mob = this.game.enemies[mobIndex];
         mob.checkForPlayers(200, 1400);
       }
 
     }
   }
+  // loopEnemies() {
+  //   for (let enemyIndex = 0; enemyIndex < this.game.enemies.length; enemyIndex++) {
+
+  //     console.log('tick');
+  //     debugger;
+  //     for(let mobIndex = 0; mobIndex < this.game.enemies[enemyIndex].length; mobIndex++) {
+  //       debugger;
+  //       let mob = this.game.enemies[enemyIndex][mobIndex];
+  //       mob.checkForPlayers(200, 1400);
+  //     }
+
+  //   }
+  // }
 
 }
 

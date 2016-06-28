@@ -3,7 +3,6 @@ import {Creator} from './creator';
 
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
-import {MusicHandler} from './MusicHandler';
 import {Ship1} from '../client/game/ships/ship1';
 
 import _ from 'lodash';
@@ -14,8 +13,7 @@ class Base extends Phaser.State {
     let game = this.game;
     game.players = [];
     game.playerObj = playerObj;
-    game.physics.p2.setImpactEvents(true);
-    game.MusicHandler = new MusicHandler(game); 
+    game.physics.p2.setImpactEvents(true); 
   }
 
   preload() {

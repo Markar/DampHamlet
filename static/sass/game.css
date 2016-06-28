@@ -5,8 +5,7 @@ body {
   background-color: #282828; }
 
 .mainWindow {
-  height: 100%;
-  color: lightgreen; }
+  height: 100%; }
 
 .gamePanel {
   height: 600px;
@@ -19,10 +18,10 @@ body {
   margin-right: auto; }
 
 dialog {
-  background-color: #282828;
-  color: gray;
+  background-color: black;
+  color: green;
   border-style: ridge;
-  opacity: 0.95;
+  opacity: 1;
   width: 800px;
   height: 600px; }
 
@@ -51,7 +50,8 @@ dialog {
   font-family: Orbitron, sans-serif;
   float: left;
   width: 12em;
-  height: 40em; }
+  height: 40em;
+  color: gray; }
 
 .fa {
   width: 2em; }

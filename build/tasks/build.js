@@ -50,6 +50,7 @@ gulp.task('build-css', function() {
 
 gulp.task('build-sass', function() {
   return gulp.src(paths.scss)
+    .pipe(changed(paths.output, {extension: '.scss'}))
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('static/sass/'));
   // gulp.src(paths.scss)

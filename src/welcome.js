@@ -1,10 +1,9 @@
 //import {computedFrom} from 'aurelia-framework';
-import {Game} from 'game';
 
 export class Welcome {
 
   constructor() { 
-    this.heading = 'Welcome to Damp Hamlet';
+    this.heading = 'Damp Hamlet';
   }
   
 
@@ -15,10 +14,6 @@ export class Welcome {
   //@computedFrom('firstName', 'lastName')
   get fullName() {
     return `${this.firstName} ${this.lastName}`;
-  }
-
-  submit() {
-    // this.game = new Game();
   }
 
 }
