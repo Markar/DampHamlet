@@ -10,7 +10,7 @@ export class Mission extends Mob {
     this.speed = 0
     this.hp = 5000;  
     this.body.mass = 99999999999999;
-    this.game.time.events.loop(1000, this.checkForPlayers, this);    
+    this.game.time.events.loop(100, this.checkForPlayers, this);    
   }
 
   weaponHit(body1, body2) {
@@ -27,7 +27,7 @@ export class Mission extends Mob {
       for(let i = 0; i < this.game.players.length;i++) {
         this.distanceToTarget = this.game.physics.arcade.distanceBetween(this, this.game.players[i]);
 
-        if(this.distanceToTarget < 50) {
+        if(this.distanceToTarget < 75) {
             this.game.players[i].missionNPC = true; 
         }
         else { 

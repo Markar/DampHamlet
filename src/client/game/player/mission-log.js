@@ -57,7 +57,7 @@ export class MissionLog {
             let current = this.missions[i];
             //Add repeatable missions, unless they're complete and not turned in yet
             if(current.repeatable) { 
-                if(current.complete) { 
+                if(current.complete || current.active) { 
                     //Do not add complete missions
                 }
                 else { 
@@ -65,7 +65,7 @@ export class MissionLog {
                 }
             }
             else { 
-                if(current.complete) {
+                if(current.complete || current.active) {
                     //Do not add the mission 
                 }
                 else {
