@@ -5,8 +5,8 @@ export class Attributes {
      this.player = player; 
 
      this.health = { 
-        current: 10, 
-        max: 10, 
+        current: 15, 
+        max: 15, 
         regen: 0
       };
 
@@ -22,7 +22,7 @@ export class Attributes {
         regen: 0
       },
 
-      this.speed = 130,
+      this.speed = 150,
       this.armor = 0,
       this.xp = 0,
       this.level = 0,

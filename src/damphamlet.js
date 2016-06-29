@@ -92,11 +92,6 @@ setTravel() {
       }
     };
 
-    // $('.playbutton').click(function() {
-    //   $('.creationwindow').hide();
-    //   $('.gamePanel').show();
-    //   window['game'].state.start('GameState');
-    // });
   }
 
   startGame() {
@@ -112,16 +107,6 @@ setTravel() {
     let player = '';
     let game = this.phasergame;
 
-    // switch (creationInfo.class) {
-    //   case 'Marine':
-    //     player = new Marine(game, creationInfo);
-    //     break;
-    //   case 'Psi Ops':
-    //     player = new PsiOps(game, creationInfo);
-    //     break;
-    //   case 'Splicer':
-    //     player = new Splicer(game, creationInfo);
-    // }
     player = new Player(game, creationInfo);
     game.playerone = player;
     return player;
@@ -131,16 +116,6 @@ setTravel() {
     let player = '';
     let game = this.phasergame;
     player = new Player(game, creationInfo, game.playerObj);
-    // switch (game.playerObj.classInfo.name) {
-    //   case 'Marine':
-    //     player = new Marine(game, creationInfo, game.playerObj);
-    //     break;
-    //   case 'Psi Ops':
-    //     player = new PsiOps(game, creationInfo, game.playerObj);
-    //     break;
-    //   case 'Splicer':
-    //     player = new Splicer(game, creationInfo, game.playerObj);
-    // }
     game.playerone = player; 
     return player;
   }
@@ -243,6 +218,7 @@ setTravel() {
     console.log('close menu in damphamlet');
     if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
       this.openDialog.close();
+      this.openDialog = null; 
     }
   }
 

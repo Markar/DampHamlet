@@ -9,6 +9,7 @@
 @import "console.scss";
 @import "creation.scss";
 @import "changelog.scss";
+@import "welcome.scss";
 
 
 html {
@@ -36,3 +37,8 @@ canvas {
   display: flex; 
   align-content: center;
 }
+
+// .navbar-default { 
+//   background-color: #303030;; 
+//   color: green; 
+// }
