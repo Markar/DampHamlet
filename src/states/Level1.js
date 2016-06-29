@@ -2,9 +2,6 @@ import {Player} from '../client/game/player/player';
 import {Creator} from './creator';
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
-// import {Ship1} from '../client/game/ships/ship1';
-
-import _ from 'lodash';
 
 class Level1 extends Phaser.State {
 
@@ -90,67 +87,30 @@ class Level1 extends Phaser.State {
     
     let eye = creator.createEye(150, 150);
     this.enemies.push(eye);
-    // eye = creator.createEye(200, 200);
-    // this.enemies.push(eye);
-    // eye = creator.createEye(250, 450);
-    // this.enemies.push(eye);
-    // eye = creator.createEye(300, 550);
-    // this.enemies.push(eye);
-    // eye = creator.createEye(350, 500);
-    // this.enemies.push(eye);
+    eye = creator.createEye(200, 200);
+    this.enemies.push(eye);
+    eye = creator.createEye(250, 450);
+    this.enemies.push(eye);
+    eye = creator.createEye(300, 550);
+    this.enemies.push(eye);
+    eye = creator.createEye(350, 500);
+    this.enemies.push(eye);
 
-    // let slime = creator.createSlime(500, 500); 
-    // this.enemies.push(slime);
-    // slime = creator.createSlime(600, 500); 
-    // this.enemies.push(slime);
-    // slime = creator.createSlime(500, 400); 
-    // this.enemies.push(slime);
-    // slime = creator.createSlime(100, 300); 
-    // this.enemies.push(slime);
-    // slime = creator.createSlime(100, 600); 
-    // this.enemies.push(slime);
-
-
-    // let eyes = creator.createEyes(2);
-    // let slimes = creator.createSlimes(3);
-
-    // for(let i = 0; i < eyes.length; i++) { 
-    //   this.enemies.push(eyes[i]);
-    // }
-    // for(let i = 0; i < slimes.length; i++) { 
-    //   this.enemies.push(slimes[i]);
-    // }
+    let slime = creator.createSlime(500, 500); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(600, 500); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(500, 400); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(100, 300); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(100, 600); 
+    this.enemies.push(slime);
 
     
-    // this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.checkWinCondition, this);
     this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
-
     this.player.currentMission = this; 
   }
-
-  // checkWinCondition() {
-
-  //   for(let i = 0; i < this.enemies.length; i++) { 
-  //     if(this.enemies[i].alive) {
-  //       // console.log('i: ', this.enemies[i].alive); 
-  //       return;
-  //     }
-  //     // console.log('i: ', this.enemies[i].alive);
-  //   }
-    
-  //   let mission = this.player.missionlog.getByKey('Level1');
-  //   if(!mission.complete) { 
-  //     this.player.missionlog.setByKey('Level1');
-  //     this.player.writeconsole(`${mission.name} complete.`);
-  //     this.player.writeconsole('Prepare for extraction.');
-
-  //     this.game.time.events.add(1500, () => {
-  //       let ship = new Ship1('ship', this.game, this.player.body.x , this.player.body.y, 'down');
-  //     });
-      
-  //   }
-    
-  // }
 
 
 }

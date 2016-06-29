@@ -174,27 +174,27 @@ export class Player extends Phaser.Sprite {
 
   addPistol() {
     this.pistol = new Pistol(this.game, this);
-    this.hasPistol = 1;
+    this.attributes.hasPistol = 1;
   }
 
   addLaserPistol() {
     this.laser = new Laser(this.game, this);
-    this.hasLaserPistol = 1;
+    this.attributes.hasLaserPistol = 1;
   }
 
   addRocketLauncher() {
     this.rockets = new Rockets(this.game, this);
-    this.hasRocketLauncher = 1;
+    this.attributes.hasRocketLauncher = 1;
   }
 
   addAssaultRifle() {
     this.assaultrifle = new AssaultRifle(this.game, this);
-    this.hasAssaultRifle = 1;
+    this.attributes.hasAssaultRifle = 1;
   }
 
   addShotgun() {
     this.shotgun = new Shotgun(this.game, this);
-    this.hasShotgun = 1;
+    this.attributes.hasShotgun = 1;
   }
 
   equipKevlar() {
@@ -217,10 +217,10 @@ export class Player extends Phaser.Sprite {
     this.skills.points.available = 50;
 
     this.attributes.hasPistol = 1;
-    this.attributes.hasLaserPistol = 1;
-    this.attributes.hasRocketLauncher = 1;
-    this.attributes.hasAssaultRifle = 1;
-    this.attributes.hasShotgun = 1;
+    // this.attributes.hasLaserPistol = 1;
+    // this.attributes.hasRocketLauncher = 1;
+    // this.attributes.hasAssaultRifle = 1;
+    // this.attributes.hasShotgun = 1;
 
     this.inventory.items.grenades.quantity = this.inventory.items.grenades.carryMax;
     this.inventory.items.medkits.quantity = this.inventory.items.medkits.carryMax;
@@ -309,7 +309,7 @@ initNewPlayer() {
     this.inventory = new Inventory(); 
     
     //set this before adding weapons, since it uses hasX for adding them
-    this.debug();
+    // this.debug();
 
     //default to the pistol
     if (this.attributes.hasPistol) {
@@ -397,7 +397,6 @@ initNewPlayer() {
     }
 
     if(this.skills.psiorb != '') {  
-      // this.skills.enablePsiOrb(this, this.game);
       this.skills.psiorb.init(this, this.game); 
     }
 
@@ -532,12 +531,18 @@ initNewPlayer() {
   }
 
   useMedkit() {
+
+    if(this.attributes.health.current >= this.attributes.health.max) { 
+      this.writeconsole('I do not need healing right now.');
+      return
+    }
+
     let medkits = this.inventory.items.medkits; 
 
-    if (medkits.quantity > 0 && this.attributes.hp < this.attributes.maxhp) {
+    if (medkits.quantity > 0) {
       this.addMedkits(-1);
       this.attributes.addHealth(medkits.restore);
-      this.writeconsole('Ahh, feels good.');
+      this.writeconsole('Ahh, that feels better.');
     }
   }
 
@@ -554,11 +559,9 @@ initNewPlayer() {
 
   checkForNPCs() { 
     if(this.missionNPC) { 
-      this.writeconsole("Are you ready for a challenge?");
       return this.missionNPC; 
     }
     if(this.shipNPC) { 
-      this.writeconsole("Where do you want to go?");
       return this.shipNPC;
     }
   }
@@ -787,9 +790,11 @@ initNewPlayer() {
       let mission = this.missionlog.getByKey(this.currentMission.key);
 
       if(!mission.complete) { 
-        this.missionlog.setByKey('Level1');
+        this.missionlog.setByKey(mission.key);
         this.writeconsole(`${mission.name} complete.`);
         this.writeconsole('Prepare for extraction.');
+        window['travel'].remove(mission.key);
+        window['travel'].setTown();
 
         this.game.time.events.add(1500, () => {
           let ship = new Ship1('ship', this.game, this.body.x , this.body.y, 'down');

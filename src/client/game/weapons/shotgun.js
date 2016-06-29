@@ -19,9 +19,9 @@ export class Shotgun extends Weapon {
     sprite.visible = false;
     this.sprite = sprite;
 
-    this.clipSize = 2;
+    this.clipSize = 7;
     this.clip = this.clipSize;
-    this.ammo = (this.clipSize * 10);
+    this.ammo = (this.clipSize * 4);
     this.reloadTime = 2500;
     this.sfxFire = game.add.audio('short-shotgun');
     this.sfxFire1 = game.add.audio('shotgun1');
@@ -73,7 +73,6 @@ export class Shotgun extends Weapon {
 
     if (this.clip != null) {
       this.clip -= 1;
-      // $(".clip").text(this.clip);
       let rnd = this.game.rnd.between(1, 3);
       console.log('rnd ' + rnd);
       if(rnd == 1)
@@ -83,7 +82,6 @@ export class Shotgun extends Weapon {
       else
         this.sfxFire3.play();
     }
-    // $(".weaponsFired").text(this.totalAttacks);
 
     for (let i = 0; i < 8; i++){
       var modx = this.game.rnd.between(0, 50);

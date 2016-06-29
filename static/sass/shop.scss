@@ -74,9 +74,12 @@ $font-stack: Orbitron, sans-serif;
 }
 
 .tabs label:hover {
-  color: #3498db;
-  box-shadow: inset 0 4px #3498db;
-  border-bottom: 4px solid #3498db;
+  // color: #3498db;
+  // box-shadow: inset 0 4px #3498db;
+  // border-bottom: 4px solid #3498db;
+  color: green;
+  box-shadow: inset 0 4px green;
+  border-bottom: 4px solid green;
 }
 
 .tab-content {
@@ -118,9 +121,12 @@ $font-stack: Orbitron, sans-serif;
 
 .tabs [id^="tab"]:checked + label {
   //background: #FFF;
-  box-shadow: inset 0 4px #3498db;
-  border-bottom: 4px solid #3498db;
-  color: #3498db;
+  // box-shadow: inset 0 4px #3498db;
+  // border-bottom: 4px solid #3498db;
+  // color: #3498db;
+  color: green;
+  box-shadow: inset 0 4px green;
+  border-bottom: 4px solid green;
 }
 
 #tab1:checked ~ #tab-content1,

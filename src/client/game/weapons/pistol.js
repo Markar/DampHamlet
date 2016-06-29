@@ -23,11 +23,12 @@ export class Pistol extends Weapon {
 
     this.clipSize = 6;
     this.clip = this.clipSize;
-    this.ammo = (this.clipSize * 10);
+    this.ammo = 250;
+    //this.ammo = (this.clipSize * 10);
     this.reloadTime = 2000;
 
-    $(".clip").text(this.clip);
-    $(".ammo").text(this.ammo);
+    // $(".clip").text(this.clip);
+    // $(".ammo").text(this.ammo);
 
 
     this.speed = 250;

@@ -26,24 +26,24 @@ export class MissionLog {
     }
 
     getByKey(key) {
-    for (let i = 0; i < this.missions.length; i++) {
-      let cur = this.missions[i];
-      if (cur.key === key) {
-        return cur;
-      }
-    }
-  }
-
-  setByKey(key, mission) { 
-
-    for (let i = 0; i < this.missions.length; i++) {
-      let cur = this.missions[i];
-      if (cur.key === key) {
-        cur.complete = true ; 
-      }
+        for (let i = 0; i < this.missions.length; i++) {
+            let cur = this.missions[i];
+            if (cur.key === key) {
+                return cur;
+            }
+        }
     }
 
-  }
+    setByKey(key, mission) {
+
+        for (let i = 0; i < this.missions.length; i++) {
+            let cur = this.missions[i];
+            if (cur.key === key) {
+                cur.complete = true;
+            }
+        }
+
+    }
 
     getDisplayList() {
         // let uilist = this.missionUI.missions;
@@ -55,12 +55,27 @@ export class MissionLog {
 
         for (let i = 0; i < this.missions.length; i++) {
             let current = this.missions[i];
-            if ( !current.complete || current.repeatable) {
-                if(!current.active) { 
+            //Add repeatable missions, unless they're complete and not turned in yet
+            if(current.repeatable) { 
+                if(current.complete) { 
+                    //Do not add complete missions
+                }
+                else { 
                     ui.addMission(current);
                 }
             }
-        } 
+            else { 
+                if(current.complete) {
+                    //Do not add the mission 
+                }
+                else {
+                    //Add incomplete missions 
+                    ui.addMission(current);
+                }
+            }
+        }
+
+        
     }
 
 }
@@ -75,15 +90,15 @@ class Mission {
         this.rewardCollected = false;
         this.description = '';
         this.repeatable = false;
-        this.active = false; 
+        this.active = false;
 
         this.rewardCredits = 0;
         this.rewardXP = 0;
 
     }
 
-    setActive(truth) { 
-        this.active = truth; 
+    setActive(truth) {
+        this.active = truth;
     }
 
     collect(player) {
@@ -114,25 +129,25 @@ class Mission {
         this.active = false;
         this.repeatable = true;
 
-        this.rewardCredits = 50;
+        this.rewardCredits = 150;
         this.rewardXP = 5;
-        
+
         return this;
     }
 
     SaveTheCorinthian() {
         this.id = 3;
-        this.key = 'Level2'; 
+        this.key = 'Level2';
         this.name = 'Save the Corinthian';
         this.description = 'Invaders have attacked the Corinthian space station.';
         this.complete = false;
         this.rewardCollected = false;
         this.active = false;
-        this.repeatable = false; 
+        this.repeatable = false;
 
-        this.rewardCredits = 75;
-        this.rewardXP = 5
- 
+        this.rewardCredits = 275;
+        this.rewardXP = 15
+
         return this;
     }
 
@@ -144,10 +159,10 @@ class Mission {
         this.complete = false;
         this.rewardCollected = false;
         this.active = false;
-        this.repeatable = false; 
+        this.repeatable = false;
 
-        this.rewardCredits = 100;
-        this.rewardXP = 5
+        this.rewardCredits = 500;
+        this.rewardXP = 50
 
         return this;
     }

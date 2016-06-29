@@ -19,7 +19,6 @@ export class Destinations {
         this.destinations = [];
         this.destinations.push(this.base);
         this.destinations.push(this.town);
-
     }
 
     //key, boolean - destinations.set('Level1', 'true');
@@ -63,6 +62,8 @@ export class Destinations {
         }
         console.log('ui' + uiDestinations.length);
     }
+
+    
 
 }
 

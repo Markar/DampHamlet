@@ -434,9 +434,9 @@ div.au-stagger {
   margin-right: 0; }
 
 .tabs label:hover {
-  color: #3498db;
-  box-shadow: inset 0 4px #3498db;
-  border-bottom: 4px solid #3498db; }
+  color: green;
+  box-shadow: inset 0 4px green;
+  border-bottom: 4px solid green; }
 
 .tab-content {
   display: none;
@@ -462,9 +462,9 @@ div.au-stagger {
     opacity: 1; } }
 
 .tabs [id^="tab"]:checked + label {
-  box-shadow: inset 0 4px #3498db;
-  border-bottom: 4px solid #3498db;
-  color: #3498db; }
+  color: green;
+  box-shadow: inset 0 4px green;
+  border-bottom: 4px solid green; }
 
 #tab1:checked ~ #tab-content1,
 #tab2:checked ~ #tab-content2,

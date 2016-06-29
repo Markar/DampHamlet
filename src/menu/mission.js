@@ -1,6 +1,5 @@
 export class Misson {
   constructor() {
-    console.log('compose mission');
     window['mission'] = this;
     this.missions = [];
   }
