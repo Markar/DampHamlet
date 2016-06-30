@@ -53,7 +53,6 @@ export class LoadAssets {
     //add map images
     game.load.tilemap('base', assetpath + 'base.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('town', assetpath + 'town.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.tilemap('town2', assetpath + 'town2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level1', assetpath + 'level1.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level2', assetpath + 'level2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level3', assetpath + 'level3.json', null, Phaser.Tilemap.TILED_JSON);

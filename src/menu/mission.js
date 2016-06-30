@@ -15,7 +15,8 @@ export class Misson {
 
     window['travel'].destinations.push(destination);
 
-    player.writeconsole(`${destination.name} has been added to your ship's navigation system. Return to me once you've completed your task.`);
+    player.writeconsole(`${destination.name} has been added to your ship's navigation system.`);
+    player.writeconsole(`Return to me once you've completed your task.`);
     damphamlet.closeMenu();
 
   }

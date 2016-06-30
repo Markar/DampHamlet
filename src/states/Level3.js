@@ -75,8 +75,10 @@ class Level3 extends Phaser.State {
     game.players.push(player);
     this.game.MusicHandler.playTrack('lava-deep'); 
 
+    this.enemies = [];
     let creator = new Creator(game, this.map);
     let bh = new BlackHole('blackhole', this.game, 600, 600);
+    this.enemies.push(bh);
 
     this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
     player.currentMission = this;

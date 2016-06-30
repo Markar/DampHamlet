@@ -26,6 +26,7 @@ export class EnemyWeapon {
 		// console.log('blaster number', blasterNumber);
 		// this.sfxFire = this.game.add.audio('blaster' + blasterNumber);
     this.sfxFire = this.game.add.audio('blaster1');
+    this.sfxFire.volume = 0.2; 
   }
 
   addWeapon(x, y, key, count, size) {

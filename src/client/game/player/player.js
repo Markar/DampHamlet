@@ -492,12 +492,12 @@ initNewPlayer() {
 
   throwGrenade() {
     if(this.inventory.items.grenades.quantity < 1) { 
-      this.writeconsole("I have no more grenades.");
+      this.writeconsole("I don't have any grenades.");
       return;
     }
 
     if(typeof(this.grenade) == "undefined") { 
-      this.writeconsole("I need more training to use explosives.");
+      this.writeconsole("I need training to use explosives.");
       return;
     }
 

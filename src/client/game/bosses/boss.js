@@ -21,21 +21,21 @@ export class Boss extends Phaser.Sprite {
   }
   
   update() {
-    this.checkForPlayers(500, 1000);
+    this.checkForPlayers(500, 3000);
     this.move(this.target);
     this.attack();
   }
 
-  checkForPlayers() {
+  checkForPlayers(min, max) {
     let game = this.game;
     for(let i = 0; i < game.players.length;i++) {
       let distance = this.game.physics.arcade.distanceBetween(this, game.players[i]);
 
-      if(distance < 400) {
+      if(distance < min) {
         //this.hateList.push(game.players[i]);
         this.target = game.players[i];
       }
-      if(distance > 1000) {
+      if(distance > max) {
         //this.hateList.splice(game.players[i]);
         this.target = null;
       }

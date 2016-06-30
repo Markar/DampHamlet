@@ -55,6 +55,11 @@ class Town extends Phaser.State {
     layer2.setScale(game.scalemultiple);
     layer2.resizeWorld();
 
+    let layer3 = map.createLayer('Tile Layer 3');
+    layer3.smoothed = false;
+    layer3.setScale(game.scalemultiple);
+    layer3.resizeWorld();
+
     //  Set the tiles for collision.
     //  Do this BEFORE generating the p2 bodies below.
     //  Convert the tilemap layer into bodies. Only tiles that collide (see above) are created.
@@ -73,8 +78,8 @@ class Town extends Phaser.State {
     game.physics.p2.restitution = 0.8;
 
     let creationInfo = {
-      x : 1235,
-      y : 940,
+      x : 1808,
+      y : 910,
       sprite: game.playerObj.playertype
     };
 

@@ -2,7 +2,7 @@ export class App {
   configureRouter(config, router) {
     config.title = 'Damp Hamlet';
     config.map([
-      { route: ['', 'welcome'], name: 'welcome',      moduleId: 'welcome',      nav: true,  title: 'Welcome' },
+      { route: ['', 'welcome'], name: 'welcome',      moduleId: 'welcome',      nav: true,  title: 'Info' },
       { route: 'damphamlet',    name: 'damphamlet',   moduleId: 'damphamlet',   nav: true,  title: 'Play' },
       { route: 'changelog',     name: 'patchnotes',   moduleId: 'changelog',    nav: true,  title: 'History' },
     ]);
