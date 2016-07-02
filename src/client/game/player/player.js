@@ -352,9 +352,17 @@ initNewPlayer() {
 
     //objects
     this.attributes = playerObj.attributes;
+    this.attributes.player = this; 
+
     this.missionlog = playerObj.missionlog;
+    this.missionlog.player = this; 
+
     this.inventory = playerObj.inventory;
+    this.inventory.player = this; 
+
     this.skills = playerObj.skills;
+    this.skills.player = this; 
+
     this.classInfo = playerObj.classInfo;
     this.scrubSkills();
 

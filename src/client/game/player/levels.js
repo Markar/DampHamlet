@@ -16,6 +16,16 @@ export class Levels {
     levels[8] = 34;
     levels[9] = 55;
     levels[10] = 89;
+    levels[11] = 144; 
+    levels[12] = 233; 
+    levels[13] = 377; 
+    levels[14] = 610; 
+    levels[15] = 987;
+    levels[16] = 1597;
+    levels[17] = 2584; 
+    levels[18] = 4181; 
+    levels[19] = 6765; 
+    levels[20] = 10946; 
 
     this.levels = levels;
     this.skills = player.skills;

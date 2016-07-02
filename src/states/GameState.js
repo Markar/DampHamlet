@@ -93,8 +93,8 @@ class GameState extends Phaser.State {
     // this.state.start('Base', true, false, playerObj);
     
     //debugging
-    // this.game.state.start('Town', true, false, playerObj);
-    this.game.state.start('Level3', true, false, playerObj);
+    this.game.state.start('Town', true, false, playerObj);
+    // this.game.state.start('Level3', true, false, playerObj);
     // this.game.state.start('Level1', true, false, playerObj);
   }
 }

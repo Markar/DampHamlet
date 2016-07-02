@@ -9,7 +9,7 @@ export class BlackHole extends Boss {
     this.sprite = super.getSprite(); 
 
     this.game = game;           
-    this.speed = 75;
+    this.speed = 50;
     this.hp = 750;
     this.nextAttack = 1500;
     this.weapon.setInt('speed', 250);
@@ -22,9 +22,30 @@ export class BlackHole extends Boss {
     this.creator = new Creator(game, this.map);
     this.spreadshot = new SpreadShot(game);
 
-    // this.game.time.events.loop(Phaser.Timer.SECOND * 20, this.spawn, this);
-    // this.game.time.events.loop(Phaser.Timer.SECOND * 1, this.spread_up, this);
+    this.game.time.events.loop(Phaser.Timer.SECOND * 15, this.spawn, this);
+    this.game.time.events.loop(Phaser.Timer.SECOND * 6, this.fire_spread, this);
+    
 
+  }
+
+  fire_spread() { 
+    if(this.target) {
+      this.angleToTarget = this.game.math.normalizeAngle(this.game.physics.arcade.angleBetween(this, this.target));
+      this.getDirToTarget(this.angleToTarget);
+
+      if(this.direction === 0) { 
+        this.spread_up(); 
+      }
+      if(this.direction === 1) { 
+        this.spread_right(); 
+      }
+      if(this.direction === 2) { 
+        this.spread_down(); 
+      }
+      if(this.direction === 3) { 
+        this.spread_left(); 
+      } 
+    }
   }
 
   spread_up() {
@@ -54,9 +75,9 @@ export class BlackHole extends Boss {
 
 
   update() {
-    this.checkForPlayers(500, 3000);
+    this.checkForPlayers(500, 4000);
     this.move();
-    // this.attack();
+    this.attack();
   }
 
   move() {       

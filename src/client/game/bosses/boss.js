@@ -154,4 +154,26 @@ export class Boss extends Phaser.Sprite {
       this.destroy();
   }
 
+  getDirToTarget(angle) {
+    if (angle > (4 * Math.PI / 3) && angle < (7 * Math.PI / 4)) {
+      this.direction = 0;
+    }
+    else if (angle > (7 * Math.PI / 4) && angle < (2 * Math.PI)
+      || (angle > 0 && angle < (Math.PI / 6))
+    ) {
+      this.direction = 1;
+    }
+    else if (angle > (Math.PI / 4) && angle < (3 * Math.PI / 4)) {
+      this.direction = 2;
+    }
+    else if ((angle > (3 * Math.PI / 4) && angle < (5 * Math.PI / 4))) {
+      this.direction = 3;
+    }
+    else { 
+      // console.log('NO ANGLE getDirToTarget', angle); 
+      this.direction = Math.floor(Math.random() * 4);
+    }
+  }
+  
+
 }
