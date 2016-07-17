@@ -86,10 +86,51 @@ class Level2 extends Phaser.State {
 		let player = damphamlet.loadPlayer(creationInfo);
 		game.players.push(player);
 		this.player = player;
-
+		this.game.physics.p2.setBoundsToWorld(true, true, true, true, true);
+		this.game.physics.p2.restitution = 0.8;
 		this.game.MusicHandler.playTrack('underwater-active');
 
 		this.enemies = [];
+		this.setup();
+
+		this.player.currentMission = this;
+	}
+
+	setup() {
+		let game = this.game;
+
+		let creationInfo = {
+			x: 50,
+			y: 50,
+			sprite: game.playerObj.playertype
+		};
+
+		let player = this.damphamlet.loadPlayer(creationInfo);
+		game.players.push(player);
+		this.player = player;
+		this.player.currentMission = this;
+		this.setDifficulty();
+	}
+
+	setDifficulty() {
+		switch (this.difficulty) {
+			case 'Easy':
+				this.setupEasy();
+				break;
+			case 'Normal':
+				this.setupNormal();
+				break;
+			case 'Hard':
+				this.setupHard();
+				break;
+			default:
+				this.setupEasy();
+				break;
+		}
+
+	}
+
+	setupEasy() {
 		let creator = new Creator(game, this.map);
 		let green = '';
 		let red = '';
@@ -143,8 +184,6 @@ class Level2 extends Phaser.State {
 		this.enemies.push(green);
 
 		this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
-
-		this.player.currentMission = this;
 	}
 
 }

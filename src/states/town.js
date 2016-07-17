@@ -77,9 +77,17 @@ class Town extends Phaser.State {
     game.physics.p2.setBoundsToWorld(true, true, true, true, true);
     game.physics.p2.restitution = 0.8;
 
+    // House
+    // let creationInfo = {
+    //   x : 1808,
+    //   y : 910,
+    //   sprite: game.playerObj.playertype
+    // };
+
+    // Ship
     let creationInfo = {
-      x : 1808,
-      y : 910,
+      x : 1265,
+      y : 915,
       sprite: game.playerObj.playertype
     };
 

@@ -33,14 +33,12 @@ export class Player extends Phaser.Sprite {
 
     if(gender == "female") {
       let loc = game.characterpath + 'femalenerd.png';
-      //profileImg = '<img class="profileImg" src="./assets/characters/femalenerd.png" />';
       profileImg = `<img class="profileImg" src="${loc}" />`;
       defaultName = 'Laura';
     }
     else {
       let loc = game.characterpath + 'Nerd.png';
       profileImg = `<img class="profileImg" src="${loc}" />`;
-      //profileImg = '<img class="profileImg" src="./assets/characters/Nerd.png" />';
       defaultName = 'Mark';
     }
 
@@ -309,7 +307,7 @@ initNewPlayer() {
     this.inventory = new Inventory(); 
     
     //set this before adding weapons, since it uses hasX for adding them
-    // this.debug();
+    this.debug();
 
     //default to the pistol
     if (this.attributes.hasPistol) {
@@ -538,6 +536,10 @@ initNewPlayer() {
     return true;
   }
 
+  heal(x) { 
+    this.attributes.addHealth(x);
+  }
+
   useMedkit() {
 
     if(this.attributes.health.current >= this.attributes.health.max) { 
@@ -574,10 +576,14 @@ initNewPlayer() {
     }
   }
 
-  goToMission(key) { 
+  goToMission(key, difficulty) { 
+    if(!difficulty) { 
+      difficulty = 'Normal';
+    }
+
     let playerObj = this.getPlayerObject();
     this.game.MusicHandler.stopMusic();
-    this.game.state.start(key, true, false, playerObj);
+    this.game.state.start(key, true, false, playerObj, difficulty);
   }
   
   collectReward() { 

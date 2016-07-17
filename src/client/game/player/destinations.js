@@ -5,9 +5,9 @@ export class Destinations {
     constructor() {
         this.base = new Destination(0, 'Base', 'Home', 'true');
         this.town = new Destination(1, 'Town', 'Town', 'true');
-        this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false');
-        this.level2 = new Destination(3, 'Level2', 'Save the Corinthian', 'false');
-        this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false');
+        this.level1 = new Destination(2, 'Level1', 'Reclaim Space Station', 'false', 'There is an infestation of slimes on a small station nearby, eliminate every last one.', 'Short');
+        this.level2 = new Destination(3, 'Level2', 'Save the Corinthian', 'false', 'Invaders have attacked the Corinthian space station.', 'Long');
+        this.level3 = new Destination(4, 'Level3', 'Assassinate Bork', 'false', 'Bork has enslaved the Corinthians for too long.', 'Short');
 
         this.allDestinations = []; 
         this.allDestinations.push(this.base);
@@ -70,11 +70,13 @@ export class Destinations {
 
 export class Destination { 
 
-    constructor(id, key, name, available) { 
+    constructor(id, key, name, available, desc, length) { 
         this.id = id; 
         this.key = key; 
         this.name = name;
         this.available = available;
+        this.description = desc; 
+        this.length = length; 
     }
 }
 

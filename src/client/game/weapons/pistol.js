@@ -7,10 +7,23 @@ export class Pistol extends Weapon {
     this.setup(game, player);
   }
 
+  extendedClip() { 
+    this.clipSize = (this.clipSize * 1.5); 
+  }
+
   setup(game, player) {
     this.fireRate = 200;
     this.weaponsFired = 0;
     this.name = "Pistol";
+    this.clipSize = 6;
+    this.clip = this.clipSize;
+    this.ammo = this.clipSize * 35;
+    this.reloadTime = 2000;
+    this.speed = 250;
+    this.mass = 1;
+    this.size = 5;
+    this.damage = 15;
+
     let sprite  = game.add.sprite(4, 0, 'item-7');
     sprite.smoothed = false;
     sprite.scale.setTo(0.5);
@@ -20,21 +33,6 @@ export class Pistol extends Weapon {
     this.sprite = sprite;
     this.sfxFire = game.add.audio('short-pistol');
     this.sfxReload = game.add.audio('short-reloadpistol');
-
-    this.clipSize = 6;
-    this.clip = this.clipSize;
-    this.ammo = 250;
-    //this.ammo = (this.clipSize * 10);
-    this.reloadTime = 2000;
-
-    // $(".clip").text(this.clip);
-    // $(".ammo").text(this.ammo);
-
-
-    this.speed = 250;
-    this.mass = 1;
-    this.size = 5;
-    this.damage = 15;
 
     this.weapons.setAll('speed', this.speed);
     this.weapons.setAll('mass', this.mass);

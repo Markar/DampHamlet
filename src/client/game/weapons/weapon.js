@@ -33,9 +33,6 @@ export class Weapon {
     this.ammoMax = -1;
     this.reloadTime = -1;
     this.reloading = 0;
-
-    // $(".clip").text(this.clip);
-    // $(".ammo").text(this.ammo);
   }
 
   getObj() {
@@ -111,8 +108,6 @@ export class Weapon {
 
       this.game.time.events.add(this.reloadTime, () => {
         weapon.reloading = 0;
-        $(".clip").text(this.clip);
-        $(".ammo").text(this.ammo);
       });
     }
   }
@@ -159,9 +154,7 @@ export class Weapon {
 
     if(this.clip != null) {
       this.clip--;
-      $(".clip").text(this.clip);
     }
-    $(".weaponsFired").text(this.totalAttacks);
 
     var weapon = this.weapons.getFirstDead();
     weapon.reset(player.body.x + player.weapon.sprite.x * 4 , player.body.y + player.weapon.sprite.y * 4);

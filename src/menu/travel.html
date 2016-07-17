@@ -1,27 +1,50 @@
 <template>
   <dialog id="Travel">
 
-    <h3>Set your destination and begin preparations.</h3>
+    <h3>Set your destination and prepare to warp.</h3>
 
     <div class="center">
       <h4>Destinations</h4>
+      <div> 
+        <button class="btn btn-default" click.delegate="goToHome()">
+          <i class="fa fa-home fa-2"></i>
+        </button>
+        <button class="btn btn-default" click.delegate="goToTown()">
+          <i class="fa fa-bank fa-2" click.delegate="goToTown()"></i>
+        </button>
+      </div>
     </div>
 
-    <div class="center">
+    <div class="center missions">
+      <h4>Missions</h4>
+      <div class="travelDestinations">
+        <div if.bind="destinations">
+          <div repeat.for="destination of destinations">
+              <div data-key="${destination.key}" value.bind="destinations" click.trigger="setDestination($event)">${destination.name}</div>            
+          </div>
+        </div>
+      </div>
       
-      <ul class="travelDestinations">
-        <li repeat.for="destination of destinations">
-            <span data-key="${destination.key}" value.bind="destinations" click.trigger="setDestination($event)">${destination.name}</span> 
-        </li>
-      </ul>
+      </br>
+
+      <h4>Briefing</h4>
       
+      <div if.bind="destination">
+        <div>${destination.name} (${destination.length})</div>
+        <div>${destination.description}</div>
+        <div>
+          <span class="difficulty-icons">
+            <span class="fa fa-circle" data-key="0" click.delegate="setDifficulty($event)"></span>
+            <span class="fa fa-circle-o" data-key="1" click.delegate="setDifficulty($event)"></span>
+            <span class="fa fa-circle-o" data-key="2" click.delegate="setDifficulty($event)"></span>
+          </span>
+          <span> ${difficulty}</span>
+        </div>
 
-      <div>Travel to ${destination.name}</div>
-
-      <br/>
-
-      <div>
-        <button click.delegate="goToMission()">Engage</button>
+        <div>
+          <br/>
+          <button class="btn btn-default" click.delegate="goToMission()">Start</button>
+        </div>
       </div>
 
     </div>

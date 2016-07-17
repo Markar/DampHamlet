@@ -116,6 +116,7 @@ setTravel() {
     let player = '';
     let game = this.phasergame;
     player = new Player(game, creationInfo, game.playerObj);
+    player.heal(1000);
     game.playerone = player; 
     return player;
   }

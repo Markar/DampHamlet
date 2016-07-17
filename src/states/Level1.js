@@ -3,10 +3,12 @@ import {Creator} from './creator';
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
 
+
 class Level1 extends Phaser.State {
 
-  init(playerObj) {
+  init(playerObj, difficulty) {
     this.damphamlet = window['damphamlet'];
+    this.difficulty = difficulty;
     let game = this.game;
     game.players = [];
     game.playerObj = playerObj;
@@ -68,6 +70,12 @@ class Level1 extends Phaser.State {
 
     game.physics.p2.setBoundsToWorld(true, true, true, true, true);
     game.physics.p2.restitution = 0.8;
+    game.MusicHandler.playTrack('hangar2'); 
+    this.setup();
+  }
+
+  setup() { 
+    let game = this.game; 
 
     let creationInfo = {
       x : 50,
@@ -78,12 +86,60 @@ class Level1 extends Phaser.State {
     let player = this.damphamlet.loadPlayer(creationInfo);
     game.players.push(player);
     this.player = player;
+    this.player.currentMission = this;
+    this.setDifficulty();
+  }
+  
+  setDifficulty() {   
+    switch(this.difficulty) { 
+      case 'Easy': 
+        this.setupEasy();
+        break; 
+      case 'Normal': 
+        this.setupNormal();
+        break;
+      case 'Hard': 
+        this.setupHard(); 
+        break; 
+      default: 
+        this.setupEasy();
+        break;
+    }
+    
+  }
 
-
-    this.game.MusicHandler.playTrack('hangar2'); 
-
+  setupEasy() {
     this.enemies = [];
-    let creator = new Creator(game, this.map);
+    let creator = new Creator(this.game, this.map);
+    
+    let eye = creator.createEye(150, 150);
+    this.enemies.push(eye);
+    eye = creator.createEye(200, 200);
+    this.enemies.push(eye);
+    eye = creator.createEye(250, 450);
+    this.enemies.push(eye);
+    eye = creator.createEye(300, 550);
+    this.enemies.push(eye);
+    eye = creator.createEye(350, 500);
+    this.enemies.push(eye);
+
+    let slime = creator.createSlime(500, 500); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(600, 500); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(500, 400); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(100, 300); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(100, 600); 
+    this.enemies.push(slime);
+    
+    this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this); 
+  }
+
+  setupNormal() {
+    this.enemies = [];
+    let creator = new Creator(this.game, this.map);
     
     let eye = creator.createEye(150, 150);
     this.enemies.push(eye);
@@ -107,9 +163,69 @@ class Level1 extends Phaser.State {
     slime = creator.createSlime(100, 600); 
     this.enemies.push(slime);
 
+    let green = creator.createGreenAlien(550, 550);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(160, 160);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(220, 550);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(350, 320);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(175, 225);
+    this.enemies.push(green);
     
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
-    this.player.currentMission = this; 
+    this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this); 
+  }
+
+  setupHard() {
+    this.enemies = [];
+    let creator = new Creator(this.game, this.map);
+    
+    let eye = creator.createEye(150, 150);
+    this.enemies.push(eye);
+    eye = creator.createEye(200, 200);
+    this.enemies.push(eye);
+    eye = creator.createEye(250, 450);
+    this.enemies.push(eye);
+    eye = creator.createEye(300, 550);
+    this.enemies.push(eye);
+    eye = creator.createEye(350, 500);
+    this.enemies.push(eye);
+
+    let slime = creator.createSlime(500, 500); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(600, 500); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(500, 400); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(100, 300); 
+    this.enemies.push(slime);
+    slime = creator.createSlime(100, 600); 
+    this.enemies.push(slime);
+
+    let green = creator.createGreenAlien(550, 550);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(160, 160);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(220, 550);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(350, 320);
+    this.enemies.push(green);
+    green = creator.createGreenAlien(175, 225);
+    this.enemies.push(green);
+
+    let red = creator.createRedAlien(150, 150)
+    this.enemies.push(red);
+    red = creator.createRedAlien(200, 200);
+    this.enemies.push(red);
+    red = creator.createRedAlien(250, 450);
+    this.enemies.push(red);
+    red = creator.createRedAlien(300, 550);
+    this.enemies.push(red);
+    red = creator.createRedAlien(350, 500);
+    this.enemies.push(red);
+
+    this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this); 
   }
 
 

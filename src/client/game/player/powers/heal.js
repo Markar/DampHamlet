@@ -17,7 +17,7 @@ export class Heal {
 
       this.game.time.events.add(3000, () => {
         player.canmove = 1;
-        player.attributes.addHealth(1 + concentration);
+        player.heal(1 + concentration);
         return true;
       });
 
@@ -34,7 +34,7 @@ export class Heal {
 
       this.game.time.events.add(5000, () => {
         player.canmove = 1;
-        player.attributes.addHealth(15);
+        player.heal(15);
         player.writeconsole('Focusing on healing wounds.');
         return true;
       });
