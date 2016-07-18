@@ -307,7 +307,7 @@ initNewPlayer() {
     this.inventory = new Inventory(); 
     
     //set this before adding weapons, since it uses hasX for adding them
-    this.debug();
+    // this.debug();
 
     //default to the pistol
     if (this.attributes.hasPistol) {
