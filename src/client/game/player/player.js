@@ -27,24 +27,26 @@ export class Player extends Phaser.Sprite {
     this.creationInfo = creationInfo;
     this.damphamlet = window['damphamlet'];
 
-    let profileImg = '';
+    this.profileImg = '';
     let defaultName = '';
-    let gender = game.gender; 
+    let gender = this.damphamlet.gender; 
 
     if(gender == "female") {
       let loc = game.characterpath + 'femalenerd.png';
-      profileImg = `<img class="profileImg" src="${loc}" />`;
+      // this.profileImg = `<img class="profileImg" src="${loc}" />`;
+      this.profileImg = `${loc}`;
       defaultName = 'Laura';
     }
     else {
       let loc = game.characterpath + 'Nerd.png';
-      profileImg = `<img class="profileImg" src="${loc}" />`;
+      // this.profileImg = `<img class="profileImg" src="${loc}" />`;
+      this.profileImg = `${loc}`;
       defaultName = 'Mark';
     }
 
     this.consoleElement = $('.console');
-    $(".imgProfile").html("");
-    $(".imgProfile").append(profileImg);
+    // $(".imgProfile").html("");
+    // $(".imgProfile").append(profileImg);
     game.add.existing(this);
     game.physics.p2.enable(this);
     game.camera.follow(this);
