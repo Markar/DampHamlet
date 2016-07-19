@@ -1,5 +1,3 @@
-"use strict";
-
 export class Levels {
 
   constructor(player) {
@@ -16,16 +14,16 @@ export class Levels {
     levels[8] = 34;
     levels[9] = 55;
     levels[10] = 89;
-    levels[11] = 144; 
-    levels[12] = 233; 
-    levels[13] = 377; 
-    levels[14] = 610; 
+    levels[11] = 144;
+    levels[12] = 233;
+    levels[13] = 377;
+    levels[14] = 610;
     levels[15] = 987;
     levels[16] = 1597;
-    levels[17] = 2584; 
-    levels[18] = 4181; 
-    levels[19] = 6765; 
-    levels[20] = 10946; 
+    levels[17] = 2584;
+    levels[18] = 4181;
+    levels[19] = 6765;
+    levels[20] = 10946;
 
     this.levels = levels;
     this.skills = player.skills;
@@ -38,7 +36,7 @@ export class Levels {
     this.checkLevelup();
 
     console.log('addXP in player');
-    $('.xp').text(player.attributes.xp);
+    // $('.xp').text(player.attributes.xp);
   }
 
   checkLevelup() {
@@ -67,12 +65,12 @@ export class Levels {
     let player = this.player;
     let assault = this.skills.assault;
 
-    if(!player.hasAssaultRifle) {
+    if (!player.hasAssaultRifle) {
       player.writeconsole("I don't have an assault rifle yet.");
       return false;
     }
 
-    if(this.raiseSkill(assault)) {
+    if (this.raiseSkill(assault)) {
       player.assaultrifle.setDamage(_.floor(player.assaultrifle.damage * 1.2));
       // player.writeconsole(`raised assault to ${assault.current} dealing ${player.assaultrifle.damage} damage.`);
     }
@@ -83,11 +81,10 @@ export class Levels {
     let player = this.player;
     let explosives = this.skills.explosives;
 
-    if(this.raiseSkill(explosives)) {
+    if (this.raiseSkill(explosives)) {
       player.enableGrenades();
       player.writeconsole(`Let's try some explosives.`);
-    }
-    else {
+    } else {
       return false;
     }
 
@@ -97,11 +94,11 @@ export class Levels {
   raisePistolSkill() {
     let player = this.player;
 
-    if(this.raiseSkill(this.skills.pistols)) {
-      let newDmg = (player.pistol.damage / 3) + player.pistol.damage;
+    if (this.raiseSkill(this.skills.pistols)) {
+      // let newDmg = (player.pistol.damage / 3) + player.pistol.damage;
+      let newDmg = player.pistol.damage + 1;
       player.pistol.setDamage(newDmg);
-    }
-    else {
+    } else {
       return false;
     }
 
@@ -112,13 +109,12 @@ export class Levels {
     let player = this.player;
     let health = this.skills.health;
 
-    if(this.raiseSkill(health)) {
+    if (this.raiseSkill(health)) {
       player.changeMaxHp(5);
       // player.writeconsole("raised health to " + health.current);
-      if(health.current === 5) { 
-        player.writeconsole("My body can process stimulants now.");
-        player.skills.enableStimulants(); 
-        
+      if (health.current === 5) {
+        player.writeconsole('My body can process stimulants now.');
+        player.skills.enableStimulants();
       }
     }
 
@@ -129,7 +125,7 @@ export class Levels {
     let player = this.player;
     let stamina = this.skills.stamina;
 
-    if(this.raiseSkill(stamina)) {
+    if (this.raiseSkill(stamina)) {
       player.attributes.changeSpeed(10);
       player.attributes.changeStamina(10);
       // player.writeconsole(`After intensive training, stamina to ${stamina.current}`);
@@ -142,52 +138,46 @@ export class Levels {
     let player = this.player;
     let concentration = this.skills.concentration;
 
-    if(this.raiseSkill(concentration)) {
+    if (this.raiseSkill(concentration)) {
       // player.setMaxOrbs();
       // player.writeconsole(`My mind feels at ease.`);
       //Increase max energy and energy regen
       player.attributes.changeEnergy(25);
-      
-      if(concentration.current === 1) { 
+
+      if (concentration.current === 1) {
         //Add psi orb skill
         player.skills.enablePsiOrb(player, damphamlet.phasergame);
-        player.writeconsole('Focusing on defense now available.'); 
-      }
-      else if(concentration.current === 3) { 
-        //Add teleport skill 
+        player.writeconsole('Focusing on defense now available.');
+      } else if (concentration.current === 3) {
+        //Add teleport skill
         player.skills.enableTeleport();
         player.writeconsole('Focusing on location now available.');
-      }
-      else if(concentration.current === 6) { 
+      } else if (concentration.current === 6) {
         //Add heal skill
-        player.skills.enableHeal(); 
+        player.skills.enableHeal();
         player.writeconsole('Focusing on recovery now available.');
       }
 
       player.skills.psiorb.addMaxOrbs(1);
       player.skills.psiorb.reduceConcentrationTime(250);
-      
     }
 
     return true;
   }
 
-raiseSkill(skill) {
+  raiseSkill(skill) {
     let player = this.player;
 
-    if(skill.current >= skill.max) {
-      player.writeconsole("You have nothing left to learn.");
+    if (skill.current >= skill.max) {
+      player.writeconsole('You have nothing left to learn.');
       return false;
     }
 
-    if(player.setSkillPoints(-1)) {
+    if (player.setSkillPoints(-1)) {
       skill.current++;
       return true;
     }
 
     return false;
   }
-
-
-
 }

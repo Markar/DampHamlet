@@ -40,8 +40,9 @@ export class Grenade {
   throwGrenade(player) {
     let grenade = this.grenade;
 
-    if (grenade.alive == true)
+    if (grenade.alive === true) {
       return;
+    }
 
     player.addGrenades(-1);
     let dir = player.direction;
@@ -68,23 +69,26 @@ export class Grenade {
     });
 
 
-    switch (dir){
-      case 0:
-        grenade.body.angle = 0;
-        grenade.body.moveLeft(grenade.speed);
-        return;
-      case 1:
-        grenade.body.angle = 0;
-        grenade.body.moveRight(grenade.speed);
-        return;
-      case 2:
-        grenade.body.angle = 180;
-        grenade.body.moveUp(grenade.speed);
-        return;
-      case 3:
-        grenade.body.angle = 180;
-        grenade.body.moveDown(grenade.speed);
-        return;
+    switch (dir) {
+    case 0:
+      grenade.body.angle = 0;
+      grenade.body.moveLeft(grenade.speed);
+      return;
+    case 1:
+      grenade.body.angle = 0;
+      grenade.body.moveRight(grenade.speed);
+      return;
+    case 2:
+      grenade.body.angle = 180;
+      grenade.body.moveUp(grenade.speed);
+      return;
+    case 3:
+      grenade.body.angle = 180;
+      grenade.body.moveDown(grenade.speed);
+      return;
+    default:
+      grenade.body.angle = 0;
+      grenade.body.moveLeft(grenade.speed);
     }
   }
 
@@ -110,7 +114,7 @@ export class Grenade {
     this.sfxExplosion.play();
     //explosion.body.collides([game.tileCollisionGroup], this.explosionHit, explosion);
 
-    if(timed) {
+    if (timed) {
       this.game.time.events.add(50, () => {
         explosion.kill();
       });
@@ -120,13 +124,10 @@ export class Grenade {
     //  console.log('kill explosion');
     //  explosion.kill();
     //}
-
   }
 
   explosionHit(body1, body2) {
     console.log('hit');
     this.kill();
   }
-
-
 }

@@ -1,11 +1,9 @@
-"use strict";
-
 import {Laser} from '../weapons/laser';
 import {Pistol} from '../weapons/pistol';
 import {Rockets} from '../weapons/rockets';
 import {AssaultRifle} from '../weapons/assaultrifle';
 import {Shotgun} from '../weapons/shotgun';
-import {BulletAmmo} from '../items/ammo';
+// import {BulletAmmo} from '../items/ammo';
 import {Grenade} from './powers/grenade';
 import {Items} from './items';
 import {Skills} from './skills';
@@ -25,19 +23,18 @@ export class Player extends Phaser.Sprite {
   constructor(game, creationInfo, playerObj) {
     super(game, creationInfo.x, creationInfo.y, creationInfo.sprite);
     this.creationInfo = creationInfo;
-    this.damphamlet = window['damphamlet'];
+    this.damphamlet = window.damphamlet;
 
     this.profileImg = '';
     let defaultName = '';
-    let gender = this.damphamlet.gender; 
+    let gender = this.damphamlet.gender;
 
-    if(gender == "female") {
+    if (gender === 'female') {
       let loc = game.characterpath + 'femalenerd.png';
       // this.profileImg = `<img class="profileImg" src="${loc}" />`;
       this.profileImg = `${loc}`;
       defaultName = 'Laura';
-    }
-    else {
+    } else {
       let loc = game.characterpath + 'Nerd.png';
       // this.profileImg = `<img class="profileImg" src="${loc}" />`;
       this.profileImg = `${loc}`;
@@ -92,15 +89,15 @@ export class Player extends Phaser.Sprite {
         game.add.audio('walkmetal5'),
         game.add.audio('walkmetal6'),
         game.add.audio('walkmetal7'),
-        game.add.audio('walkmetal8'),
+        game.add.audio('walkmetal8')
       ],
       []
     ];
-    for (let i = 0; i < this.walk[0].length; i++){
+    for (let i = 0; i < this.walk[0].length; i++) {
       this.walk[0][i].volume = 0.25;
     }
 
-    this.destinations = new Destinations(); 
+    this.destinations = new Destinations();
 
     this.pressStack = [];
     //this.playerinputs = new PlayerInputs(this.game, this);
@@ -109,8 +106,7 @@ export class Player extends Phaser.Sprite {
       console.log('load player object');
       this.loadPlayerObject(playerObj);
       this.levels = new Levels(this);
-    }
-    else{
+    } else {
       console.log('initialize new player');
       this.initNewPlayer();
     }
@@ -132,44 +128,37 @@ export class Player extends Phaser.Sprite {
   writeconsole(message) {
     if (this.console.length <= this.consoleLimit) {
       this.console.push(message);
-    }
-    else{
+    } else {
       this.console.shift();
       this.console.push(message);
     }
 
     this.consoleElement.html('');
-    for (let i = 0; i < this.console.length; i++){
-      let htmlMsg = "<li>" + this.console[i] + "</li>";
+    for (let i = 0; i < this.console.length; i++) {
+      let htmlMsg = `<li>  ${this.console[i]} </li>`;
       this.consoleElement.append(htmlMsg);
     }
   }
 
   useFirstTalent() {
-    if(this.skills.stimulants != '') { 
+    if (this.skills.stimulants !== '') {
       this.skills.stimulants.use(this);
     }
-    console.log("use first talent");
   }
   useSecondTalent() {
-    if(this.skills.heal != '') { 
+    if (this.skills.heal !== '') {
       this.skills.heal.focusHealing(this);
     }
-    console.log("use second talent");
   }
   useThirdTalent() {
-    if(this.skills.psiorb != '') { 
+    if (this.skills.psiorb !== '') {
       this.skills.psiorb.focusPsiorb(this);
     }
-
-    console.log("use third talent");
   }
-  useFourthTalent() { 
-    if(this.skills.teleport != '') { 
+  useFourthTalent() {
+    if (this.skills.teleport !== '') {
       this.skills.teleport.focusTeleportation(this, this.game);
     }
-
-    console.log("use fourth talent");
   }
 
   addPistol() {
@@ -199,14 +188,14 @@ export class Player extends Phaser.Sprite {
 
   equipKevlar() {
     let kevlar = this.items.Kevlar;
-    this.inventory.equipBody = kevlar;  
-    this.attributes.armor = kevlar.quality; 
+    this.inventory.equipBody = kevlar;
+    this.attributes.armor = kevlar.quality;
   }
 
   equipClothes() {
     let clothes = this.items.Clothes;
-    this.inventory.equipBody = clothes;  
-    this.attributes.armor = clothes.quality; 
+    this.inventory.equipBody = clothes;
+    this.attributes.armor = clothes.quality;
   }
 
   debug() {
@@ -280,11 +269,11 @@ export class Player extends Phaser.Sprite {
   scrubSkills() {
     if (this.skills.sprint.active) {
       this.skills.sprint.active = 0;
-      this.attributes.speed -= 75;
+      this.attributes.speed -= 100;
     }
   }
 
-initNewPlayer() {
+  initNewPlayer() {
     this.playertype = this.creationInfo.sprite;
     this.stagelevel = 0;
     this.console = [];
@@ -296,18 +285,18 @@ initNewPlayer() {
     this.nextHit = 0;
     this.direction = 1;
 
-    
+
 
     this.classInfo = {
       name: 'None'
     };
 
     this.skills = new Skills(this, this.game);
-    this.items = new Items(); 
+    this.items = new Items();
     this.attributes = new Attributes(this);
     this.missionlog = new MissionLog();
-    this.inventory = new Inventory(); 
-    
+    this.inventory = new Inventory();
+
     //set this before adding weapons, since it uses hasX for adding them
     // this.debug();
 
@@ -329,7 +318,7 @@ initNewPlayer() {
       this.addShotgun();
     }
 
-    this.equipClothes(); 
+    this.equipClothes();
     this.resetSprite(this.game);
 
     //set this on each level
@@ -352,16 +341,16 @@ initNewPlayer() {
 
     //objects
     this.attributes = playerObj.attributes;
-    this.attributes.player = this; 
+    this.attributes.player = this;
 
     this.missionlog = playerObj.missionlog;
-    this.missionlog.player = this; 
+    this.missionlog.player = this;
 
     this.inventory = playerObj.inventory;
-    this.inventory.player = this; 
+    this.inventory.player = this;
 
     this.skills = playerObj.skills;
-    this.skills.player = this; 
+    this.skills.player = this;
 
     this.classInfo = playerObj.classInfo;
     this.scrubSkills();
@@ -400,12 +389,12 @@ initNewPlayer() {
 
     this.equipWeapon(playerObj.weapon.name);
 
-    if(this.skills.explosives > 0) {
+    if (this.skills.explosives > 0) {
       this.grenade = new Grenade(this.game, this);
     }
 
-    if(this.skills.psiorb != '') {  
-      this.skills.psiorb.init(this, this.game); 
+    if (this.skills.psiorb !== '') {
+      this.skills.psiorb.init(this, this.game);
     }
 
     this.shop = new Shop(this);
@@ -424,31 +413,33 @@ initNewPlayer() {
   }
 
   equipWeapon(strWeapon) {
-    switch(strWeapon) {
-      case "Pistol":
-        this.switchWeapons(this.pistol);
-        break;
-      case "Laser":
-        this.switchWeapons(this.laser);
-        break;
-      case "Rockets":
-        this.switchWeapons(this.rockets);
-        break;
-      case "Shotgun":
-        this.switchWeapons(this.shotgun);
-        break;
-      case "Assault Rifle":
-        this.switchWeapons(this.assaultrifle);
-        break;
+    switch (strWeapon) {
+    case 'Pistol':
+      this.switchWeapons(this.pistol);
+      break;
+    case 'Laser':
+      this.switchWeapons(this.laser);
+      break;
+    case 'Rockets':
+      this.switchWeapons(this.rockets);
+      break;
+    case 'Shotgun':
+      this.switchWeapons(this.shotgun);
+      break;
+    case 'Assault Rifle':
+      this.switchWeapons(this.assaultrifle);
+      break;
+    default:
+      break;
     }
 
     this.setWeaponPosition();
   }
 
   switchWeapons(toWeapon) {
-    if (this.weapon == toWeapon)
+    if (this.weapon === toWeapon) {
       return;
-    else{
+    } else {
       //hide the old weapon, switch to new weapon, show new weapon
       this.weapon.sprite.visible = false;
       this.weapon = toWeapon;
@@ -493,19 +484,19 @@ initNewPlayer() {
   addGrenades(amount) {
     let grenade = this.inventory.items.grenades;
 
-    if(grenade.quantity < grenade.carryMax || amount < 0) {
+    if (grenade.quantity < grenade.carryMax || amount < 0) {
       grenade.quantity += amount;
     }
   }
 
   throwGrenade() {
-    if(this.inventory.items.grenades.quantity < 1) { 
-      this.writeconsole("I don't have any grenades.");
+    if (this.inventory.items.grenades.quantity < 1) {
+      this.writeconsole(`I don't have any grenades.`);
       return;
     }
 
-    if(typeof(this.grenade) == "undefined") { 
-      this.writeconsole("I need training to use explosives.");
+    if (typeof (this.grenade) === 'undefined') {
+      this.writeconsole('I need training to use explosives.');
       return;
     }
 
@@ -514,7 +505,7 @@ initNewPlayer() {
 
   addMedkits(amount) {
     let kit = this.inventory.items.medkits;
-    if(kit.quantity < kit.carryMax || amount < 0) {
+    if (kit.quantity < kit.carryMax || amount < 0) {
       kit.quantity += amount;
     }
   }
@@ -524,10 +515,9 @@ initNewPlayer() {
   }
 
   setSkillPoints(amount) {
-
-    if(amount < 0) {
+    if (amount < 0) {
       //if amount is negative, spending points so check if they have enough
-      if(this.skills.points.available < -amount) {
+      if (this.skills.points.available < -amount) {
         this.writeconsole("I don't have enough talent points.");
         return false;
       }
@@ -538,18 +528,17 @@ initNewPlayer() {
     return true;
   }
 
-  heal(x) { 
+  heal(x) {
     this.attributes.addHealth(x);
   }
 
   useMedkit() {
-
-    if(this.attributes.health.current >= this.attributes.health.max) { 
+    if (this.attributes.health.current >= this.attributes.health.max) {
       this.writeconsole('I do not need healing right now.');
-      return
+      return;
     }
 
-    let medkits = this.inventory.items.medkits; 
+    let medkits = this.inventory.items.medkits;
 
     if (medkits.quantity > 0) {
       this.addMedkits(-1);
@@ -569,17 +558,17 @@ initNewPlayer() {
     });
   }
 
-  checkForNPCs() { 
-    if(this.missionNPC) { 
-      return this.missionNPC; 
+  checkForNPCs() {
+    if (this.missionNPC) {
+      return this.missionNPC;
     }
-    if(this.shipNPC) { 
+    if (this.shipNPC) {
       return this.shipNPC;
     }
   }
 
-  goToMission(key, difficulty) { 
-    if(!difficulty) { 
+  goToMission(key, difficulty) {
+    if (!difficulty) {
       difficulty = 'Normal';
     }
 
@@ -587,34 +576,34 @@ initNewPlayer() {
     this.game.MusicHandler.stopMusic();
     this.game.state.start(key, true, false, playerObj, difficulty);
   }
-  
-  collectReward() { 
-    let missions = this.missionlog.missions; 
 
-    if(missions.length > 0) { 
-      for( let i = 0; i < missions.length; i++ ) { 
-        if(missions[i].complete === true) { 
-          missions[i].collect(this); 
+  collectReward() {
+    let missions = this.missionlog.missions;
+
+    if (missions.length > 0) {
+      for (let i = 0; i < missions.length; i++) {
+        if (missions[i].complete === true) {
+          missions[i].collect(this);
         }
       }
     }
   }
 
   interact() {
-    let npc = this.checkForNPCs(); 
-    
-    if(npc) {
-      if(npc == this.missionNPC) {
+    let npc = this.checkForNPCs();
+
+    if (npc) {
+      if (npc === this.missionNPC) {
         this.collectReward();
-        this.missionlog.getDisplayList(); 
+        this.missionlog.getDisplayList();
         this.damphamlet.openMission();
       }
-      if(npc == this.shipNPC) { 
+      if (npc === this.shipNPC) {
         this.damphamlet.openTravel();
       }
-        
-      return; 
-    } 
+
+      return;
+    }
 
     let tileArray = this.getCurrentTiles();
 
@@ -629,26 +618,26 @@ initNewPlayer() {
 
     console.log('interact');
 
-    if (iTile != null) {
+    if (iTile !== null) {
       console.log('iTile' + iTile.index);
-      if (iTile.index == 655) {
+      if (iTile.index === 655) {
         this.damphamlet.openShop();
       }
-      if (iTile.index == 684) {
-        this.writeconsole("Teleporter to Damp Hamlet.");
+      if (iTile.index === 684) {
+        this.writeconsole('Teleporter to Damp Hamlet.');
         this.stagelevel = 1;
         let playerObj = this.getPlayerObject();
         this.game.state.start('Town', true, false, playerObj);
         // this.game.state.start('Level' + this.stagelevel, true, false, playerObj);
       }
-      if (iTile.index == 298 || iTile.index == 299) {
+      if (iTile.index === 298 || iTile.index === 299) {
         //down
         console.log('transition level');
         this.stagelevel++;
         let playerObj = this.getPlayerObject();
         this.game.state.start('Level' + this.stagelevel, true, false, playerObj);
       }
-      if (iTile.index == 297) {
+      if (iTile.index === 297) {
         //up
         if (this.stagelevel > 0) {
           this.stagelevel--;
@@ -656,12 +645,12 @@ initNewPlayer() {
         }
       }
       //open door
-      if ((iTile.index == 72 //green-south
-        || iTile.index == 92 //red-east
-        || iTile.index == 42 //green-west
-        || iTile.index == 62) //red-north
-        && cTile != null) {
-        if (iTile.alpha == 1) {
+      if ((iTile.index === 72 //green-south
+        || iTile.index === 92 //red-east
+        || iTile.index === 42 //green-west
+        || iTile.index === 62) //red-north
+        && cTile !== null) {
+        if (iTile.alpha === 1) {
           this.sfxElevator.play();
           //have to set the layer to dirty for instant refresh, else visual update only when the camera moves
           iTile.alpha = 0;
@@ -685,27 +674,21 @@ initNewPlayer() {
         //   this.writeconsole("Cellular reconstruction.");
         // }
       }
-
     }
-
   }
-
 
   reload() {
     console.log('reload');
     this.weapon.reload(this);
   }
 
-  
-
   sprint() {
     let atr = this.attributes;
     let cost = this.skills.sprint.cost;
 
-    if( this.skills.sprint.active == 0 && atr.stamina.current > cost) {
-
-      if(this.attributes.addStamina(cost)) {
-        let sprintSpeed = this.attributes.stamina.max; 
+    if (this.skills.sprint.active === 0 && atr.stamina.current > cost) {
+      if (this.attributes.addStamina(cost)) {
+        let sprintSpeed = this.attributes.stamina.max;
         //consume one stamina, +75 speed for 3s
         atr.speed += sprintSpeed;
         this.skills.sprint.active = 1;
@@ -738,36 +721,38 @@ initNewPlayer() {
 
     tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
 
-    if (tmptile == null) {
+    if (tmptile === null) {
       //Now try to get the interaction layer 1 tile ahead of us
-      switch (this.direction){
-        case 0:
-          tile[0] -= 1;
-          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-          point = new Phaser.Point(this.body.x - 32, this.body.y);
-          break;
-        case 1:
-          tile[0] += 1;
-          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-          point = new Phaser.Point(this.body.x + 32, this.body.y);
-          break;
-        case 2:
-          tile[1] -= 1;
-          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-          point = new Phaser.Point(this.body.x, this.body.y - 32);
-          break;
-        case 3:
-          tile[1] += 1;
-          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-          point = new Phaser.Point(this.body.x, this.body.y + 32);
-          break;
+      switch (this.direction) {
+      case 0:
+        tile[0] -= 1;
+        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+        point = new Phaser.Point(this.body.x - 32, this.body.y);
+        break;
+      case 1:
+        tile[0] += 1;
+        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+        point = new Phaser.Point(this.body.x + 32, this.body.y);
+        break;
+      case 2:
+        tile[1] -= 1;
+        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+        point = new Phaser.Point(this.body.x, this.body.y - 32);
+        break;
+      case 3:
+        tile[1] += 1;
+        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+        point = new Phaser.Point(this.body.x, this.body.y + 32);
+        break;
+      default:
+        break;
       }
     }
-    if (tmptile2 == null) {
+    if (tmptile2 === null) {
       //finally, try to get the standard layer of our current tile
       tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
       tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
@@ -793,53 +778,53 @@ initNewPlayer() {
   }
 
   checkWinCondition() {
-
-    if(this.currentMission != '' && typeof(this.currentMission) != 'undefined') {  
-
-      for(let i = 0; i < this.currentMission.enemies.length; i++) { 
-        if(this.currentMission.enemies[i].alive) {
-        // console.log('i: ', this.enemies[i].alive); 
-        return;
+    if (this.currentMission !== '' && typeof (this.currentMission) !== 'undefined') {
+      for (let i = 0; i < this.currentMission.enemies.length; i++) {
+        if (this.currentMission.enemies[i].alive) {
+          // console.log('i: ', this.enemies[i].alive);
+          return;
         }
         // console.log('i: ', this.enemies[i].alive);
       }
 
       let mission = this.missionlog.getByKey(this.currentMission.key);
 
-      if(!mission.complete) { 
+      if (!mission.complete) {
         this.missionlog.setByKey(mission.key);
         this.writeconsole(`${mission.name} complete.`);
         this.writeconsole('Prepare for extraction.');
-        window['travel'].remove(mission.key);
-        window['travel'].setTown();
+        window.travel.remove(mission.key);
+        window.travel.setTown();
 
         this.game.time.events.add(1500, () => {
-          let ship = new Ship1('ship', this.game, this.body.x , this.body.y, 'down');
+          this.ship = new Ship1('ship', this.game, this.body.x, this.body.y, 'down');
         });
-        
       }
-
     }
-	}
+  }
 
   pickupHealth(amount) {
     this.attributes.health.current += amount;
 
-    if (this.attributes.health.current > this.attributes.health.max)
+    if (this.attributes.health.current > this.attributes.health.max) {
       this.attributes.health.current = this.attributes.health.max;
+    }
   }
 
   pickupCredits(amount) {
     let rnd = this.game.rnd.between(1, 3);
-    if (rnd == 1)
+    if (rnd === 1) {
       this.sfxPickup1.play();
-    if (rnd == 2)
+    }
+    if (rnd === 2) {
       this.sfxPickup2.play();
-    else
+    } else {
       this.sfxPickup3.play();
+    }
+
 
     this.attributes.credits += amount;
-    this.writeconsole("Picked up " + amount + " credits.");
+    this.writeconsole(`Picked up ${amount} credits.`);
   }
 
   dropCorpse() {
@@ -851,15 +836,14 @@ initNewPlayer() {
   }
 
   hit(body1, body2) {
-    if (this.alive == 1 && this.game.time.now > this.nextHit) {
-
+    if (this.alive === 1 && this.game.time.now > this.nextHit) {
       //If we have any psi orbs active, remove one and negate the hit
-      if(this.skills.psiorb.orbsActive > 0 && this.skills.psiorb.checkPsiBlock(this)) {
+      if (this.skills.psiorb.orbsActive > 0 && this.skills.psiorb.checkPsiBlock(this)) {
         this.nextHit = this.game.time.now + 50;
         return;
       }
 
-      if (body2 != null) {
+      if (body2 !== null) {
         this.takeDamage(body2.sprite.damage);
       }
     }
@@ -870,12 +854,14 @@ initNewPlayer() {
 
     //Play randomized hit sfx
     let rnd = this.game.rnd.between(4, 6);
-    if (rnd == 4)
+    if (rnd === 4) {
       this.sfxHit1.play();
-    if (rnd == 5)
+    }
+    if (rnd === 5) {
       this.sfxHit2.play();
-    else
+    } else {
       this.sfxHit3.play();
+    }
 
     //calculate damage to take
     if (this.attributes.armor > -1) {
@@ -898,7 +884,7 @@ initNewPlayer() {
       this.attack();
     }
 
-    if(this.skills.psiorb != '') { 
+    if (this.skills.psiorb !== '') {
       this.skills.psiorb.rotate(0.02);
     }
   }
@@ -913,108 +899,109 @@ initNewPlayer() {
         this.walkIndex = 0;
       }
     }
-
   }
 
   setWeaponPosition() {
-    switch (this.direction){
-      case 0:
-        this.weapon.sprite.angle = 0;
-        this.weapon.sprite.scale.x = -0.5;
-        this.weapon.sprite.x = -4;
-        this.weapon.sprite.y = 1;
-        return;
-      case 1:
-        this.weapon.sprite.scale.x = 0.7;
-        this.weapon.sprite.angle = 0;
-        this.weapon.sprite.x = -1.25;
-        this.weapon.sprite.y = 0.8;
-        return;
-      case 2:
-        this.weapon.sprite.scale.x = -0.7;
-        this.weapon.sprite.angle = 90;
-        this.weapon.sprite.x = 3.5;
-        this.weapon.sprite.y = 0;
-        return;
-      case 3:
-        this.weapon.sprite.scale.x = -0.5;
-        this.weapon.sprite.angle = 270;
-        this.weapon.sprite.x = -3.5;
-        this.weapon.sprite.y = 2;
-        return;
+    switch (this.direction) {
+    case 0:
+      this.weapon.sprite.angle = 0;
+      this.weapon.sprite.scale.x = -0.5;
+      this.weapon.sprite.x = -4;
+      this.weapon.sprite.y = 1;
+      return;
+    case 1:
+      this.weapon.sprite.scale.x = 0.7;
+      this.weapon.sprite.angle = 0;
+      this.weapon.sprite.x = -1.25;
+      this.weapon.sprite.y = 0.8;
+      return;
+    case 2:
+      this.weapon.sprite.scale.x = -0.7;
+      this.weapon.sprite.angle = 90;
+      this.weapon.sprite.x = 3.5;
+      this.weapon.sprite.y = 0;
+      return;
+    case 3:
+      this.weapon.sprite.scale.x = -0.5;
+      this.weapon.sprite.angle = 270;
+      this.weapon.sprite.x = -3.5;
+      this.weapon.sprite.y = 2;
+      return;
+    default:
+      this.weapon.sprite.angle = 0;
+      this.weapon.sprite.scale.x = -0.5;
+      this.weapon.sprite.x = -4;
+      this.weapon.sprite.y = 1;
+      return;
     }
   }
 
   move() {
-    if (this.body != null)
+    // if (this.body != null)
     //this.body.setZeroVelocity();
-
-      if (this.alive == 0) {
+    if (this.alive === 0) {
+      let speed = this.attributes.speed;
+      this.weapon.sprite.visible = false;
+      switch (this.pressStack[this.pressStack.length - 1]) {
+      case 'left':
+        this.body.moveLeft(speed);
+        this.animations.play('death');
+        this.direction = 0;
+        return;
+      case 'right':
+        this.body.moveRight(speed);
+        this.animations.play('death');
+        this.direction = 1;
+        return;
+      case 'up':
+        this.body.moveUp(speed);
+        this.animations.play('death');
+        this.direction = 2;
+        return;
+      case 'down':
+        this.body.moveDown(speed);
+        this.animations.play('death');
+        this.direction = 3;
+        return;
+      default:
+        this.animations.stop();
+      }
+    } else {
+      if (this.canmove === 1) {
         let speed = this.attributes.speed;
-        this.weapon.sprite.visible = false;
-        switch (this.pressStack[this.pressStack.length - 1]){
-          case "left":
-            this.body.moveLeft(speed);
-            this.animations.play('death');
-            this.direction = 0;
-            return;
-          case "right":
-            this.body.moveRight(speed);
-            this.animations.play('death');
-            this.direction = 1;
-            return;
-          case "up":
-            this.body.moveUp(speed);
-            this.animations.play('death');
-            this.direction = 2;
-            return;
-          case "down":
-            this.body.moveDown(speed);
-            this.animations.play('death');
-            this.direction = 3;
-            return;
-          default:
-            this.animations.stop();
+        switch (this.pressStack[this.pressStack.length - 1]) {
+        case 'left':
+          this.body.moveLeft(speed);
+          this.animations.play('left');
+          this.direction = 0;
+          this.setWeaponPosition();
+          this.sfxWalk();
+          return;
+        case 'right':
+          this.body.moveRight(speed);
+          this.animations.play('right');
+          this.direction = 1;
+          this.setWeaponPosition();
+          this.sfxWalk();
+          return;
+        case 'up':
+          this.body.moveUp(speed);
+          this.animations.play('up');
+          this.direction = 2;
+          this.setWeaponPosition();
+          this.sfxWalk();
+          return;
+        case 'down':
+          this.body.moveDown(speed);
+          this.animations.play('down');
+          this.direction = 3;
+          this.setWeaponPosition();
+          this.sfxWalk();
+          return;
+        default:
+          this.animations.stop();
         }
       }
-      else{
-        if (this.canmove == 1) {
-          let speed = this.attributes.speed;
-          switch (this.pressStack[this.pressStack.length - 1]){
-            case "left":
-              this.body.moveLeft(speed);
-              this.animations.play('left');
-              this.direction = 0;
-              this.setWeaponPosition();
-              this.sfxWalk();
-              return;
-            case "right":
-              this.body.moveRight(speed);
-              this.animations.play('right');
-              this.direction = 1;
-              this.setWeaponPosition();
-              this.sfxWalk();
-              return;
-            case "up":
-              this.body.moveUp(speed);
-              this.animations.play('up');
-              this.direction = 2;
-              this.setWeaponPosition();
-              this.sfxWalk();
-              return;
-            case "down":
-              this.body.moveDown(speed);
-              this.animations.play('down');
-              this.direction = 3;
-              this.setWeaponPosition();
-              this.sfxWalk();
-              return;
-            default:
-              this.animations.stop();
-          }
-        }
-      }
-
-
+    }
   }
 }

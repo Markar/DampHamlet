@@ -1,12 +1,10 @@
-"use strict";
-
 export class Weapon {
 
   constructor(game, key, count, player) {
     this.game = game;
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
-    this.player = player; 
+    this.player = player;
 
     this.basicSetup();
 
@@ -18,7 +16,7 @@ export class Weapon {
   }
 
   basicSetup() {
-    this.name = "none";
+    this.name = 'none';
     this.nextFire = 0;
     this.fireRate = 500;
     this.totalAttacks = 0;
@@ -64,9 +62,9 @@ export class Weapon {
     this.mass = obj.mass;
     this.size = obj.size;
     this.damage = obj.damage;
-    console.log('set all ' + this.name + ' '  + this.damage + '(' + obj.damage + ')');
+    console.log('set all ' + this.name + ' ' + this.damage + '(' + obj.damage + ')');
     //this.weapons.setAll('damage', this.damage);
-    this.setDamage(this.damage);    
+    this.setDamage(this.damage);
   }
 
   setDamage(damage) {
@@ -76,29 +74,32 @@ export class Weapon {
 
 
   reload() {
-    if(this.clip == -1 ||
-      this.clip == this.clipSize ||
+    if (this.clip === -1 ||
+      this.clip === this.clipSize ||
       this.ammo < 1) {
       return;
     }
 
-    if(this.reloadTime > 0) {
+    if (this.reloadTime > 0) {
       let weapon = this;
       weapon.reloading = 1;
-      if(weapon.sfxReload)
+
+      if (weapon.sfxReload) {
         weapon.sfxReload.play();
+      }
+
       //prevent firing while reloading
       this.nextFire = this.game.time.now + this.reloadTime;
 
       let shotsToReload = (this.clipSize - this.clip);
-      if(shotsToReload < 1 || shotsToReload > this.clipSize)
+      if (shotsToReload < 1 || shotsToReload > this.clipSize) {
         return;
+      }
 
-      if(shotsToReload < this.ammo) {
+      if (shotsToReload < this.ammo) {
         this.clip += shotsToReload;
         this.ammo -= shotsToReload;
-      }
-      else {
+      } else {
         //only reload the remaining ammo
         this.clip += this.ammo;
         this.ammo = 0;
@@ -111,7 +112,7 @@ export class Weapon {
   }
 
   addWeapon(x, y, key, count, size) {
-    for(let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       let weapon = this.weapons.create(x, y, key, 0, false);
       this.game.physics.p2.enable(weapon);
 
@@ -142,26 +143,26 @@ export class Weapon {
   }
 
   delayedFire() {
-    let player = this.player; 
-    player.canmove = 1; 
-    player.canfire = 1; 
+    let player = this.player;
+    player.canmove = 1;
+    player.canfire = 1;
     this.nextFire = this.game.time.now + this.fireRate;
     this.totalAttacks++;
-    if(this.sfxFire)
+    if (this.sfxFire)
       this.sfxFire.play();
 
-    if(this.clip != null) {
+    if (this.clip !== null) {
       this.clip--;
     }
 
     var weapon = this.weapons.getFirstDead();
-    weapon.reset(player.body.x + player.weapon.sprite.x * 4 , player.body.y + player.weapon.sprite.y * 4);
+    weapon.reset(player.body.x + player.weapon.sprite.x * 4, player.body.y + player.weapon.sprite.y * 4);
 
     this.game.time.events.add(1000, () => {
       weapon.kill();
     });
 
-    switch(player.direction) {
+    switch (player.direction) {
       case 0:
         weapon.body.moveLeft(weapon.speed);
         return;
@@ -177,13 +178,13 @@ export class Weapon {
         return;
     }
   }
-  
+
   fire(delay) {
     let fullDelay = this.player.attributes.attackRate * delay;
     console.log('next fire ' + this.nextFire + ' time ' + this.game.time.now);
 
-    if(this.game.time.now > this.nextFire && this.player.canfire == 1 && this.weapons.countDead() > 0) {
-      this.player.canmove = 0; 
+    if (this.game.time.now > this.nextFire && this.player.canfire === 1 && this.weapons.countDead() > 0) {
+      this.player.canmove = 0;
       this.player.canfire = 0;
       this.game.time.events.add(fullDelay, this.delayedFire, this);
       return true;
