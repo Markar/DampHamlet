@@ -83,9 +83,9 @@ class Level1 extends Phaser.State {
       sprite: game.playerObj.playertype
     };
 
-    let player = this.damphamlet.loadPlayer(creationInfo);
-    game.players.push(player);
-    this.player = player;
+    this.player = this.damphamlet.loadPlayer(creationInfo);
+    game.players = [];
+    game.players.push(this.player);    
     this.player.currentMission = this;
     this.setDifficulty();
   }

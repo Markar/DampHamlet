@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="8" tileheight="8" nextobjectid="6">
- <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8" tilecount="780">
+ <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8" tilecount="780" columns="30">
   <image source="tiles.png" trans="ff00ff" width="240" height="208"/>
+ </tileset>
+ <tileset firstgid="781" name="lofi_environment" tilewidth="8" tileheight="8" tilecount="256" columns="16">
+  <image source="lofi_environment.png" width="128" height="128"/>
  </tileset>
  <layer name="Tile Layer 1" width="25" height="25">
   <data encoding="csv">

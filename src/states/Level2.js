@@ -47,6 +47,7 @@ class Level2 extends Phaser.State {
 		this.stage.disableVisibilityChange = true;
 	}
 
+
 	create() {
 		let game = this.game;
 
@@ -77,40 +78,32 @@ class Level2 extends Phaser.State {
 			tiles[i].collides([game.playerCollisionGroup, game.weaponCollisionGroup, game.enemyWeaponCollisionGroup, game.enemyCollisionGroup]);
 		}
 
-		let creationInfo = {
-			x: 50,
-			y: 50,
-			sprite: game.playerObj.playertype
-		};
-
-		let player = damphamlet.loadPlayer(creationInfo);
-		game.players.push(player);
-		this.player = player;
 		this.game.physics.p2.setBoundsToWorld(true, true, true, true, true);
 		this.game.physics.p2.restitution = 0.8;
 		this.game.MusicHandler.playTrack('underwater-active');
-
-		this.enemies = [];
+		
 		this.setup();
 
 		this.player.currentMission = this;
 	}
 
-	setup() {
-		let game = this.game;
+	setup() { 
+		let game = this.game; 
 
 		let creationInfo = {
-			x: 50,
-			y: 50,
-			sprite: game.playerObj.playertype
+		x : 50,
+		y : 50,
+		sprite: game.playerObj.playertype
 		};
 
-		let player = this.damphamlet.loadPlayer(creationInfo);
-		game.players.push(player);
-		this.player = player;
+		this.enemies = [];
+
+		this.player = this.damphamlet.loadPlayer(creationInfo);
+		game.players = [];
+		game.players.push(this.player);    
 		this.player.currentMission = this;
 		this.setDifficulty();
-	}
+  }
 
 	setDifficulty() {
 		switch (this.difficulty) {
@@ -131,7 +124,119 @@ class Level2 extends Phaser.State {
 	}
 
 	setupEasy() {
-		let creator = new Creator(game, this.map);
+		let creator = new Creator(this.game, this.map);
+		let green = '';
+		let red = '';
+
+
+		green = creator.createGreenAlien(275, 600);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(430, 630);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(365, 750);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(530, 855);
+		this.enemies.push(green);
+
+		//Northeast corner
+		green = creator.createGreenAlien(1300, 300);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1400, 230);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1300, 100);
+		this.enemies.push(green);
+
+		//Southwest room 
+		red = creator.createRedAlien(465, 1125);
+		this.enemies.push(red);
+		red = creator.createRedAlien(465, 1485);
+		this.enemies.push(red);
+		red = creator.createRedAlien(90, 1500);
+		this.enemies.push(red);
+		red = creator.createRedAlien(80, 1140);
+		this.enemies.push(red);
+
+		//Southeast room
+		red = creator.createRedAlien(1525, 1300);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1525, 1400);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1525, 1500);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1250, 1485);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1300, 1300);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1300, 1400);
+		this.enemies.push(red);
+		green = creator.createGreenAlien(1350, 1500);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1300, 1500);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1400, 1500);
+		this.enemies.push(green);
+
+		this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
+	}
+
+	setupNormal() {
+		let creator = new Creator(this.game, this.map);
+		let green = '';
+		let red = '';
+
+
+		green = creator.createGreenAlien(275, 600);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(430, 630);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(365, 750);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(530, 855);
+		this.enemies.push(green);
+
+		//Northeast corner
+		green = creator.createGreenAlien(1300, 300);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1400, 230);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1300, 100);
+		this.enemies.push(green);
+
+		//Southwest room 
+		red = creator.createRedAlien(465, 1125);
+		this.enemies.push(red);
+		red = creator.createRedAlien(465, 1485);
+		this.enemies.push(red);
+		red = creator.createRedAlien(90, 1500);
+		this.enemies.push(red);
+		red = creator.createRedAlien(80, 1140);
+		this.enemies.push(red);
+
+		//Southeast room
+		red = creator.createRedAlien(1525, 1300);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1525, 1400);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1525, 1500);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1250, 1485);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1300, 1300);
+		this.enemies.push(red);
+		red = creator.createRedAlien(1300, 1400);
+		this.enemies.push(red);
+		green = creator.createGreenAlien(1350, 1500);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1300, 1500);
+		this.enemies.push(green);
+		green = creator.createGreenAlien(1400, 1500);
+		this.enemies.push(green);
+
+		this.game.time.events.loop(Phaser.Timer.SECOND * 3, creator.loopEnemies, this);
+	}
+
+	setupHard() {
+		let creator = new Creator(this.game, this.map);
 		let green = '';
 		let red = '';
 
