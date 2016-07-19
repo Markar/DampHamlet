@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import {Mob} from './mob';
 import {SlowShot} from '../weapons/enemyweapons/slowshot';
 
@@ -8,10 +7,9 @@ export class Eye extends Mob {
     //this.checkForPlayers(200, 600);
     this.move();
 
-    if(this.enraged) {
+    if (this.enraged) {
       this.rageAttack();
-    }
-    else {
+    } else {
       this.attack();
     }
   }
@@ -19,15 +17,15 @@ export class Eye extends Mob {
   constructor(name, game, startx, starty) {
     super(name, 'eyeball', game, startx, starty);
 
-    this.enraged = 0; 
+    this.enraged = 0;
     this.speed = 10 + (Math.random() * 5);
     this.maxSpeed = 50;
-    this.hp = 50;
+    this.hp = 25;
     this.maxHp = 50;
     this.weapon = new SlowShot(game);
     this.nextMove = 1000;
     this.firingPause = 1500;
-    this.mass = 10;
+    this.mass = 100;
 
     //overwrite the default 'blaster1' effect for this mob
     this.weapon.sfxFire = this.game.add.audio('blaster2');
@@ -68,7 +66,7 @@ export class Eye extends Mob {
       this.weapon.fireRate = (this.weapon.fireRate * 0.75);
       this.firingPause = (this.firingPause * 0.5);
       this.tint = 0xff0000;
-      this.enraged = 1; 
+      this.enraged = 1;
     }
   }
 }

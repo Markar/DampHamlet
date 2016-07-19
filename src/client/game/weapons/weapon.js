@@ -148,34 +148,38 @@ export class Weapon {
     player.canfire = 1;
     this.nextFire = this.game.time.now + this.fireRate;
     this.totalAttacks++;
-    if (this.sfxFire)
+    if (this.sfxFire) {
       this.sfxFire.play();
+    }
 
     if (this.clip !== null) {
       this.clip--;
     }
 
-    var weapon = this.weapons.getFirstDead();
+    let weapon = this.weapons.getFirstDead();
     weapon.reset(player.body.x + player.weapon.sprite.x * 4, player.body.y + player.weapon.sprite.y * 4);
 
-    this.game.time.events.add(1000, () => {
+    this.game.time.events.add(1500, () => {
       weapon.kill();
     });
 
     switch (player.direction) {
-      case 0:
-        weapon.body.moveLeft(weapon.speed);
-        return;
-      case 1:
-        weapon.body.moveRight(weapon.speed);
-        return;
-      case 2:
-        weapon.body.rotation = 90;
-        weapon.body.moveUp(weapon.speed);
-        return;
-      case 3:
-        weapon.body.moveDown(weapon.speed);
-        return;
+    case 0:
+      weapon.body.moveLeft(weapon.speed);
+      return;
+    case 1:
+      weapon.body.moveRight(weapon.speed);
+      return;
+    case 2:
+      weapon.body.rotation = 90;
+      weapon.body.moveUp(weapon.speed);
+      return;
+    case 3:
+      weapon.body.moveDown(weapon.speed);
+      return;
+    default:
+      weapon.body.moveLeft(weapon.speed);
+      return;
     }
   }
 
@@ -191,8 +195,5 @@ export class Weapon {
     }
 
     return false;
-
   }
-
-
 }
