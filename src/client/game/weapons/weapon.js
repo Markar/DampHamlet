@@ -66,9 +66,7 @@ export class Weapon {
     this.damage = obj.damage;
     console.log('set all ' + this.name + ' '  + this.damage + '(' + obj.damage + ')');
     //this.weapons.setAll('damage', this.damage);
-    this.setDamage(this.damage);
-    $(".clip").text(this.clip);
-    $(".ammo").text(this.ammo);
+    this.setDamage(this.damage);    
   }
 
   setDamage(damage) {
@@ -158,6 +156,10 @@ export class Weapon {
 
     var weapon = this.weapons.getFirstDead();
     weapon.reset(player.body.x + player.weapon.sprite.x * 4 , player.body.y + player.weapon.sprite.y * 4);
+
+    this.game.time.events.add(1000, () => {
+      weapon.kill();
+    });
 
     switch(player.direction) {
       case 0:

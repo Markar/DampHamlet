@@ -295,6 +295,9 @@ div.au-stagger {
   -ms-interpolation-mode: nearest-neighbor;
   /* IE8+                           */ }
 
+.menu__table {
+  width: 300px; }
+
 #Instructions {
   font-family: Orbitron, sans-serif; }
 
@@ -348,6 +351,10 @@ div.au-stagger {
 
 #Weapons {
   font-family: Orbitron, sans-serif; }
+
+.WeaponText {
+  padding-left: 8.5em;
+  font-size: xx-large; }
 
 #Weapons .left {
   width: 15em;

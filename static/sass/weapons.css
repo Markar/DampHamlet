@@ -1,6 +1,10 @@
 #Weapons {
   font-family: Orbitron, sans-serif; }
 
+.WeaponText {
+  padding-left: 8.5em;
+  font-size: xx-large; }
+
 #Weapons .left {
   width: 15em;
   float: left;

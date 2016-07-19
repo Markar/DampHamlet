@@ -131,43 +131,35 @@ setTravel() {
     logo.anchor.setTo(0.5, 0.5);
   }
 
-  clickProfile() {
-    console.log('click in game');
-    if (this.openDialog !=  null && this.openDialog.hasAttribute('open')) {
-      this.openDialog.close();
-    }
+  clickProfile() {    
+
+    if(this.closeMenu(this.profileDialog)) { 
+      return;
+    }     
     this.profileDialog.show();
     this.openDialog = this.profileDialog;
   }
 
   clickAttributes() {
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
-      this.openDialog.close();
-    }
+    if(this.closeMenu(this.talentDialog)) { 
+      return;
+    }     
     this.talentDialog.show();
     this.openDialog = this.talentDialog;
   }
 
   clickWeapons() {
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
-      this.openDialog.close();
-    }
+    if(this.closeMenu(this.weaponsDialog)) { 
+      return;
+    }     
     this.weaponsDialog.show();
     this.openDialog = this.weaponsDialog;
-  }
-
-  clickGrenade() {
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
-      this.openDialog.close();
-    }
-    this.explosivesDialog.show();
-    this.openDialog = this.explosivesDialog;
-  }
+  }  
 
   clickInstructions() {
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
-      this.openDialog.close();
-    }
+    if(this.closeMenu(this.instructionsDialog)) { 
+      return;
+    }     
     this.instructionsDialog.show();
     this.openDialog = this.instructionsDialog;
   }
@@ -220,7 +212,18 @@ setTravel() {
     if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
       this.openDialog.close();
       this.openDialog = null; 
+    }    
+  }
+
+  closeMenu(menu) {
+    console.log('close menu in damphamlet');
+    if(this.openDialog != null && this.openDialog.hasAttribute('open') || this.openDialog === menu) {
+      this.openDialog.close();
+      this.openDialog = null;
+      return true;  
     }
+
+    return false;
   }
 
   play() {

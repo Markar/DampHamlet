@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="50" tilewidth="8" tileheight="8" nextobjectid="1">
- <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8" tilecount="780">
+ <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8" tilecount="780" columns="30">
   <image source="tiles.png" trans="ff00ff" width="240" height="208"/>
  </tileset>
- <tileset firstgid="781" name="space" tilewidth="8" tileheight="8" tilecount="736">
+ <tileset firstgid="781" name="space" tilewidth="8" tileheight="8" tilecount="736" columns="32">
   <image source="space.png" trans="ff00ff" width="256" height="186"/>
  </tileset>
- <tileset firstgid="1517" name="lofi_horror_env" tilewidth="8" tileheight="8" tilecount="256">
+ <tileset firstgid="1517" name="lofi_horror_env" tilewidth="8" tileheight="8" tilecount="256" columns="16">
   <image source="oryx_lofi_horror/oryx_lofi_horror/lofi_environment.png" trans="ff00ff" width="128" height="128"/>
  </tileset>
  <layer name="Tile Layer 1" width="80" height="50">
@@ -63,7 +63,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Tile Layer 2" width="80" height="50">
+ <layer name="Tile Layer 2" width="80" height="50" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
