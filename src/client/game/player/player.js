@@ -210,10 +210,10 @@ export class Player extends Phaser.Sprite {
   }
 
   debug() {
-    this.attributes.health.current = 1;
-    this.attributes.health.max = 1;
+    this.attributes.health.current = 100;
+    this.attributes.health.max = 100;
     this.attributes.credits = 10000;
-    this.attributes.speed = 300;
+    this.attributes.speed = 400;
     this.skills.points.available = 50;
 
     this.attributes.hasPistol = 1;
@@ -309,7 +309,7 @@ initNewPlayer() {
     this.inventory = new Inventory(); 
     
     //set this before adding weapons, since it uses hasX for adding them
-    this.debug();
+    // this.debug();
 
     //default to the pistol
     if (this.attributes.hasPistol) {
