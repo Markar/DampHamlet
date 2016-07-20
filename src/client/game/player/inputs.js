@@ -47,13 +47,13 @@ export class PlayerInputs {
     let openDialog = player.damphamlet.openDialog;
 
     inputs.fire.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.attack();
         player.isFireDown = true;
       }
     }, this);
     inputs.fire.onUp.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.isFireDown = false;
       }
     }, this);
@@ -65,40 +65,40 @@ export class PlayerInputs {
     // }, this);
 
     inputs.sprint.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.sprint();
       }
     }, this);
 
     inputs.grenade.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.throwGrenade();
       }
     }, this);
 
     inputs.talent1.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.useFirstTalent();
       }
     }, this);
 
     inputs.talent2.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.useSecondTalent();
       }
     }, this);
     inputs.talent3.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.useThirdTalent();
       }
     }, this);
     inputs.talent4.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.useFourthTalent();
       }
     }, this);
     inputs.talent5.onDown.add(function() {
-      if(player.alive == 1) {
+      if(player.alive === 1) {
         player.useFifthTalent();
       }
     }, this);
@@ -107,28 +107,28 @@ export class PlayerInputs {
       player.switchWeapons(player.pistol);
     }, this);
     inputs.weapon2.onDown.add(() => {
-      if(player.laser != null) {
+      if(player.laser !== null) {
         player.switchWeapons(player.laser);
         return true;
       }
       player.writeconsole("You don't have a laser pistol yet.");
     });
     inputs.weapon3.onDown.add(() => {
-      if(player.rockets != null) {
+      if(player.rockets !== null) {
         player.switchWeapons(player.rockets);
         return true;
       }
       player.writeconsole("You don't have a rocket launcher yet.");
     });
     inputs.weapon4.onDown.add(() => {
-      if(player.assaultrifle != null) {
+      if(player.assaultrifle !== null) {
         player.switchWeapons(player.assaultrifle);
         return true;
       }
       player.writeconsole("You don't have an assault rifle yet.");
     });
     inputs.weapon5.onDown.add(() => {
-      if(player.shotgun != null) {
+      if(player.shotgun !== null) {
         player.switchWeapons(player.shotgun);
         return true;
       }
@@ -138,11 +138,11 @@ export class PlayerInputs {
     inputs.interact.onDown.add(function() {
       player.interact();
     }, this);
-    
+
     inputs.reload.onDown.add(function() {
       player.reload();
     }, this);
-    
+
     inputs.useMedkit.onDown.add(function() {
       player.useMedkit();
     }, this);
@@ -151,7 +151,7 @@ export class PlayerInputs {
       console.log('raise speed');
       player.changeSpeed(50);
     }, this);
-    
+
     inputs.loadCharacter.onDown.add(() => {
       player.damphamlet.clickProfile();
     });
@@ -159,7 +159,6 @@ export class PlayerInputs {
     inputs.loadTalents.onDown.add(() => {
       player.damphamlet.clickAttributes();
     });
-
   }
 
 

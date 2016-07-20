@@ -284,13 +284,9 @@ export class Player extends Phaser.Sprite {
     this.alive = 1;
     this.nextHit = 0;
     this.direction = 1;
-
-
-
     this.classInfo = {
       name: 'None'
     };
-
     this.skills = new Skills(this, this.game);
     this.items = new Items();
     this.attributes = new Attributes(this);
@@ -298,7 +294,7 @@ export class Player extends Phaser.Sprite {
     this.inventory = new Inventory();
 
     //set this before adding weapons, since it uses hasX for adding them
-    // this.debug();
+    this.debug();
 
     //default to the pistol
     if (this.attributes.hasPistol) {
@@ -437,16 +433,23 @@ export class Player extends Phaser.Sprite {
   }
 
   switchWeapons(toWeapon) {
-    if (this.weapon === toWeapon) {
+    if(this.weapon === toWeapon) {
+      this.writeconsole('You already have that weapon equipped.');
       return;
-    } else {
-      //hide the old weapon, switch to new weapon, show new weapon
-      this.weapon.sprite.visible = false;
-      this.weapon = toWeapon;
-      this.weapon.sprite.visible = true;
-      this.setWeaponPosition();
-      this.weapon.nextFire = this.game.time.now + 1000;
     }
+
+    if(typeof(toWeapon) === 'undefined') {
+      this.writeconsole('You don\'t have that weapon yet.');
+      return;
+    }
+
+    //hide the old weapon, switch to new weapon, show new weapon
+    this.weapon.sprite.visible = false;
+    this.weapon = toWeapon;
+    this.weapon.sprite.visible = true;
+    this.setWeaponPosition();
+    this.weapon.nextFire = this.game.time.now + 1000;
+    this.writeconsole(`Switched to ${this.weapon.name}.`);
   }
 
   resetSprite(game) {
@@ -491,7 +494,7 @@ export class Player extends Phaser.Sprite {
 
   throwGrenade() {
     if (this.inventory.items.grenades.quantity < 1) {
-      this.writeconsole(`I don't have any grenades.`);
+      this.writeconsole('I don\'t have any grenades.');
       return;
     }
 
@@ -518,7 +521,7 @@ export class Player extends Phaser.Sprite {
     if (amount < 0) {
       //if amount is negative, spending points so check if they have enough
       if (this.skills.points.available < -amount) {
-        this.writeconsole("I don't have enough talent points.");
+        this.writeconsole('I don\'t have enough talent points.');
         return false;
       }
     }
@@ -565,6 +568,8 @@ export class Player extends Phaser.Sprite {
     if (this.shipNPC) {
       return this.shipNPC;
     }
+
+    return null;
   }
 
   goToMission(key, difficulty) {

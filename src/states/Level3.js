@@ -4,16 +4,16 @@ import {Creator} from './creator';
 import {Item} from '../client/game/items/item';
 import {Health} from '../client/game/items/health';
 
-class Level3 extends Phaser.State {
+export class Level3 extends Phaser.State {
 
   init(playerObj) {
-    this.damphamlet = window['damphamlet'];	
+    this.damphamlet = window.damphamlet;	
     let game = this.game;
     game.players = [];
     game.playerObj = playerObj;
     game.physics.p2.setImpactEvents(true);
     game.onBlur.add(function() {
-      console.log("BLURRED");
+      console.log('BLURRED');
       if(game.players.length > 0) {
         game.players[0].pressStack.pop();
       }
@@ -27,7 +27,7 @@ class Level3 extends Phaser.State {
   render() {
     let game = this.game;
 
-    game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");
+    game.debug.text(game.time.fps || '--', 2, 14, '#00ff00');
 
   }
 
@@ -55,9 +55,9 @@ class Level3 extends Phaser.State {
     //  This call returns an array of body objects which you can perform addition actions on if
     //  required. There is also a parameter to control optimising the map build.
     map.setCollisionByExclusion([332, 273]);
-    var tiles = game.physics.p2.convertTilemap(map, layer);
+    let tiles = game.physics.p2.convertTilemap(map, layer);
 
-    for(var i = 0; i < tiles.length; i++) {
+    for(let i = 0; i < tiles.length; i++) {
       tiles[i].setCollisionGroup(game.tileCollisionGroup);
       tiles[i].collides([game.playerCollisionGroup, game.weaponCollisionGroup, game.enemyWeaponCollisionGroup, game.enemyCollisionGroup]);
     }
@@ -66,14 +66,14 @@ class Level3 extends Phaser.State {
     game.physics.p2.restitution = 0.8;
 
     let creationInfo = {
-      x : 50,
-      y : 50,
+      x: 50,
+      y: 50,
       sprite: game.playerObj.playertype
     };
 
     let player = damphamlet.loadPlayer(creationInfo);
     game.players.push(player);
-    this.game.MusicHandler.playTrack('lava-deep'); 
+    this.game.MusicHandler.playTrack('lava-deep');
 
     this.enemies = [];
     let creator = new Creator(game, this.map);
@@ -84,4 +84,3 @@ class Level3 extends Phaser.State {
     player.currentMission = this;
   }
 }
-export default Level3;

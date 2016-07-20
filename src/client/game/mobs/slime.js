@@ -52,7 +52,6 @@ export class Slime extends Mob {
         }
         //if we have a target and haven't reached deAggro distance, keep tracking them
         if (this.distanceToTarget < deAggro) {
-          console.log('check for players', this.distanceToTarget, deAggro);
           this.target = this.game.players[i];
           this.angleToTarget = this.game.math.normalizeAngle(this.game.physics.arcade.angleBetween(this, this.target));
           this.getDirToTarget(this.angleToTarget);

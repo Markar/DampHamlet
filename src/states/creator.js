@@ -13,27 +13,27 @@ export class Creator {
   constructor(game, map) {
     this.game = game;
     this.map = map;
-    this.damphamlet = window['damphamlet'];
+    this.damphamlet = window.damphamlet;
   }
 
-createEye(x, y) {
+  createEye(x, y) {
     let eye = new Eye('eye', this.game, x, y);
     this.game.eyes.push(eye);
     this.game.enemies.push(eye);
-    return eye; 
+    return eye;
   }
-createSlime(x, y) {
+  createSlime(x, y) {
     let slime = new Slime('slime', this.game, x, y);
     this.game.slimes.push(slime);
     this.game.enemies.push(slime);
-    return slime; 
+    return slime;
   }
 
   createGreenAlien(x, y) {
     let green = new GreenAlien('greenalien', this.game, x, y);
     this.game.greenaliens.push(green);
     this.game.enemies.push(green);
-    return green;  
+    return green;
   }
 
   createRedAlien(x, y) {
@@ -43,13 +43,11 @@ createSlime(x, y) {
     return red;
   }
 
-
-
   getRandomPosition(map) {
     return [Math.random() * (map.width * this.game.scalemultiple * 8),
-      Math.random() * (map.height * this.game.scalemultiple * 8)]
+      Math.random() * (map.height * this.game.scalemultiple * 8)];
   }
-  
+
   createEyes(count) {
     for(let i = 0; i < count; i++) {
       let pos = this.getRandomPosition(this.map);
@@ -61,7 +59,7 @@ createSlime(x, y) {
   }
   createSlimes(count) {
     let game = this.game;
-    for(var i = 0; i < count; i++) {
+    for(let i = 0; i < count; i++) {
       let startx = (Math.random() * (game.width - 200) + 100);
       let starty = (Math.random() * (game.height - 200) + 100);
       let slime = new Slime('slime', game, startx, starty, i);
@@ -71,7 +69,6 @@ createSlime(x, y) {
     return game.slimes;
   }
   createGreenAliens(count) {
-
     for(let i = 0; i < count; i++) {
       let pos = this.getRandomPosition(this.map);
       let greenalien = new GreenAlien('greenalien', this.game, pos[0], pos[1]);
@@ -82,7 +79,6 @@ createSlime(x, y) {
   }
 
   createRedAliens(count) {
-
     for(let i = 0; i < count; i++) {
       let pos = this.getRandomPosition(this.map);
       let redalien = new RedAlien('rednalien', this.game, pos[0], pos[1]);
@@ -91,7 +87,6 @@ createSlime(x, y) {
     this.game.enemies.push(this.game.redaliens);
   }
   createOctopi(count) {
-
     for(let i = 0; i < count; i++) {
       let pos = this.getRandomPosition(this.map);
       let octopus = new Octopus('octopus', this.game, pos[0], pos[1]);
@@ -100,7 +95,6 @@ createSlime(x, y) {
     this.game.enemies.push(this.game.octopi);
   }
   createFurryAliens(count) {
-
     for(let i = 0; i < count; i++) {
       let pos = this.getRandomPosition(this.map);
       let furryalien = new FurryAlien('furryalien', this.game, pos[0], pos[1]);
@@ -109,7 +103,6 @@ createSlime(x, y) {
     this.game.enemies.push(this.game.furryaliens);
   }
   createTealAliens(count) {
-
     for(let i = 0; i < count; i++) {
       let pos = this.getRandomPosition(this.map);
       let tealalien = new FurryAlien('tealalien', this.game, pos[0], pos[1]);
@@ -118,15 +111,12 @@ createSlime(x, y) {
     this.game.enemies.push(this.game.tealaliens);
   }
 
-loopEnemies() {
+  loopEnemies() {
     for (let enemyIndex = 0; enemyIndex < this.game.enemies.length; enemyIndex++) {
-
-      console.log('tick');
       for(let mobIndex = 0; mobIndex < this.game.enemies.length; mobIndex++) {
         let mob = this.game.enemies[mobIndex];
         mob.checkForPlayers(200, 1400);
       }
-
     }
   }
   // loopEnemies() {

@@ -24,7 +24,7 @@ export class DampHamlet  {
     this.sharedstate = sharedstate;
     // this.travel = travel;
 
-    this.travel = 'test';  
+    this.travel = 'test';
 
     console.log('game constructor: ' + this.id);
 
@@ -42,25 +42,25 @@ export class DampHamlet  {
     //this.map;
 
     this.initialize();
-    window['damphamlet'] = this;
+    window.damphamlet = this;
     // this.game = this;
   }
 
   //aurelia event
   attached() {
-   this.initialize();
-   this.sharedstate.health += 1; 
+    this.initialize();
+    this.sharedstate.health += 1;
   }
 
-setTravel() { 
-  debugger;
-}
-
-
-  canDeactivate() {    
-      return confirm('This will terminate your current game. Are you sure you want to leave?');
+  setTravel() {
+    debugger;
   }
-  
+
+
+  canDeactivate() {
+    return confirm('This will terminate your current game. Are you sure you want to leave?');
+  }
+
   initialize() {
     this.profileDialog = document.getElementById('Profile');
     this.instructionsDialog = document.getElementById('Instructions');
@@ -77,15 +77,12 @@ setTravel() {
   }
 
   clickHandler() {
-
     window.onkeydown = function(event) {
-
       if (event.keyCode === 27) {
-        if (damphamlet.openDialog != null) {
+        if (damphamlet.openDialog !== null) {
           damphamlet.openDialog.close();
           damphamlet.openDialog = null;
-        }
-        else {
+        } else {
           damphamlet.instructionsDialog.show();
           damphamlet.openDialog = damphamlet.instructionsDialog;
         }
@@ -100,7 +97,7 @@ setTravel() {
 
   getRandomPosition(map) {
     return [Math.random() * (map.width * this.scalemultiple * 8),
-      Math.random() * (map.height * this.scalemultiple * 8)]
+      Math.random() * (map.height * this.scalemultiple * 8)];
   }
 
   createNewPlayer(creationInfo) {
@@ -117,7 +114,7 @@ setTravel() {
     let game = this.phasergame;
     player = new Player(game, creationInfo, game.playerObj);
     player.heal(1000);
-    game.playerone = player; 
+    game.playerone = player;
     return player;
   }
 
@@ -127,61 +124,61 @@ setTravel() {
 
   create() {
     let game = this.phasergame;
-    var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+    let logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
     logo.anchor.setTo(0.5, 0.5);
   }
 
-  clickProfile() {    
+  clickProfile() {
 
-    if(this.closeMenu(this.profileDialog)) { 
+    if(this.closeMenu(this.profileDialog)) {
       return;
-    }     
+    }
     this.profileDialog.show();
     this.openDialog = this.profileDialog;
   }
 
   clickAttributes() {
-    if(this.closeMenu(this.talentDialog)) { 
+    if(this.closeMenu(this.talentDialog)) {
       return;
-    }     
+    }
     this.talentDialog.show();
     this.openDialog = this.talentDialog;
   }
 
   clickWeapons() {
-    if(this.closeMenu(this.weaponsDialog)) { 
+    if(this.closeMenu(this.weaponsDialog)) {
       return;
-    }     
+    }
     this.weaponsDialog.show();
     this.openDialog = this.weaponsDialog;
-  }  
+  }
 
   clickInstructions() {
-    if(this.closeMenu(this.instructionsDialog)) { 
+    if(this.closeMenu(this.instructionsDialog)) {
       return;
-    }     
+    }
     this.instructionsDialog.show();
     this.openDialog = this.instructionsDialog;
   }
-  
+
   openShop(player) {
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
+    if(this.openDialog !== null && this.openDialog.hasAttribute('open')) {
       this.openDialog.close();
     }
     this.shopDialog.show();
     this.openDialog = this.shopDialog;
   }
 
-  openMission(player) { 
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
+  openMission(player) {
+    if(this.openDialog !== null && this.openDialog.hasAttribute('open')) {
       this.openDialog.close();
     }
     this.missionDialog.show();
     this.openDialog = this.missionDialog;
   }
 
-  openTravel(player) { 
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
+  openTravel(player) {
+    if(this.openDialog !== null && this.openDialog.hasAttribute('open')) {
       this.openDialog.close();
     }
     this.travelDialog.show();
@@ -190,37 +187,37 @@ setTravel() {
 
   clickGender(el) {
     this.gender = el.target.getAttribute('gender');
-    $(el.target).siblings().css('border', "0.25em aliceblue ridge");
-    $(el.target).css('border', "0.25em gold ridge");
+    $(el.target).siblings().css('border', '0.25em aliceblue ridge');
+    $(el.target).css('border', '0.25em gold ridge');
   }
 
   clickClass(el) {
     let type = el.target.getAttribute('type');
     this.playerClass = type;
 
-    $(el.target).siblings().css('border', "0.25em aliceblue ridge");
-    $(el.target).css('border', "0.25em gold ridge");
+    $(el.target).siblings().css('border', '0.25em aliceblue ridge');
+    $(el.target).css('border', '0.25em gold ridge');
 
-    if (this.playerClass == 'Mutant' || this.playerClass == 'Cyborg') {
-        $('.console').append(`<li> ${playerClass} is coming soon.</li>`);
-        this.playerClass = 'Marine';
-      }
+    if (this.playerClass === 'Mutant' || this.playerClass === 'Cyborg') {
+      $('.console').append(`<li> ${playerClass} is coming soon.</li>`);
+      this.playerClass = 'Marine';
+    }
   }
 
   closeMenu() {
     console.log('close menu in damphamlet');
-    if(this.openDialog != null && this.openDialog.hasAttribute('open')) {
+    if(this.openDialog !== null && this.openDialog.hasAttribute('open')) {
       this.openDialog.close();
-      this.openDialog = null; 
-    }    
+      this.openDialog = null;
+    }
   }
 
   closeMenu(menu) {
     console.log('close menu in damphamlet');
-    if(this.openDialog != null && this.openDialog.hasAttribute('open') || this.openDialog === menu) {
+    if(this.openDialog !== null && this.openDialog.hasAttribute('open') || this.openDialog === menu) {
       this.openDialog.close();
       this.openDialog = null;
-      return true;  
+      return true;
     }
 
     return false;
@@ -229,7 +226,7 @@ setTravel() {
   play() {
     console.log('play');
     this.phasergame = new Phaser.Game(800, 600, Phaser.AUTO, 'gameWindow', null);
-    
+
     let assetpath = '../static/assets/';
     this.phasergame.assetpath = '../static/assets/';
     this.phasergame.itempath = assetpath + 'items/';
@@ -244,7 +241,7 @@ setTravel() {
     this.phasergame.ambiencepath = assetpath + 'sounds/ambience/';
     this.phasergame.fabricpath = assetpath + 'sounds/fabric/';
     this.phasergame.footpath = assetpath + 'sounds/footsteps/';
-    
+
     this.phasergame.state.add('GameState', GameState, false);
     this.phasergame.state.add('Base', Base, false);
     this.phasergame.state.add('Level1', Level1, false);
@@ -252,12 +249,12 @@ setTravel() {
     this.phasergame.state.add('Level3', Level3, false);
     this.phasergame.state.add('Town', Town, false);
     this.phasergame.state.start('GameState');
-    
-    this.phasergame.target = { 
-      name: '', 
+
+    this.phasergame.target = {
+      name: '',
       health: 0
-    }
-    
+    };
+
     this.closeMenu();
     $('.gamePanel').show();
     // window['game'].state.start('GameState');

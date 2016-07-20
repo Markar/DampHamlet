@@ -83,8 +83,8 @@ export class Mob extends Phaser.Sprite {
     else if ((angle > (3 * Math.PI / 4) && angle < (5 * Math.PI / 4))) {
       this.direction = 3;
     }
-    else { 
-      // console.log('NO ANGLE getDirToTarget', angle); 
+    else {
+      // console.log('NO ANGLE getDirToTarget', angle);
       this.direction = Math.floor(Math.random() * 4);
     }
   }
@@ -96,14 +96,13 @@ export class Mob extends Phaser.Sprite {
 
 
   move() {
-
-    if (this.alive == 1 && this.nextMove) {
+    if (this.alive === 1 && this.nextMove) {
 
       if (this.hateList.length > 0) {
         this.target = this.hateList[0];
       }
 
-      if (this.target != null) {
+      if (this.target !== null) {
         this.moveByInteger(this.direction);
         return;
         //  this.game.physics.arcade.moveToObject(this, this.target, this.speed);
@@ -119,26 +118,26 @@ export class Mob extends Phaser.Sprite {
   }
 
   moveByInteger(direction) {
-    if (direction == 0) {
+    if (direction === 0) {
       this.body.moveUp(this.speed);
       this.animations.play('up');
     }
-    else if (direction == 1) {
+    else if (direction === 1) {
       this.body.moveRight(this.speed);
       this.animations.play('right');
     }
-    else if (direction == 2) {
+    else if (direction === 2) {
       this.body.moveDown(this.speed);
       this.animations.play('down');
     }
-    else if (direction == 3) {
+    else if (direction === 3) {
       this.body.moveLeft(this.speed);
       this.animations.play('left');
     }
   }
 
   attack() {
-    if (this.target != null) {
+    if (this.target !== null) {
       //let direction = Math.floor(Math.random() * 4);
       let fired = this.weapon.fire(this.body.x, this.body.y, this.direction);
 
@@ -218,16 +217,16 @@ export class Mob extends Phaser.Sprite {
   }
 
   enemyHitByWeapon(body1, body2) {
+    console.log('hit by weapon', this.alive);
     this.hp -= body2.sprite.damage;
     this.game.target.name = this.name;
-    this.game.target.health = this.hp
+    this.game.target.health = this.hp;
 
     if (body2.sprite.player === undefined) {
       if (this.hp < 1) {
         this.die();
       }
-    }
-    else {
+    } else {
       this.target = body2.sprite.player;
       this.hateList.push(body2.sprite.player);
       this.angleToTarget = this.game.math.normalizeAngle(this.game.physics.arcade.angleBetween(this, this.target));
@@ -241,21 +240,18 @@ export class Mob extends Phaser.Sprite {
 
   die(player) {
     this.alive = 0;
+    this.body.setCircle(0);
     this.game.enemyCount--;
     // $(".enemyCount").text(this.game.enemyCount);
     let item = new Credits(this.game, this.body.x, this.body.y, this.credits);
 
-
     if (player === undefined) {
       // console.log('player undefined on that projectiles');
-    }
-    else {
+    } else {
       console.log('add xp from mob');
       player.writeconsole(`gained ${this.xp} experience`);
       player.levels.addXP(this.xp);
     }
-
     this.destroy();
   }
-
 }
