@@ -294,7 +294,7 @@ export class Player extends Phaser.Sprite {
     this.inventory = new Inventory();
 
     //set this before adding weapons, since it uses hasX for adding them
-    this.debug();
+    // this.debug();
 
     //default to the pistol
     if (this.attributes.hasPistol) {
@@ -410,35 +410,35 @@ export class Player extends Phaser.Sprite {
 
   equipWeapon(strWeapon) {
     switch (strWeapon) {
-    case 'Pistol':
-      this.switchWeapons(this.pistol);
-      break;
-    case 'Laser':
-      this.switchWeapons(this.laser);
-      break;
-    case 'Rockets':
-      this.switchWeapons(this.rockets);
-      break;
-    case 'Shotgun':
-      this.switchWeapons(this.shotgun);
-      break;
-    case 'Assault Rifle':
-      this.switchWeapons(this.assaultrifle);
-      break;
-    default:
-      break;
+      case 'Pistol':
+        this.switchWeapons(this.pistol);
+        break;
+      case 'Laser':
+        this.switchWeapons(this.laser);
+        break;
+      case 'Rockets':
+        this.switchWeapons(this.rockets);
+        break;
+      case 'Shotgun':
+        this.switchWeapons(this.shotgun);
+        break;
+      case 'Assault Rifle':
+        this.switchWeapons(this.assaultrifle);
+        break;
+      default:
+        break;
     }
 
     this.setWeaponPosition();
   }
 
   switchWeapons(toWeapon) {
-    if(this.weapon === toWeapon) {
+    if (this.weapon === toWeapon) {
       this.writeconsole('You already have that weapon equipped.');
       return;
     }
 
-    if(typeof(toWeapon) === 'undefined') {
+    if (typeof (toWeapon) === 'undefined') {
       this.writeconsole('You don\'t have that weapon yet.');
       return;
     }
@@ -699,7 +699,7 @@ export class Player extends Phaser.Sprite {
         this.skills.sprint.active = 1;
         console.log('sprint active');
 
-        this.game.time.events.add(3000, function() {
+        this.game.time.events.add(3000, function () {
           console.log('reduce sprint speed');
           this.attributes.speed -= sprintSpeed;
           this.skills.sprint.active = 0;
@@ -729,32 +729,32 @@ export class Player extends Phaser.Sprite {
     if (tmptile === null) {
       //Now try to get the interaction layer 1 tile ahead of us
       switch (this.direction) {
-      case 0:
-        tile[0] -= 1;
-        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-        point = new Phaser.Point(this.body.x - 32, this.body.y);
-        break;
-      case 1:
-        tile[0] += 1;
-        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-        point = new Phaser.Point(this.body.x + 32, this.body.y);
-        break;
-      case 2:
-        tile[1] -= 1;
-        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-        point = new Phaser.Point(this.body.x, this.body.y - 32);
-        break;
-      case 3:
-        tile[1] += 1;
-        tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
-        tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
-        point = new Phaser.Point(this.body.x, this.body.y + 32);
-        break;
-      default:
-        break;
+        case 0:
+          tile[0] -= 1;
+          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+          point = new Phaser.Point(this.body.x - 32, this.body.y);
+          break;
+        case 1:
+          tile[0] += 1;
+          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+          point = new Phaser.Point(this.body.x + 32, this.body.y);
+          break;
+        case 2:
+          tile[1] -= 1;
+          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+          point = new Phaser.Point(this.body.x, this.body.y - 32);
+          break;
+        case 3:
+          tile[1] += 1;
+          tmptile = state.map.getTile(tile[0], tile[1], 'Tile Layer 1');
+          tmptile2 = state.map.getTile(tile[0], tile[1], 'Tile Layer 2');
+          point = new Phaser.Point(this.body.x, this.body.y + 32);
+          break;
+        default:
+          break;
       }
     }
     if (tmptile2 === null) {
@@ -908,36 +908,36 @@ export class Player extends Phaser.Sprite {
 
   setWeaponPosition() {
     switch (this.direction) {
-    case 0:
-      this.weapon.sprite.angle = 0;
-      this.weapon.sprite.scale.x = -0.5;
-      this.weapon.sprite.x = -4;
-      this.weapon.sprite.y = 1;
-      return;
-    case 1:
-      this.weapon.sprite.scale.x = 0.7;
-      this.weapon.sprite.angle = 0;
-      this.weapon.sprite.x = -1.25;
-      this.weapon.sprite.y = 0.8;
-      return;
-    case 2:
-      this.weapon.sprite.scale.x = -0.7;
-      this.weapon.sprite.angle = 90;
-      this.weapon.sprite.x = 3.5;
-      this.weapon.sprite.y = 0;
-      return;
-    case 3:
-      this.weapon.sprite.scale.x = -0.5;
-      this.weapon.sprite.angle = 270;
-      this.weapon.sprite.x = -3.5;
-      this.weapon.sprite.y = 2;
-      return;
-    default:
-      this.weapon.sprite.angle = 0;
-      this.weapon.sprite.scale.x = -0.5;
-      this.weapon.sprite.x = -4;
-      this.weapon.sprite.y = 1;
-      return;
+      case 0:
+        this.weapon.sprite.angle = 0;
+        this.weapon.sprite.scale.x = -0.5;
+        this.weapon.sprite.x = -4;
+        this.weapon.sprite.y = 1;
+        return;
+      case 1:
+        this.weapon.sprite.scale.x = 0.7;
+        this.weapon.sprite.angle = 0;
+        this.weapon.sprite.x = -1.25;
+        this.weapon.sprite.y = 0.8;
+        return;
+      case 2:
+        this.weapon.sprite.scale.x = -0.7;
+        this.weapon.sprite.angle = 90;
+        this.weapon.sprite.x = 3.5;
+        this.weapon.sprite.y = 0;
+        return;
+      case 3:
+        this.weapon.sprite.scale.x = -0.5;
+        this.weapon.sprite.angle = 270;
+        this.weapon.sprite.x = -3.5;
+        this.weapon.sprite.y = 2;
+        return;
+      default:
+        this.weapon.sprite.angle = 0;
+        this.weapon.sprite.scale.x = -0.5;
+        this.weapon.sprite.x = -4;
+        this.weapon.sprite.y = 1;
+        return;
     }
   }
 
@@ -948,63 +948,63 @@ export class Player extends Phaser.Sprite {
       let speed = this.attributes.speed;
       this.weapon.sprite.visible = false;
       switch (this.pressStack[this.pressStack.length - 1]) {
-      case 'left':
-        this.body.moveLeft(speed);
-        this.animations.play('death');
-        this.direction = 0;
-        return;
-      case 'right':
-        this.body.moveRight(speed);
-        this.animations.play('death');
-        this.direction = 1;
-        return;
-      case 'up':
-        this.body.moveUp(speed);
-        this.animations.play('death');
-        this.direction = 2;
-        return;
-      case 'down':
-        this.body.moveDown(speed);
-        this.animations.play('death');
-        this.direction = 3;
-        return;
-      default:
-        this.animations.stop();
+        case 'left':
+          this.body.moveLeft(speed);
+          this.animations.play('death');
+          this.direction = 0;
+          return;
+        case 'right':
+          this.body.moveRight(speed);
+          this.animations.play('death');
+          this.direction = 1;
+          return;
+        case 'up':
+          this.body.moveUp(speed);
+          this.animations.play('death');
+          this.direction = 2;
+          return;
+        case 'down':
+          this.body.moveDown(speed);
+          this.animations.play('death');
+          this.direction = 3;
+          return;
+        default:
+          this.animations.stop();
       }
     } else {
       if (this.canmove === 1) {
         let speed = this.attributes.speed;
         switch (this.pressStack[this.pressStack.length - 1]) {
-        case 'left':
-          this.body.moveLeft(speed);
-          this.animations.play('left');
-          this.direction = 0;
-          this.setWeaponPosition();
-          this.sfxWalk();
-          return;
-        case 'right':
-          this.body.moveRight(speed);
-          this.animations.play('right');
-          this.direction = 1;
-          this.setWeaponPosition();
-          this.sfxWalk();
-          return;
-        case 'up':
-          this.body.moveUp(speed);
-          this.animations.play('up');
-          this.direction = 2;
-          this.setWeaponPosition();
-          this.sfxWalk();
-          return;
-        case 'down':
-          this.body.moveDown(speed);
-          this.animations.play('down');
-          this.direction = 3;
-          this.setWeaponPosition();
-          this.sfxWalk();
-          return;
-        default:
-          this.animations.stop();
+          case 'left':
+            this.body.moveLeft(speed);
+            this.animations.play('left');
+            this.direction = 0;
+            this.setWeaponPosition();
+            this.sfxWalk();
+            return;
+          case 'right':
+            this.body.moveRight(speed);
+            this.animations.play('right');
+            this.direction = 1;
+            this.setWeaponPosition();
+            this.sfxWalk();
+            return;
+          case 'up':
+            this.body.moveUp(speed);
+            this.animations.play('up');
+            this.direction = 2;
+            this.setWeaponPosition();
+            this.sfxWalk();
+            return;
+          case 'down':
+            this.body.moveDown(speed);
+            this.animations.play('down');
+            this.direction = 3;
+            this.setWeaponPosition();
+            this.sfxWalk();
+            return;
+          default:
+            this.animations.stop();
         }
       }
     }
