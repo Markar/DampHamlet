@@ -22,26 +22,30 @@ export class Ship1 extends Mob {
     super.enemyHitByWeapon(body1, body2);
   }
 
-   setupSprite() {
-     let game = this.game;
+  setupSprite() {
+    let game = this.game;
 
-     this.animations.add('up', [0], 1, true);
-     this.animations.add('right', [1], 1, true);
-     this.animations.add('down', [2], 1, true);
-     this.animations.add('left', [3], 1, true);
+    this.animations.add('up', [0], 1, true);
+    this.animations.add('right', [1], 1, true);
+    this.animations.add('down', [2], 1, true);
+    this.animations.add('left', [3], 1, true);
 
-     this.body.setCircle(20);
-     this.body.setCollisionGroup(game.enemyCollisionGroup);
-     this.body.fixedRotation = true;
-     this.body.collides(game.weaponCollisionGroup, this.enemyHitByWeapon, this);
-     this.body.collides(game.playerCollisionGroup);
-     this.body.collides(game.blockCollisionGroup, this.hitBlock, this);
-     this.body.collides([game.enemyCollisionGroup, game.tileCollisionGroup], this.hitWallOrAlly, this);
-     this.body.mass = 5000;
-     this.body.damping = 0.999;
-   }
+    this.body.setCircle(20);
+    this.body.setCollisionGroup(game.enemyCollisionGroup);
+    this.body.fixedRotation = true;
+    this.body.collides(game.weaponCollisionGroup, this.enemyHitByWeapon, this);
+    this.body.collides(game.playerCollisionGroup);
+    this.body.collides(game.blockCollisionGroup, this.hitBlock, this);
+    this.body.collides([game.enemyCollisionGroup, game.tileCollisionGroup], this.hitWallOrAlly, this);
+    this.body.mass = 5000;
+    this.body.damping = 0.999;
+  }
 
   move() {
+
+  }
+
+  attack() {
 
   }
 

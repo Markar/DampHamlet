@@ -139,7 +139,6 @@ export class Weapon {
   }
   //called when a weapon hits something. Destroy the weapon
   weaponHit(body1, body2) {
-    console.log('weapon hit', body1, body2);
     this.kill();
   }
 
@@ -160,9 +159,9 @@ export class Weapon {
     let weapon = this.weapons.getFirstDead();
     weapon.reset(player.body.x + player.weapon.sprite.x * 4, player.body.y + player.weapon.sprite.y * 4);
 
-    // this.game.time.events.add(1500, () => {
-    //   weapon.kill();
-    // });
+    this.game.time.events.add(1500, () => {
+      weapon.kill();
+    });
 
     switch (player.direction) {
     case 0:

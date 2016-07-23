@@ -42,16 +42,25 @@ dialog {
   width: 100%; }
 
 .UIIcons {
-  float: right;
-  position: fixed;
-  right: 0; }
+  float: left;
+  position: absolute;
+  left: 50em;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10em; }
 
 .sidebar-left {
   font-family: Orbitron, sans-serif;
   float: left;
   width: 12em;
   height: 40em;
-  color: gray; }
+  color: gray;
+  position: absolute;
+  left: 0;
+  right: 63em;
+  margin-left: auto;
+  margin-right: auto; }
 
 .fa-5 {
   font-size: 12em; }
@@ -494,7 +503,13 @@ div.au-stagger {
   background-color: black;
   color: green;
   border: 0.25em aliceblue ridge;
-  margin-top: 7em; }
+  margin-top: 44em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75em; }
 
 .creationwindow {
   height: 600px;

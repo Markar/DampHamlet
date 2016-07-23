@@ -84,8 +84,9 @@ class Mission {
       player.addCredits(this.rewardCredits);
       player.levels.addXP(this.rewardXP);
       player.writeconsole(`Collected ${this.rewardCredits} credits as a reward for finishing ${this.name}.`);
-      this.rewardCollected = true;
+      //this.rewardCollected = true;
       this.setActive(false);
+      this.complete = false;
     }
 
     let destinations = window.travel.destinations;
